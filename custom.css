@@ -1204,6 +1204,55 @@ body {
   .project-color-panel__label > span:last-child { margin-left: 0; }
 }
 
+@media (hover: none), (max-width: 700px) {
+  .project-color-reveal.is-projects-section .project-color-panel__image {
+    opacity: 1;
+  }
+
+  .project-color-reveal.is-projects-section .project-color-panel::before {
+    opacity: .58;
+  }
+
+  .project-color-reveal.is-projects-section .project-color-panel--godwoven::before {
+    opacity: .25;
+  }
+
+  .project-color-reveal.is-projects-section .project-color-panel::after {
+    opacity: .55;
+  }
+
+  .project-color-reveal.is-projects-section .project-hover-info {
+    justify-content: center;
+    padding: 12px 7px;
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
+
+  .project-color-reveal.is-projects-section .project-hover-info--link {
+    pointer-events: auto;
+  }
+
+  .project-color-reveal.is-projects-section .project-hover-info__line {
+    gap: 5px;
+  }
+
+  .project-color-reveal.is-projects-section .project-hover-info__line strong {
+    font-size: clamp(.78rem, 2.8vw, 1rem);
+  }
+
+  .project-color-reveal.is-projects-section .project-hover-info__line .project-hover-info__title {
+    font-size: clamp(.72rem, 2.7vw, .95rem);
+    overflow-wrap: anywhere;
+  }
+
+  .project-color-reveal.is-projects-section .project-hover-info__type {
+    font-size: clamp(.55rem, 1.9vw, .72rem);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .home-scroll-cue { animation: none; }
   .project-color-panel {
