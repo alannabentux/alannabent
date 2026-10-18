@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Godwoven Trilogy website design and development by Alanna Bent. Development in progress.">
+  <title>Godwoven Trilogy | Alanna Bent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Google Sans Flex", Arial, sans-serif;
+      color: #f5f1f4;
+      background: #08070a;
+      --purple: #a98bf2;
+      --muted: #aaa5b0;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { min-width: 320px; min-height: 100vh; margin: 0; background: #08070a; }
+    a { color: inherit; }
+    .page-wrap { width: min(1240px, calc(100% - 80px)); margin-inline: auto; }
+    .site-header { display: flex; min-height: 96px; align-items: center; justify-content: space-between; }
+    .brand { font-size: 34px; font-weight: 500; letter-spacing: -.14em; text-decoration: none; }
+    .back-link { display: inline-flex; align-items: center; gap: 9px; color: var(--muted); font-size: 14px; text-decoration: none; transition: color 180ms ease; }
+    .back-link::before { content: "←"; color: var(--purple); font-size: 19px; transition: transform 180ms ease; }
+    .back-link:hover { color: #fff; }
+    .back-link:hover::before { transform: translateX(-4px); }
+    .hero { display: grid; min-height: min(690px, calc(100svh - 96px)); grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); align-items: center; gap: clamp(36px, 7vw, 100px); padding-block: 42px 72px; }
+    .hero-image { margin: 0; }
+    .hero-image img { display: block; width: 100%; height: auto; }
+    .hero-copy { max-width: 500px; }
+    h1 { margin: 0; font-size: clamp(42px, 5vw, 68px); font-weight: 400; letter-spacing: -.075em; line-height: .98; }
+    .project-type { margin: 26px 0 0; color: #e9e3f5; font-size: clamp(16px, 1.8vw, 21px); font-weight: 500; }
+    .project-summary { max-width: 420px; margin: 18px 0 0; color: var(--muted); font-size: clamp(15px, 1.4vw, 18px); line-height: 1.65; }
+    .coming-soon { margin: clamp(26px, 4vw, 42px) 0 0; padding-top: 18px; border-top: 1px solid rgb(245 241 244 / 18%); color: var(--purple); font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+    @media (max-width: 760px) {
+      .page-wrap { width: min(100% - 40px, 560px); }
+      .site-header { min-height: 78px; }
+      .hero { min-height: 0; grid-template-columns: 1fr; gap: 28px; padding-block: 25px 60px; }
+      .hero-image { width: min(100%, 540px); margin-inline: auto; }
+      .hero-copy { max-width: 560px; }
+      h1 { font-size: clamp(42px, 10vw, 64px); }
+      .project-type { margin-top: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="site-header page-wrap">
+    <a class="brand" href="../index.html" aria-label="Alanna Bent home">ab</a>
+    <a class="back-link" href="../index.html#projects">All projects</a>
+  </header>
+  <main>
+    <section class="hero page-wrap" aria-labelledby="page-title">
+      <figure class="hero-image">
+        <img src="assets/images/godwovencomingsoon.png" alt="Godwoven Trilogy responsive website mockups">
+      </figure>
+      <div class="hero-copy">
+        <h1 id="page-title">Godwoven Trilogy</h1>
+        <p class="project-type">Web design + web dev</p>
+        <p class="project-summary">A responsive website designed for the Godwoven Trilogy.</p>
+        <p class="coming-soon">Development in progress</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

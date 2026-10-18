@@ -17,10 +17,14 @@
           <span class="home-logo-wordmark">alanna bent</span>
           <span class="home-logo-mark" aria-hidden="true">ab</span>
         </a>
+        <div class="home-nav-actions" aria-label="Professional links">
+          <a href="resume.html">Resume</a>
+          <a href="https://www.linkedin.com/in/alanna-bent-53274922b" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+        </div>
       </nav>
     </header>
     <main>
-      <section class="project-color-reveal" aria-label="Selected projects">
+      <section class="project-color-reveal" id="projects" aria-label="Selected projects">
         <div class="project-color-stage">
           <div class="project-color-intro">
             <div class="intro">
@@ -60,14 +64,24 @@
               <span class="project-hover-info"><span class="project-hover-info__line"><strong>03</strong><span class="project-hover-info__title">Edge Analytics</span></span><span class="project-hover-info__type">web design + web dev</span></span>
               <span class="project-color-panel__label"><span>03</span><span class="project-color-panel__title">The importance of IA in UX design</span><span class="project-color-panel__meta">Alanna Bent · UX Magazine<br>May 19, 2022 · 5 min read</span><span aria-hidden="true">↗</span></span>
             </a>
-            <a class="project-color-panel project-color-panel--neurokami" href="https://drie.design/projects-neurokami.html" data-project-href="https://drie.design/projects-neurokami.html" data-article-href="https://medium.com/design-bootcamp/interviewing-without-bias-a-guide-to-user-interviews-in-ux-design-6d27598c5006" aria-label="Neurokami project on Drie Design">
+            <a class="project-color-panel project-color-panel--neurokami" href="case-studies/neurokami.html" data-project-href="case-studies/neurokami.html" data-article-href="https://medium.com/design-bootcamp/interviewing-without-bias-a-guide-to-user-interviews-in-ux-design-6d27598c5006" aria-label="Neurokami app design case study">
               <img class="project-color-panel__image" src="case-studies/assets/images/neurokamiMockup.jpg" alt="">
               <span class="project-hover-info"><span class="project-hover-info__line"><strong>04</strong><span class="project-hover-info__title">Neurokami</span></span><span class="project-hover-info__type">app design</span></span>
               <span class="project-color-panel__label"><span>04</span><span class="project-color-panel__title">Interviewing without bias: a guide to user interviews in UX design</span><span class="project-color-panel__meta">Alanna Bent · Bootcamp<br>Mar 9, 2023 · 7 min read</span><span aria-hidden="true">↗</span></span>
             </a>
             <div class="project-color-panel project-color-panel--godwoven" role="group" tabindex="0" aria-label="Godwoven Trilogy project">
-              <span class="project-hover-info"><span class="project-hover-info__line"><strong>05</strong><span class="project-hover-info__title">Godwoven Trilogy</span></span><span class="project-hover-info__type">literature</span></span>
+              <img class="project-color-panel__image" src="case-studies/assets/images/godwovenmain.png" alt="Godwoven Trilogy project artwork">
+              <a class="project-hover-info project-hover-info--link" href="case-studies/godwoven.html" aria-label="View Godwoven Trilogy project">
+                <span class="project-hover-info__line"><strong>05</strong><span class="project-hover-info__title">Godwoven Trilogy</span></span>
+                <span class="project-hover-info__type">web design + web dev</span>
+              </a>
+              <span class="project-color-panel__label"><span>05</span><a class="project-color-panel__title" href="https://medium.com/@alannabent" target="_blank" rel="noopener noreferrer">View All</a><span aria-hidden="true">↗</span></span>
             </div>
+          </div>
+          <div class="home-contact" aria-labelledby="home-contact-title">
+            <p class="home-contact__eyebrow">CONTACT</p>
+            <h2 id="home-contact-title">Good design starts with a conversation</h2>
+            <a href="mailto:alannabentux@gmail.com">alannabentux@gmail.com <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </section>
@@ -91,9 +105,15 @@
               ? 1
               : scrollScreens <= 2.6
                 ? 1 + (scrollScreens - 1.6)
-                : scrollScreens <= 3.1
+                : scrollScreens <= 3.2
                   ? 2
-                  : Math.min(3, 2 + (scrollScreens - 3.1));
+                  : scrollScreens <= 4.2
+                    ? 2 + (scrollScreens - 3.2)
+                    : scrollScreens <= 4.8
+                    ? 3
+                    : scrollScreens <= 5.8
+                      ? 3 + (scrollScreens - 4.8)
+                      : 4;
           const collapse = Math.max(0, Math.min(1, phase - 1));
           const relocate = Math.max(0, Math.min(1, phase - 2));
           const barHeight = 48;
@@ -142,6 +162,13 @@
               left = mix(0, blockLeft, relocate);
               top = mix(railTop, blockTop, relocate);
               width = mix(railWidth, blockWidth, relocate);
+              if (phase > 3) {
+                const contactProgress = Math.max(0, Math.min(1, phase - 3));
+                height = mix(height, barHeight, contactProgress);
+                left = mix(left, fullLeft, contactProgress);
+                top = mix(top, viewportHeight - barHeight, contactProgress);
+                width = mix(width, fullWidth, contactProgress);
+              }
             }
 
             panel.style.setProperty("--panel-left", `${left.toFixed(1)}px`);
@@ -153,16 +180,19 @@
           reveal.classList.toggle("is-open", phase >= 0.8 && phase < 1.1);
           reveal.classList.toggle("is-collapsing", phase > 1);
           reveal.classList.toggle("is-third-section", phase >= 1.95 && phase <= 2);
+          document.body.classList.toggle("third-section-active", phase >= 1.95 && phase <= 2);
           const projectInfoVisible = phase >= 1 && phase <= 1.3;
           reveal.classList.toggle("is-projects-section", projectInfoVisible);
           document.body.classList.toggle("projects-section-active", projectInfoVisible);
           reveal.classList.toggle("is-writing-section", phase >= 2.8);
-          reveal.classList.toggle("is-writing-content", phase >= 2.9);
+          reveal.classList.toggle("is-writing-content", phase >= 2.9 && phase < 3.15);
+          reveal.classList.toggle("is-contact-section", phase >= 3.8);
+          document.body.classList.toggle("contact-section-active", phase >= 3.8);
           document.body.classList.toggle("writing-section-active", phase >= 2.8);
           reveal.classList.toggle("is-scrolled", scrollScreens > 0.01);
           projectPanels.forEach((panel) => {
-            const isArticleStage = phase >= 2.8;
-            const hasSectionInfo = projectInfoVisible || phase >= 2.9;
+            const isArticleStage = phase >= 2.8 && phase < 3.2;
+            const hasSectionInfo = projectInfoVisible || (phase >= 2.9 && phase < 3.2);
             panel.inert = !hasSectionInfo;
             if (panel.dataset.projectHref && panel.dataset.articleHref) {
               panel.href = isArticleStage ? panel.dataset.articleHref : panel.dataset.projectHref;
@@ -185,12 +215,37 @@
         };
         window.addEventListener("scroll", scheduleUpdate, { passive: true });
         window.addEventListener("resize", scheduleUpdate);
+        const scrollToProjects = () => {
+          const target = window.innerHeight * 1.15;
+          if (reduceMotion.matches) {
+            window.scrollTo(0, target);
+            return;
+          }
+
+          const start = window.scrollY;
+          const distance = target - start;
+          const duration = 1600;
+          let animationStart;
+          const animateScroll = (timestamp) => {
+            if (animationStart === undefined) animationStart = timestamp;
+            const progress = Math.min(1, (timestamp - animationStart) / duration);
+            const eased = progress < .5
+              ? 4 * progress * progress * progress
+              : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            window.scrollTo(0, start + distance * eased);
+            if (progress < 1) window.requestAnimationFrame(animateScroll);
+          };
+          window.requestAnimationFrame(animateScroll);
+        };
         scrollCue?.addEventListener("click", () => {
           window.scrollTo({
             top: window.scrollY + window.innerHeight,
             behavior: reduceMotion.matches ? "auto" : "smooth",
           });
         });
+        if (window.location.hash === "#projects") {
+          scrollToProjects();
+        }
         updateReveal();
       })();
     </script>

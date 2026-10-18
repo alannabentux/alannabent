@@ -540,9 +540,55 @@ body {
 }
 
 .home-page .navbar {
+  display: flex;
   width: 100%;
+  align-items: center;
+  justify-content: space-between;
   margin-inline: 0;
   transition: opacity 220ms ease, visibility 220ms ease;
+}
+
+.home-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(.6rem, 1.2vw, 1rem);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 220ms ease, transform 220ms ease, visibility 220ms ease;
+}
+
+.home-page.third-section-active .home-nav-actions,
+.home-page.contact-section-active .home-nav-actions {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.home-nav-actions a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: .3rem;
+  padding: .55rem .9rem;
+  border: 1px solid rgb(245 241 244 / 52%);
+  border-radius: 999px;
+  color: #f5f1f4;
+  font-size: .9rem;
+  text-decoration: none;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.home-nav-actions a:hover,
+.home-nav-actions a:focus-visible {
+  border-color: #f5f1f4;
+  background: #f5f1f4;
+  color: #17141a;
+}
+
+.home-nav-actions a:focus-visible {
+  outline: 2px solid #b6a2f4;
+  outline-offset: 3px;
 }
 
 .home-page.projects-section-active .navbar {
@@ -568,7 +614,7 @@ body {
 .home-page.has-scrolled .home-logo-mark { opacity: 1; }
 
 .project-color-reveal {
-  height: 520svh;
+  height: 720svh;
 }
 
 .project-color-stage {
@@ -583,6 +629,61 @@ body {
 
 .project-color-reveal.is-writing-section .project-color-stage {
   background-color: #17141a;
+}
+
+.home-contact {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #f5f1f4;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px);
+  transition: opacity 400ms ease, transform 400ms ease, visibility 400ms ease;
+  pointer-events: none;
+}
+
+.project-color-reveal.is-contact-section .home-contact {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.home-contact__eyebrow {
+  margin: 0 0 1rem;
+  color: #b6a2f4;
+  font-size: .8rem;
+  letter-spacing: .2em;
+}
+
+.home-contact h2 {
+  max-width: 14ch;
+  margin: 0;
+  font-size: clamp(2.3rem, 6.3vw, 5.9rem);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: .98;
+}
+
+.home-contact > a {
+  margin-top: 2rem;
+  color: #f5f1f4;
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .3em;
+  pointer-events: auto;
+}
+
+.home-contact > a span {
+  display: inline-block;
+  margin-left: .45rem;
 }
 
 .project-color-intro {
@@ -784,6 +885,13 @@ body {
   visibility: visible;
 }
 
+.project-color-reveal.is-projects-section .project-color-panel:hover .project-hover-info--link,
+.project-color-reveal.is-projects-section .project-color-panel:focus-visible .project-hover-info--link {
+  pointer-events: auto;
+}
+
+.project-hover-info--link { color: inherit; text-decoration: none; }
+
 .project-hover-info__line {
   display: flex;
   flex-direction: column;
@@ -875,6 +983,11 @@ body {
   transition: opacity 300ms ease;
 }
 
+.project-color-reveal.is-projects-section .project-color-panel--godwoven:hover::before,
+.project-color-reveal.is-projects-section .project-color-panel--godwoven:focus-visible::before {
+  opacity: .25;
+}
+
 .project-color-panel::after {
   position: absolute;
   z-index: 2;
@@ -924,6 +1037,18 @@ body {
 .project-color-panel--godwoven {
   --panel-overlay: #1d0f36;
   background: #1d0f36;
+}
+
+.project-color-panel--godwoven::after {
+  inset: 0;
+  background: linear-gradient(135deg, #1d0f36 0%, #291b43 58%, #3b2b60 100%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.project-color-panel--godwoven:hover::after,
+.project-color-panel--godwoven:focus-visible::after {
+  opacity: .8;
 }
 
 .project-color-panel__label {
@@ -983,6 +1108,17 @@ body {
   align-self: center;
   font-size: clamp(14px, 1.2vw, 17px);
   line-height: 1.25;
+}
+
+.project-color-reveal.is-writing-content a.project-color-panel__title {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-color-reveal.is-writing-content a.project-color-panel__title:hover,
+.project-color-reveal.is-writing-content a.project-color-panel__title:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: .2em;
 }
 
 .project-color-reveal.is-writing-content .project-color-panel__meta {
