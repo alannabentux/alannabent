@@ -13,25 +13,10 @@
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; scroll-padding-top:28px; }
     body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.6 "DM Sans",Arial,sans-serif; }
-    body.menu-open { overflow:hidden; }
     img { display:block; max-width:100%; }
     a { color:inherit; }
     h1,h2,h3 { font-family:"Playfair Display",Georgia,serif; font-weight:500; line-height:1.15; }
     .wrap { width:min(1160px,calc(100% - 88px)); margin-inline:auto; }
-    .case-nav { position:fixed; z-index:30; top:0; right:0; left:0; display:flex; min-height:72px; align-items:center; justify-content:flex-end; padding:12px max(24px,calc((100% - 1160px)/2)); color:#fff; background:transparent; pointer-events:none; }
-    .case-nav.is-scrolled { color:var(--dark); }
-    .case-menu-toggle { display:grid; width:46px; height:46px; place-content:center; gap:5px; padding:0; border:0; border-radius:0; color:inherit; background:transparent; cursor:pointer; pointer-events:auto; transition:color .2s; }
-    .case-menu-toggle:hover { color:var(--peach); }
-    .case-menu-toggle span { display:block; width:17px; height:1.5px; border-radius:2px; background:currentColor; transition:transform .25s,opacity .2s; }
-    .case-menu-toggle[aria-expanded="true"] span:first-child { transform:translateY(6.5px) rotate(45deg); }
-    .case-menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity:0; }
-    .case-menu-toggle[aria-expanded="true"] span:last-child { transform:translateY(-6.5px) rotate(-45deg); }
-    .case-menu-toggle:focus-visible,.case-menu a:focus-visible { outline:2px solid var(--peach); outline-offset:4px; }
-    .case-menu { position:fixed; z-index:29; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; padding:100px 24px 40px; color:#fff; background:rgba(41,37,39,.97); opacity:0; visibility:hidden; transform:translateY(-10px); transition:opacity .25s,visibility .25s,transform .25s; }
-    .case-menu.is-open { opacity:1; visibility:visible; transform:translateY(0); }
-    .case-menu a { color:#fff; font:500 clamp(28px,5vw,46px)/1.15 "Playfair Display",Georgia,serif; text-decoration:none; transition:color .2s; }
-    .case-menu a:hover { color:var(--peach); }
-    .case-menu .case-menu-email { margin-top:24px; color:rgba(255,255,255,.7); font:400 14px/1.4 "DM Sans",Arial,sans-serif; }
     .hero { position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; padding:90px max(44px,calc((100% - 1160px)/2)) 60px; color:#fff; background:#282425; isolation:isolate; }
     .hero::after { content:""; position:absolute; z-index:-1; inset:0; background:rgba(22,19,20,.8); }
     .hero-backdrop { position:absolute; z-index:-2; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
@@ -300,16 +285,6 @@
   <script src="../custom.js" defer></script>
 </head>
 <body>
-  <header class="case-nav">
-    <button class="case-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="case-menu"><span></span><span></span><span></span></button>
-  </header>
-  <nav class="case-menu" id="case-menu" aria-label="Main navigation" inert>
-    <a href="../index.html">Home</a>
-    <a href="../projects.html">Projects</a>
-    <a href="../about.html">About</a>
-    <a href="../contact.html">Contact</a>
-    <a class="case-menu-email" href="mailto:info@drie.design">info@drie.design</a>
-  </nav>
   <main>
     <header class="hero">
       <div class="hero-copy">
@@ -554,32 +529,8 @@
     </div>
     <div class="gallery-zoom-stage"><img alt=""></div>
   </dialog>
-  <footer class="wrap">© Drie Design · <a href="../projects.html">Explore more projects</a></footer>
+  <footer class="wrap">© Drie Design · <a href="../index.html#projects">Explore more projects</a></footer>
   <script>
-    const caseMenuToggle = document.querySelector('.case-menu-toggle');
-    const caseMenu = document.querySelector('#case-menu');
-    const setCaseMenuOpen = (open) => {
-      caseMenuToggle.setAttribute('aria-expanded', String(open));
-      caseMenuToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
-      caseMenu.toggleAttribute('inert', !open);
-      caseMenu.classList.toggle('is-open', open);
-      document.body.classList.toggle('menu-open', open);
-    };
-    caseMenuToggle.addEventListener('click', () => setCaseMenuOpen(caseMenuToggle.getAttribute('aria-expanded') !== 'true'));
-    caseMenu.addEventListener('click', (event) => {
-      if (event.target === caseMenu) setCaseMenuOpen(false);
-    });
-    caseMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setCaseMenuOpen(false)));
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && caseMenuToggle.getAttribute('aria-expanded') === 'true') {
-        setCaseMenuOpen(false);
-        caseMenuToggle.focus();
-      }
-    });
-    const caseNav = document.querySelector('.case-nav');
-    const updateCaseNavColor = () => caseNav.classList.toggle('is-scrolled', window.scrollY >= window.innerHeight - 72);
-    updateCaseNavColor();
-    window.addEventListener('scroll', updateCaseNavColor, {passive:true});
     const challengeVideos = Array.from(document.querySelectorAll('.challenge-film video'));
     let activeChallengeVideo = challengeVideos[0];
     let nextChallengeVideo = challengeVideos[1];

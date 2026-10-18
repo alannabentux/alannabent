@@ -3,151 +3,178 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Website design and development for Edge Analytics by Alanna Bent.">
+  <meta name="description" content="Edge Analytics website design and development by Alanna Bent.">
   <title>Edge Analytics | Alanna Bent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Google+Sans+Flex:opsz,wght@6..144,400..700&display=swap" rel="stylesheet">
   <style>
     :root {
-      color-scheme: light;
-      --ink: #20252b;
-      --muted: #5d6770;
-      --accent: #1e994d;
-      --line: #dfe6e8;
-      --paper: #fff;
-      --soft: #f3f8f8;
-      font-family: "Google Sans Flex", "Arial", sans-serif;
+      --ink: #17252b;
+      --muted: #586a70;
+      --accent: #078abf;
+      --teal: #08bfae;
+      --blue: #1760af;
+      --paper: #f7fbfc;
+      --line: #dce9ec;
+      font-family: Inter, "Google Sans Flex", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
     }
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; color: var(--ink); background: var(--paper); font-size: 16px; line-height: 1.6; }
+    html { scroll-behavior: smooth; scroll-padding-top: 28px; }
+    body { margin: 0; background: var(--paper); font-size: 16px; line-height: 1.55; }
     a { color: inherit; }
     img { display: block; max-width: 100%; }
-    .wrap { width: min(1180px, calc(100% - 64px)); margin-inline: auto; }
-    .site-header { position: absolute; z-index: 2; inset: 0 0 auto; display: flex; align-items: center; justify-content: space-between; padding-block: 26px; }
-    .brand { color: var(--ink); font-size: 30px; font-weight: 600; letter-spacing: -.09em; line-height: 1; text-decoration: none; }
-    .back-link { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-size: 14px; text-decoration: none; }
-    .back-link::before { content: "←"; color: var(--accent); font-size: 19px; transition: transform .2s ease; }
+    .wrap { width: min(1160px, calc(100% - 88px)); margin-inline: auto; }
+    .hero { position: relative; display: grid; min-height: 100svh; grid-template-columns: 1fr 1.1fr; align-items: center; gap: clamp(32px, 6vw, 82px); padding: 100px max(44px, calc((100% - 1160px) / 2)) 74px; overflow: hidden; color: #fff; background: linear-gradient(118deg, #08bfae 0%, #078abf 52%, #1760af 100%); isolation: isolate; }
+    .hero::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(145deg, transparent 0 50%, rgb(27 73 157 / 45%) 50% 100%); content: ""; }
+    .hero-copy { max-width: 530px; }
+    .eyebrow { margin: 0 0 25px; color: rgb(255 255 255 / 82%); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(52px, 7vw, 88px); font-weight: 400; letter-spacing: -.065em; line-height: .98; }
+    .hero-summary { max-width: 430px; margin: 24px 0 0; color: rgb(255 255 255 / 90%); font-size: clamp(17px, 1.7vw, 21px); line-height: 1.5; }
+    .hero-type { margin: 34px 0 0; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+    .hero-art { position: relative; padding: clamp(24px, 4vw, 56px); }
+    .hero-art::before { position: absolute; inset: 0; border: 1px solid rgb(255 255 255 / 25%); background: radial-gradient(ellipse at 70% 35%, rgb(255 255 255 / 15%), transparent 55%); content: ""; }
+    .hero-art img { position: relative; width: 100%; filter: drop-shadow(0 22px 32px rgb(0 38 76 / 28%)); }
+    .brand { position: absolute; z-index: 2; top: 24px; left: max(44px, calc((100% - 1160px) / 2)); color: #fff; font-size: 34px; font-weight: 500; letter-spacing: -.14em; text-decoration: none; }
+    .back-link { position: absolute; z-index: 2; top: 35px; right: max(44px, calc((100% - 1160px) / 2)); display: inline-flex; align-items: center; gap: 10px; color: rgb(255 255 255 / 92%); font-size: 14px; text-decoration: none; }
+    .back-link::before { content: "←"; font-size: 19px; transition: transform .2s ease; }
     .back-link:hover::before { transform: translateX(-4px); }
-    .hero { padding: 142px 0 0; overflow: hidden; }
-    .hero-intro { display: grid; grid-template-columns: minmax(0,1fr) minmax(250px,.65fr); gap: 48px; align-items: end; padding-bottom: 54px; }
-    .eyebrow { margin: 0 0 14px; color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
-    h1 { max-width: 760px; margin: 0; font-size: clamp(52px, 9vw, 112px); font-weight: 500; letter-spacing: -.075em; line-height: .95; }
-    .hero-summary { max-width: 380px; margin: 0 0 4px; color: var(--muted); font-size: clamp(16px, 1.7vw, 20px); line-height: 1.55; }
-    .hero-art { position: relative; padding: clamp(32px, 7vw, 88px) 7%; background: linear-gradient(122deg, #08bfae 0%, #078abf 49%, #1760af 100%); }
-    .hero-art::before, .hero-art::after { position: absolute; content: ""; pointer-events: none; }
-    .hero-art::before { inset: 0; background: linear-gradient(145deg, transparent 0 47%, rgba(27,73,157,.82) 47% 100%); }
-    .hero-art::after { inset: 0; background: radial-gradient(ellipse at 76% 40%, rgba(255,255,255,.14), transparent 48%); }
-    .hero-art img { position: relative; z-index: 1; width: min(850px, 100%); margin-inline: auto; filter: drop-shadow(0 25px 34px rgba(0,32,82,.22)); }
-    .hero-caption { position: absolute; z-index: 2; right: max(32px, calc((100% - 1180px)/2)); bottom: 22px; color: rgba(255,255,255,.83); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
-    .overview { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: start; padding-block: 112px; }
-    .section-label { margin: 0 0 17px; color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
-    h2 { max-width: 600px; margin: 0; font-size: clamp(34px, 5vw, 58px); font-weight: 500; letter-spacing: -.06em; line-height: 1.05; }
-    .overview-copy p { max-width: 540px; margin: 5px 0 28px; color: var(--muted); font-size: 17px; }
-    .site-link { display: inline-flex; align-items: center; gap: 12px; padding-bottom: 5px; border-bottom: 1px solid var(--accent); color: var(--ink); font-size: 15px; text-decoration: none; }
-    .site-link::after { content: "↗"; color: var(--accent); transition: transform .2s ease; }
-    .site-link:hover::after { transform: translate(3px,-3px); }
-    .project-details { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 32px; margin: 0; padding: 28px 0 0; border-top: 1px solid var(--line); }
-    .project-details { grid-column: 1 / -1; }
+    .overview { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(40px, 8vw, 110px); align-items: start; padding-block: 120px; }
+    .section-label { margin: 0 0 18px; color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+    h2 { margin: 0; font-size: clamp(34px, 4.5vw, 56px); font-weight: 400; letter-spacing: -.055em; line-height: 1.04; }
+    .overview-copy > p { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.7; }
+    .project-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px 35px; margin: 38px 0 0; padding-top: 26px; border-top: 1px solid var(--line); }
     .project-details div { min-width: 0; }
     .project-details dt { margin-bottom: 5px; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
     .project-details dd { margin: 0; font-size: 15px; }
-    .scope { padding: 76px 0 94px; background: var(--soft); }
-    .scope-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 72px; align-items: start; }
-    .scope-copy p { max-width: 630px; margin: 0; color: var(--muted); font-size: 18px; }
-    .scope-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0; padding: 0; list-style: none; }
-    .scope-list li { display: flex; align-items: center; gap: 13px; min-height: 74px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 17px; }
-    .scope-list li::before { width: 8px; height: 8px; flex: 0 0 8px; border-radius: 50%; background: var(--accent); content: ""; }
-    .project-navigation { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 32px; }
-    .project-navigation a { color: var(--muted); font-size: 14px; text-decoration: none; transition: color .2s; }
-    .project-navigation a:hover { color: var(--accent); }
-    .project-navigation .all-projects { color: var(--ink); font-weight: 600; }
+    .direction { padding: 90px 0 105px; background: #eaf5f6; }
+    .direction h2 { max-width: 680px; margin: 0 auto 46px; text-align: center; }
+    .goal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .goal-card { min-height: 215px; padding: 27px 25px; border: 1px solid rgb(8 138 191 / 13%); background: rgb(255 255 255 / 82%); transition: color .3s ease, background .3s ease, transform .3s ease; }
+    .goal-card:hover { transform: translateY(-4px); color: #fff; background: linear-gradient(125deg, var(--teal), var(--accent), var(--blue)); }
+    .goal-number { display: block; margin-bottom: 25px; color: var(--accent); font-size: 13px; font-weight: 600; }
+    .goal-card:hover .goal-number { color: rgb(255 255 255 / 78%); }
+    .goal-card h3 { margin: 0 0 12px; font-size: 19px; font-weight: 500; letter-spacing: -.02em; }
+    .goal-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .goal-card:hover p { color: rgb(255 255 255 / 88%); }
+    .process { padding-block: 120px; }
+    .process-intro { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: start; margin-bottom: 54px; }
+    .process-intro > p { max-width: 620px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.7; }
+    .process-feature { display: grid; grid-template-columns: 1fr 1fr; min-height: 300px; align-items: center; gap: 60px; padding: clamp(28px, 5vw, 62px); color: #fff; background: linear-gradient(118deg, #08bfae 0%, #078abf 52%, #1760af 100%); }
+    .process-feature h3 { margin: 0 0 15px; font-size: clamp(27px, 3.2vw, 40px); font-weight: 400; letter-spacing: -.04em; }
+    .process-feature p { margin: 0; color: rgb(255 255 255 / 88%); line-height: 1.7; }
+    .process-feature img { width: 100%; box-shadow: 0 15px 32px rgb(0 33 71 / 22%); }
+    .site-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; padding-bottom: 4px; border-bottom: 1px solid currentColor; color: #fff; font-size: 14px; text-decoration: none; }
+    .site-link::after { content: "↗"; transition: transform .2s ease; }
+    .site-link:hover::after { transform: translate(3px, -3px); }
+    .project-navigation { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 28px 40px; border-top: 1px solid var(--line); }
+    .project-navigation a { color: var(--muted); font-size: 14px; text-decoration: none; transition: color .2s ease; }
+    .project-navigation a:hover, .project-navigation .all-projects { color: var(--accent); }
+    footer { padding: 18px 0 42px; color: var(--muted); font-size: 13px; }
     @media (max-width: 760px) {
-      .wrap { width: min(100% - 40px, 560px); }
-      .site-header { padding-block: 20px; }
-      .hero { padding-top: 120px; }
-      .hero-intro { grid-template-columns: 1fr; gap: 21px; padding-bottom: 34px; }
-      h1 { font-size: clamp(58px, 16vw, 94px); }
-      .hero-summary { max-width: 440px; }
-      .hero-art { padding: 40px 5% 54px; }
-      .hero-caption { right: 20px; bottom: 15px; font-size: 9px; }
-      .overview { grid-template-columns: 1fr; gap: 32px; padding-block: 76px; }
-      .scope { padding-block: 64px; }
-      .scope-grid { grid-template-columns: 1fr; gap: 32px; }
-    }
-    @media (max-width: 460px) {
-      .brand { font-size: 27px; }
-      .back-link { font-size: 13px; }
-      .project-details { gap: 22px 16px; }
-      .scope-list { grid-template-columns: 1fr; gap: 0; }
+      .wrap { width: min(100% - 40px, 580px); }
+      .hero { min-height: auto; grid-template-columns: 1fr; gap: 25px; padding: 112px 20px 54px; }
+      .hero-copy { width: min(100%, 580px); margin-inline: auto; }
+      h1 { font-size: clamp(56px, 14vw, 82px); }
+      .hero-art { width: min(100%, 580px); margin-inline: auto; padding: 20px; }
+      .brand { left: 20px; top: 22px; }
+      .back-link { right: 20px; top: 31px; }
+      .overview { grid-template-columns: 1fr; gap: 30px; padding-block: 78px; }
+      .direction { padding-block: 70px; }
+      .direction h2 { margin-bottom: 30px; }
+      .goal-grid { grid-template-columns: 1fr; }
+      .goal-card { min-height: 0; }
+      .process { padding-block: 80px; }
+      .process-intro { grid-template-columns: 1fr; gap: 22px; margin-bottom: 32px; }
+      .process-feature { grid-template-columns: 1fr; gap: 30px; padding: 25px; }
       .project-navigation { gap: 12px; }
       .project-navigation a { font-size: 12px; }
     }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
   </style>
 </head>
 <body>
-  <header class="site-header wrap">
-    <a class="brand" href="../index.html" aria-label="Alanna Bent home">ab</a>
-    <a class="back-link" href="../projects.html">All projects</a>
-  </header>
-
   <main>
     <section class="hero" aria-labelledby="page-title">
-      <div class="hero-intro wrap">
-        <div>
-          <p class="eyebrow">Selected work · 03</p>
-          <h1 id="page-title">Edge<br>Analytics</h1>
-        </div>
+      <a class="brand" href="../index.html" aria-label="Alanna Bent home">ab</a>
+      <a class="back-link" href="../index.html#projects">All projects</a>
+      <div class="hero-copy">
+        <p class="eyebrow">Case study · 03</p>
+        <h1 id="page-title">Edge Analytics</h1>
         <p class="hero-summary">Data-driven solutions for the hardest problems.</p>
+        <p class="hero-type">Website design &amp; development</p>
       </div>
-      <div class="hero-art">
-        <img src="assets/images/edgeAnalyticsMockup.jpg" alt="Desktop mockup of the Edge Analytics website">
-        <span class="hero-caption">Website design &amp; development</span>
-      </div>
+      <figure class="hero-art">
+        <img src="assets/images/edgeAnalyticsMockup.jpg" alt="Edge Analytics website mockup on a desktop screen">
+      </figure>
     </section>
 
     <section class="overview wrap" aria-labelledby="overview-title">
       <div>
-        <p class="section-label">Project overview</p>
+        <p class="section-label">The opportunity</p>
         <h2 id="overview-title">A digital home for data science.</h2>
       </div>
       <div class="overview-copy">
-        <p>Edge Analytics is a boutique data science consulting firm. I worked on the UI/UX design and development of its website.</p>
-        <a class="site-link" href="https://edgeanalytics.io" target="_blank" rel="noopener noreferrer">Visit Edge Analytics</a>
+        <p>Edge Analytics is a boutique data science consulting firm. I worked on the UI/UX design and development of its website, creating a clear digital presence for the firm and its work.</p>
+        <dl class="project-details">
+          <div><dt>Client</dt><dd>Edge Analytics</dd></div>
+          <div><dt>Role</dt><dd>UI/UX design and development</dd></div>
+          <div><dt>Services</dt><dd>Website design and development</dd></div>
+          <div><dt>Focus</dt><dd>Responsive digital experience</dd></div>
+        </dl>
       </div>
-      <dl class="project-details">
-        <div><dt>Client</dt><dd>Edge Analytics</dd></div>
-        <div><dt>Services</dt><dd>UI/UX design, website development</dd></div>
-      </dl>
     </section>
 
-    <section class="scope" aria-labelledby="scope-title">
-      <div class="scope-grid wrap">
+    <section class="direction" aria-labelledby="direction-title">
+      <div class="wrap">
+        <p class="section-label" style="text-align:center">Strategic direction</p>
+        <h2 id="direction-title">Designing a clear path through complex work.</h2>
+        <div class="goal-grid">
+          <article class="goal-card">
+            <span class="goal-number">01</span>
+            <h3>Present the work clearly</h3>
+            <p>Create a focused digital home for a data science consulting firm.</p>
+          </article>
+          <article class="goal-card">
+            <span class="goal-number">02</span>
+            <h3>Design the experience</h3>
+            <p>Shape the website’s interface and visual direction around Edge Analytics.</p>
+          </article>
+          <article class="goal-card">
+            <span class="goal-number">03</span>
+            <h3>Bring it to life</h3>
+            <p>Develop the designed experience into a working website.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="process wrap" aria-labelledby="process-title">
+      <div class="process-intro">
         <div>
-          <p class="section-label">My contribution</p>
-          <h2 id="scope-title">From interface design to a live website.</h2>
+          <p class="section-label">The process</p>
+          <h2 id="process-title">From interface design to a live website.</h2>
         </div>
-        <div class="scope-copy">
-          <p>I contributed across the website experience, from interface design through implementation.</p>
-          <ul class="scope-list">
-            <li>User interface and experience design</li>
-            <li>Website development</li>
-          </ul>
+        <p>I contributed across the website experience, from UI/UX design through implementation. The final direction uses a bright teal-to-blue palette and a clean interface to give the Edge Analytics brand a distinct digital presence.</p>
+      </div>
+      <div class="process-feature">
+        <div>
+          <h3>Data-driven solutions for the hardest problems.</h3>
+          <p>The finished homepage brings the company’s message forward with a direct headline, a focused visual system, and a clear next step for visitors.</p>
+          <a class="site-link" href="https://edgeanalytics.io" target="_blank" rel="noopener noreferrer">Visit Edge Analytics</a>
         </div>
+        <img src="assets/images/edgeAnalyticsMockup.jpg" alt="Final Edge Analytics homepage design">
       </div>
     </section>
 
     <nav class="project-navigation wrap" aria-label="Case study navigation">
       <a href="michiko-dressage.html">← Previous project</a>
-      <a class="all-projects" href="../projects.html">All projects</a>
-      <a href="https://drie.design/projects-neurokami.html">Next project →</a>
+      <a class="all-projects" href="../index.html#projects">Explore more projects</a>
+      <a href="neurokami.html">Next project →</a>
     </nav>
   </main>
-  <script src="../custom.js" defer></script>
+  <footer class="wrap">© Alanna Bent</footer>
 </body>
 </html>

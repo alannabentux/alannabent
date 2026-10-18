@@ -18,18 +18,6 @@
     a { color:inherit; }
     .wrap { width:min(1160px, calc(100% - 88px)); margin-inline:auto; }
     .hero { position:relative; width:100%; min-height:100vh; display:grid; grid-template-columns: 7fr 5fr; align-items:center; gap:22px; padding:72px max(44px, calc((100% - 1160px) / 2)) 34px; color:#fff; background:linear-gradient(112deg,#855de1 0%,#27b5ed 100%); }
-    .case-navbar { position:absolute; z-index:5; top:0; left:0; right:0; display:flex; align-items:center; justify-content:flex-end; padding:14px max(32px,calc((100% - 1160px) / 2)); }
-    .menu-trigger { width:46px; height:46px; display:grid; align-content:center; justify-items:end; gap:5px; padding:10px; border:1px solid rgba(255,255,255,.42); border-radius:50%; color:#fff; background:rgba(20,17,45,.12); cursor:pointer; transition:background .2s ease,border-color .2s ease; }
-    .menu-trigger:hover { background:rgba(20,17,45,.32); border-color:#fff; }
-    .menu-trigger span { width:20px; height:2px; display:block; border-radius:2px; background:currentColor; }
-    .menu-trigger span:nth-child(2) { width:14px; }
-    .site-menu { position:fixed; inset:0 0 0 auto; width:min(420px,90vw); height:100%; max-height:none; margin:0; padding:30px; border:0; color:#fff; background:#191820; box-shadow:-20px 0 70px rgba(0,0,0,.25); }
-    .site-menu::backdrop { background:rgba(13,12,24,.65); backdrop-filter:blur(4px); }
-    .menu-close { display:block; margin:0 0 42px auto; padding:9px 14px; border:1px solid rgba(255,255,255,.28); border-radius:99px; color:#fff; background:transparent; cursor:pointer; font:500 14px Inter,Arial,sans-serif; }
-    .menu-links { display:grid; gap:4px; margin:0; padding:0; list-style:none; }
-    .menu-links a { display:block; padding:12px 0; color:#fff; text-decoration:none; font-size:clamp(26px,4vw,38px); transition:color .2s ease,padding-left .2s ease; }
-    .menu-links a:hover,.menu-links a:focus-visible { padding-left:8px; color:#c7b0ff; }
-    .menu-contact { display:inline-block; margin-top:42px; color:#c8c4d5; font-size:16px; }
     .eyebrow { font-weight:400; font-size:14px; margin:0 0 58px; }
     h1 { font-size:48px; line-height:1.2; letter-spacing:-.045em; margin:16px 0 38px; max-width:680px; }
     .hero p { font-size:18px; max-width:470px; margin:0; }
@@ -187,28 +175,12 @@
 <body>
   <main>
     <header class="hero">
-      <nav class="case-navbar" aria-label="Main navigation">
-        <button class="menu-trigger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
-      </nav>
       <div>
         <p class="eyebrow">Case Study | Borrey Law</p>
         <h1>Bringing an established<br>practice into the digital space.</h1>
         <p>A collaborative design and development project that established Borrey Law's brand identity and introduced the firm to prospective clients through a professional, responsive website.</p>
       </div>
       <img class="hero-art" src="assets/images/borrey-law-device-mockup-transparent.png" alt="Borrey Law's purple and blue website shown on a desktop monitor and mobile phone">
-      <dialog class="site-menu" id="site-menu" aria-label="Site navigation">
-        <form method="dialog"><button class="menu-close" aria-label="Close navigation menu">Close ✕</button></form>
-        <nav aria-label="Site pages">
-          <ul class="menu-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="https://drie.design/process.html">Process</a></li>
-            <li><a href="../projects.html">Projects</a></li>
-            <li><a href="../about.html">About</a></li>
-            <li><a href="../contact.html">Contact</a></li>
-          </ul>
-        </nav>
-        <a class="menu-contact" href="mailto:info@drie.design">info@drie.design</a>
-      </dialog>
     </header>
 
     <section class="overview wrap" aria-labelledby="opportunity-title">
@@ -363,7 +335,7 @@
       </div>
     </section>
   </main>
-  <footer class="wrap">© Drie Design · <a href="../projects.html">Explore more projects</a></footer>
+  <footer class="wrap">© Drie Design · <a href="../index.html#projects">Explore more projects</a></footer>
   <script>
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const revealTargets = document.querySelectorAll('.overview, .goal-card, .quote, .process > h2, .process-nav, .process-step, .testimonial, footer');
@@ -419,15 +391,6 @@
       compare.style.setProperty('--split', `${compareRange.value}%`);
       compareRange.setAttribute('aria-valuetext', `Code ${compareRange.value} percent, finished design ${100 - compareRange.value} percent`);
     });
-    const menuButton = document.querySelector('.menu-trigger');
-    const siteMenu = document.querySelector('#site-menu');
-    menuButton.addEventListener('click', () => {
-      siteMenu.showModal();
-      menuButton.setAttribute('aria-expanded', 'true');
-    });
-    siteMenu.addEventListener('close', () => menuButton.setAttribute('aria-expanded', 'false'));
-    siteMenu.addEventListener('cancel', () => menuButton.setAttribute('aria-expanded', 'false'));
-    siteMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => siteMenu.close()));
     const hero = document.querySelector('.hero');
     const heroArt = document.querySelector('.hero-art');
     if (window.matchMedia('(pointer:fine) and (prefers-reduced-motion: no-preference)').matches) {
