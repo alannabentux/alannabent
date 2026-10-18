@@ -1,0 +1,16 @@
+.gradient-text {
+    background: #FF3289;
+    background: -webkit-linear-gradient(to right, #FF3289 0%, #DB26D8 100%);
+    background: -moz-linear-gradient(to right, #FF3289 0%, #DB26D8 100%);
+    background: linear-gradient(to right, #FF3289 0%, #DB26D8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+
+  .borreytext{
+    background: -webkit-linear-gradient(#855CDB, #5D82EA, #4499F3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }

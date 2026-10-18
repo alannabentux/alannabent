@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A case study of the Borrey Law brand and website by Drie Design.">
+  <title>Borrey Law | Drie Design Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#24242a; --muted:#56565e; --accent:#8963e9; --paper:#f8f8fa; --line:#d9c9ff; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:24px; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Inter,Arial,sans-serif; line-height:1.48; }
+    h1,h2,h3,h4,h5,h6 { font-weight:500; }
+    img { display:block; max-width:100%; }
+    a { color:inherit; }
+    .wrap { width:min(1160px, calc(100% - 88px)); margin-inline:auto; }
+    .hero { position:relative; width:100%; min-height:100vh; display:grid; grid-template-columns: 7fr 5fr; align-items:center; gap:22px; padding:72px max(44px, calc((100% - 1160px) / 2)) 34px; color:#fff; background:linear-gradient(112deg,#855de1 0%,#27b5ed 100%); }
+    .case-navbar { position:absolute; z-index:5; top:0; left:0; right:0; display:flex; align-items:center; justify-content:flex-end; padding:14px max(32px,calc((100% - 1160px) / 2)); }
+    .menu-trigger { width:46px; height:46px; display:grid; align-content:center; justify-items:end; gap:5px; padding:10px; border:1px solid rgba(255,255,255,.42); border-radius:50%; color:#fff; background:rgba(20,17,45,.12); cursor:pointer; transition:background .2s ease,border-color .2s ease; }
+    .menu-trigger:hover { background:rgba(20,17,45,.32); border-color:#fff; }
+    .menu-trigger span { width:20px; height:2px; display:block; border-radius:2px; background:currentColor; }
+    .menu-trigger span:nth-child(2) { width:14px; }
+    .site-menu { position:fixed; inset:0 0 0 auto; width:min(420px,90vw); height:100%; max-height:none; margin:0; padding:30px; border:0; color:#fff; background:#191820; box-shadow:-20px 0 70px rgba(0,0,0,.25); }
+    .site-menu::backdrop { background:rgba(13,12,24,.65); backdrop-filter:blur(4px); }
+    .menu-close { display:block; margin:0 0 42px auto; padding:9px 14px; border:1px solid rgba(255,255,255,.28); border-radius:99px; color:#fff; background:transparent; cursor:pointer; font:500 14px Inter,Arial,sans-serif; }
+    .menu-links { display:grid; gap:4px; margin:0; padding:0; list-style:none; }
+    .menu-links a { display:block; padding:12px 0; color:#fff; text-decoration:none; font-size:clamp(26px,4vw,38px); transition:color .2s ease,padding-left .2s ease; }
+    .menu-links a:hover,.menu-links a:focus-visible { padding-left:8px; color:#c7b0ff; }
+    .menu-contact { display:inline-block; margin-top:42px; color:#c8c4d5; font-size:16px; }
+    .eyebrow { font-weight:400; font-size:14px; margin:0 0 58px; }
+    h1 { font-size:48px; line-height:1.2; letter-spacing:-.045em; margin:16px 0 38px; max-width:680px; }
+    .hero p { font-size:18px; max-width:470px; margin:0; }
+    .hero-art { width:100%; max-height:440px; object-fit:contain; will-change:transform; transition:transform 180ms ease-out; }
+    @keyframes hero-fade-in { from { opacity:0; } to { opacity:1; } }
+    .hero > div { animation:hero-fade-in .75s ease-out .12s both; }
+    .hero-art { animation:hero-fade-in .85s ease-out .3s both; }
+    .overview { display:grid; grid-template-columns:1fr 1fr; gap:54px; padding:36px 8px 90px; align-items:center; }
+    .overview-copy { max-width:500px; }
+    h2 { font-size:clamp(28px,3vw,38px); line-height:1.2; letter-spacing:-.035em; margin:0 0 20px; }
+    .overview p { color:var(--muted); margin:0; }
+    .facts { border-left:1px solid var(--line); padding:20px 0 20px 48px; display:grid; grid-template-columns:1fr 1fr; gap:28px 36px; }
+    .fact strong { display:block; font-size:16px; font-weight:500; margin-bottom:4px; }
+    .fact span { font-size:14px; color:#414149; }
+    .project-goals { padding:10px 0 120px; }
+    .project-goals h2 { margin-bottom:34px; text-align:center; }
+    .goal-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .goal-card { position:relative; isolation:isolate; overflow:hidden; min-height:200px; padding:24px 22px; border:1px solid #e6e1ee; border-radius:12px; background:linear-gradient(145deg,#fff,rgba(255,255,255,.4)); transition:color .35s ease,border-color .35s ease,transform .35s ease; }
+    .goal-card::before { content:""; position:absolute; z-index:-1; inset:0; border-radius:inherit; background:linear-gradient(112deg,#855de1 0%,#27b5ed 100%); opacity:0; transition:opacity .4s cubic-bezier(.2,.75,.25,1); }
+    .goal-card:hover,.goal-card:focus-within { color:#fff; border-color:transparent; transform:translateY(-3px); }
+    .goal-card:hover::before,.goal-card:focus-within::before { opacity:1; }
+    .goal-card:hover h3,.goal-card:hover p,.goal-card:focus-within h3,.goal-card:focus-within p { color:#fff; }
+    .goal-number { display:inline-grid; width:32px; height:32px; place-items:center; margin-bottom:20px; border-radius:50%; color:#fff; background:linear-gradient(135deg,#855de1,#27b5ed); font-size:13px; font-weight:600; }
+    .goal-card:hover .goal-number,.goal-card:focus-within .goal-number { background:rgba(255,255,255,.2); }
+    .goal-card h3 { margin:0 0 10px; font-size:18px; letter-spacing:-.02em; }
+    .goal-card p { margin:0; color:var(--muted); font-size:15px; line-height:1.5; }
+    .quote { margin:0 auto 145px; padding:62px 7%; min-height:300px; border-radius:34px; text-align:center; color:#fff; background:linear-gradient(112deg,#855de1 0%,#27b5ed 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .quote-mark { font-size:52px; font-weight:700; line-height:.8; }
+    .quote blockquote { max-width:900px; font-size:clamp(20px,2.5vw,29px); line-height:1.35; margin:22px 0 32px; }
+    .quote a { font-size:16px; text-underline-offset:4px; }
+    .process { padding:0 0 150px; }
+    .process > h2 { text-align:center; margin-bottom:64px; }
+    .process-layout { display:grid; grid-template-columns: .52fr 1fr; gap:36px; align-items:start; }
+    .process-nav { position:sticky; top:70px; display:grid; gap:8px; padding:0 0 0 28px; }
+    .process-indicator { position:absolute; z-index:1; top:0; left:12px; width:5px; height:18px; border-radius:5px; background:var(--accent); transform:translateY(var(--indicator-y,0)); transition:transform 420ms cubic-bezier(.2,.75,.25,1); pointer-events:none; }
+    .process-nav a { display:flex; gap:12px; padding:8px 0; text-decoration:none; color:#34343b; transition:color .2s ease; }
+    .process-nav a span { font-variant-numeric:tabular-nums; }
+    .process-nav a.active { color:var(--accent); }
+    .process-nav a:focus-visible, a:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+    .process-content { min-width:0; display:grid; gap:56px; }
+    .process-step { min-height:0; padding:0; scroll-margin-top:48px; }
+    .process-step > :last-child { margin-bottom:0; }
+    .process-step h3 { font-size:24px; letter-spacing:-.025em; margin:0 0 16px; }
+    .process-step p { margin:0 0 16px; max-width:670px; }
+    .process-step img { width:100%; max-height:440px; object-fit:contain; object-position:left center; margin-top:28px; }
+    .ideation-gallery { display:flex; align-items:center; gap:14px; margin-top:30px; }
+    .ideation-frame { flex:1 1 0; min-width:0; margin:0; }
+    .ideation-frame:first-child { position:relative; z-index:1; }
+    .wireframe-stage { position:relative; isolation:isolate; }
+    .wireframe-stage > img,.ideation-frame > img { display:block; width:100%; max-height:none; margin:0; border:1px solid #e7e5ec; border-radius:10px; box-shadow:0 14px 36px rgba(37,31,57,.1); }
+    .ideation-frame:last-child > img { clip-path:inset(0 5px 0 0 round 10px); }
+    .ideation-frame figcaption { margin-top:10px; color:#66616f; font-size:13px; }
+    .wireframe-pin { position:absolute; z-index:2; display:grid; place-items:center; width:34px; height:34px; padding:0; border:3px solid #fff; border-radius:50%; color:#fff; background:linear-gradient(135deg,#855de1,#27b5ed); font:600 12px/1 Inter,Arial,sans-serif; cursor:help; box-shadow:0 3px 12px rgba(30,24,50,.32); transition:transform .2s ease,box-shadow .2s ease; }
+    .wireframe-pin:hover,.wireframe-pin:focus-visible { z-index:5; transform:scale(1.12); box-shadow:0 5px 18px rgba(30,24,50,.35); }
+    .wireframe-pin:focus-visible { outline:3px solid #29252f; outline-offset:3px; }
+    .wireframe-pin svg { display:block; width:16px; height:16px; }
+    .wireframe-pin span { position:absolute; right:-5px; bottom:-5px; display:grid; place-items:center; width:15px; height:15px; border:1px solid #fff; border-radius:50%; color:#fff; background:#24232c; font:600 9px/1 Inter,Arial,sans-serif; }
+    .wireframe-pin::after { content:attr(data-comment); position:absolute; top:calc(100% + 10px); left:0; z-index:3; width:min(245px,68vw); padding:13px 15px; border:1px solid #ece9f3; border-radius:10px; color:#33313a; background:#fff; font:400 13px/1.5 Inter,Arial,sans-serif; text-align:left; white-space:normal; box-shadow:0 10px 30px rgba(30,24,50,.2); opacity:0; visibility:hidden; transform:translateY(-4px); transition:opacity .18s ease,transform .18s ease,visibility .18s ease; pointer-events:none; }
+    .wireframe-pin:hover::after,.wireframe-pin:focus-visible::after { opacity:1; visibility:visible; transform:translateY(0); }
+    .wireframe-pin.pin-right::after { left:auto; right:0; }
+    .wireframe-pin.pin-one { left:24%; top:43%; }
+    .wireframe-pin.pin-two { left:50%; top:70%; }
+    .wireframe-pin.pin-three { right:13%; top:14%; }
+    .ideation-arrow { display:block; flex:0 0 40px; width:40px; height:52px; margin:0; overflow:visible; transform:rotate(-90deg); }
+    .branding-assets { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin-top:28px; }
+    .brand-swatch { position:relative; min-width:0; aspect-ratio:1.18; overflow:hidden; border:0; border-radius:10px; cursor:pointer; box-shadow:0 8px 22px rgba(35,30,55,.12); transition:transform .25s ease,box-shadow .25s ease; }
+    .brand-swatch:hover,.brand-swatch:focus-visible { transform:translateY(-4px); box-shadow:0 14px 30px rgba(35,30,55,.2); }
+    .brand-swatch:focus-visible { outline:3px solid #29252f; outline-offset:3px; }
+    .brand-swatch::after { content:attr(data-tip); position:absolute; inset:0; display:grid; place-items:center; padding:12px; color:#fff; background:rgba(25,24,32,.76); font:600 14px/1.45 Inter,Arial,sans-serif; text-align:center; opacity:0; transition:opacity .22s ease; }
+    .brand-swatch:hover::after,.brand-swatch:focus-visible::after { opacity:1; }
+    .type-system { margin-top:34px; padding-top:25px; border-top:1px solid #e5e0ed; }
+    .type-system h4 { margin:0 0 16px; font-size:18px; }
+    .type-spec-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .type-spec { min-width:0; min-height:120px; padding:14px; overflow:hidden; border:1px solid #e7e5ec; border-radius:9px; background:#fff; }
+    .type-spec-head { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:4px 10px; }
+    .type-role { color:#6b6574; font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+    .type-meta { color:#77717e; font-size:10px; }
+    .type-preview { margin:32px 0 0; color:#24242a; white-space:nowrap; }
+    .type-display { font:600 60px/1 Roboto,Arial,sans-serif; letter-spacing:-.055em; }
+    .type-headline { font:400 48px/1.05 Roboto,Arial,sans-serif; letter-spacing:-.05em; }
+    .type-title { font:500 32px/1.15 Roboto,Arial,sans-serif; letter-spacing:-.035em; }
+    .type-small-title { font:500 24px/1.2 Roboto,Arial,sans-serif; }
+    .type-body { font:400 16px/1.4 Roboto,Arial,sans-serif; }
+    .type-button { display:inline-block; padding:8px 15px; border:1px solid transparent; border-radius:99px; color:var(--ink); background:linear-gradient(#fff,#fff) padding-box,linear-gradient(112deg,#855CDB,#22CAFF) border-box; font:500 16px/1.2 Roboto,Arial,sans-serif; }
+    .type-button span { color:transparent; background:linear-gradient(112deg,#855CDB,#22CAFF); -webkit-background-clip:text; background-clip:text; }
+    .dev-compare { --split:50%; position:relative; width:100%; aspect-ratio:1.55; margin-top:28px; overflow:hidden; border-radius:14px; background:#14151b; box-shadow:0 18px 50px rgba(28,22,53,.15); isolation:isolate; }
+    .dev-finished { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .dev-code { position:absolute; inset:0 auto 0 0; z-index:1; width:var(--split); overflow:hidden; padding:clamp(14px,3vw,30px); color:#d3d7e2; background:linear-gradient(135deg,#20222b,#11131a 75%); font:clamp(9px,1.15vw,13px)/1.65 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .editor-top { display:flex; align-items:center; gap:7px; height:26px; margin:-4px 0 15px; color:#aeb4c3; white-space:nowrap; }
+    .editor-dot { width:8px; height:8px; flex:0 0 auto; border-radius:50%; background:#ea7774; box-shadow:13px 0 #e3bd65,26px 0 #72bc83; margin-right:26px; }
+    .editor-tab { padding:3px 8px; background:#2b2d37; border-radius:4px 4px 0 0; }
+    .code-lines { width:max-content; min-width:100%; white-space:pre; color:#bac1d2; }
+    .code-lines .num { display:inline-block; width:28px; padding-right:12px; color:#696f80; text-align:right; user-select:none; }
+    .code-lines .code-tag { color:#72c8dd; }
+    .code-lines .attr { color:#c49be8; }
+    .code-lines .value { color:#d7b274; }
+    .code-lines .comment { color:#7d8790; }
+    .compare-label { position:absolute; z-index:3; top:14px; padding:6px 11px; border:1px solid rgba(255,255,255,.24); border-radius:99px; background:rgba(12,13,18,.75); color:white; font:600 11px/1 Inter,Arial,sans-serif; letter-spacing:.04em; text-transform:uppercase; pointer-events:none; }
+    .compare-label.code { left:14px; }
+    .compare-label.finished { right:14px; }
+    .compare-range { position:absolute; z-index:5; inset:0; width:100%; height:100%; margin:0; appearance:none; -webkit-appearance:none; background:transparent; cursor:ew-resize; }
+    .compare-range::-webkit-slider-runnable-track { height:100%; background:transparent; }
+    .compare-range::-moz-range-track { height:100%; background:transparent; }
+    .compare-range::-webkit-slider-thumb { width:32px; height:32px; appearance:none; -webkit-appearance:none; border:0; border-radius:50%; background:transparent; }
+    .compare-range::-moz-range-thumb { width:32px; height:32px; border:0; border-radius:50%; background:transparent; }
+    .compare-divider { position:absolute; z-index:4; pointer-events:none; top:0; bottom:0; left:var(--split); width:2px; background:#fff; transform:translateX(-1px); box-shadow:0 0 12px rgba(0,0,0,.35); }
+    .compare-handle { position:absolute; left:50%; top:50%; width:38px; height:38px; display:grid; place-items:center; transform:translate(-50%,-50%); border:2px solid white; border-radius:50%; background:var(--accent); color:#fff; font:700 18px/1 Arial,sans-serif; box-shadow:0 2px 12px rgba(0,0,0,.35); }
+    .compare-range:focus-visible { outline:3px solid #9874f2; outline-offset:-5px; border-radius:14px; }
+    .testimonial { border-top:1px solid var(--line); padding:62px 28px 100px; }
+    .testimonial-label { font-weight:500; font-size:16px; margin:0 0 12px; }
+    .testimonial h2 { font-weight:500; }
+    .testimonial-row { display:grid; grid-template-columns:.55fr 1fr; gap:50px; align-items:center; margin-top:36px; }
+    .testimonial-row .testimonial-arrow { display:block; width:min(220px,100%); height:180px; margin:auto; overflow:visible; }
+    .testimonial-row blockquote { margin:0; text-align:center; max-width:650px; }
+    footer { padding:30px 0 48px; text-align:center; color:var(--muted); font-size:14px; }
+    html.has-scroll-reveal .scroll-reveal { opacity:0; transform:translateY(18px); transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.25,1); transition-delay:var(--reveal-delay,90ms); }
+    html.has-scroll-reveal .scroll-reveal.is-revealed { opacity:1; transform:translateY(0); }
+    @media (max-width:760px) {
+      .wrap { width:min(100% - 40px, 600px); }
+      .hero { min-height:100vh; grid-template-columns:1fr; text-align:left; gap:15px; padding:70px 20px 44px; }
+      .eyebrow { margin-bottom:42px; }
+      h1 { margin-bottom:30px; }
+      .hero p { font-size:16px; }
+      .hero-art { max-height:360px; }
+      .overview { grid-template-columns:1fr; gap:30px; padding:30px 0 64px; }
+      .facts { padding:20px 0 0; border-left:0; border-top:1px solid var(--line); gap:22px; }
+      .project-goals { padding:0 0 90px; }
+      .project-goals h2 { margin-bottom:24px; }
+      .goal-grid { grid-template-columns:1fr; gap:12px; }
+      .goal-card { min-height:0; padding:20px; }
+      .goal-number { margin-bottom:12px; }
+      .quote { min-height:0; margin-bottom:100px; border-radius:24px; padding:42px 24px; }
+      .process { padding-bottom:80px; }
+      .process > h2 { margin-bottom:30px; }
+      .process-layout { grid-template-columns:1fr; gap:30px; }
+      .process-nav { position:sticky; z-index:2; top:0; margin-inline:-20px; padding:12px 20px; display:flex; gap:18px; overflow-x:auto; background:rgba(248,248,250,.96); border-bottom:1px solid #ece8f3; }
+      .process-indicator { top:auto; bottom:0; left:20px; width:24px; height:3px; transform:translateX(var(--indicator-x,0)); }
+      .process-nav a { flex:0 0 auto; font-size:13px; }
+      .process-content { gap:48px; }
+      .process-step { min-height:0; padding:0; scroll-margin-top:66px; }
+      .process-step h3 { font-size:22px; }
+      .ideation-gallery { gap:8px; }
+      .ideation-arrow { flex-basis:28px; width:28px; height:42px; }
+      .ideation-frame figcaption { font-size:11px; }
+      .branding-assets { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+      .type-spec-grid { grid-template-columns:1fr; }
+      .testimonial { padding:48px 0 70px; }
+      .testimonial-row { grid-template-columns:1fr; gap:26px; }
+      .testimonial-row .testimonial-arrow { width:150px; height:125px; transform:rotate(90deg); }
+    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none !important; animation:none !important; } }
+  </style>
+  <script src="../custom.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <nav class="case-navbar" aria-label="Main navigation">
+        <button class="menu-trigger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
+      </nav>
+      <div>
+        <p class="eyebrow">Case Study | Borrey Law</p>
+        <h1>Bringing an established<br>practice into the digital space.</h1>
+        <p>A collaborative design and development project that established Borrey Law's brand identity and introduced the firm to prospective clients through a professional, responsive website.</p>
+      </div>
+      <img class="hero-art" src="assets/images/borrey-law-device-mockup-transparent.png" alt="Borrey Law's purple and blue website shown on a desktop monitor and mobile phone">
+      <dialog class="site-menu" id="site-menu" aria-label="Site navigation">
+        <form method="dialog"><button class="menu-close" aria-label="Close navigation menu">Close ✕</button></form>
+        <nav aria-label="Site pages">
+          <ul class="menu-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="https://drie.design/process.html">Process</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <a class="menu-contact" href="mailto:info@drie.design">info@drie.design</a>
+      </dialog>
+    </header>
+
+    <section class="overview wrap" aria-labelledby="opportunity-title">
+      <div class="overview-copy">
+        <h2 id="opportunity-title">The Opportunity</h2>
+        <p>Borrey Law is an established boutique law firm offering a broad range of legal services. Despite its established presence, the firm had operated without a website and sought to expand its clientele through a professional, cohesive brand identity and digital presence.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><strong>Project Role</strong><span>Head UX Designer &amp; Developer</span></div>
+        <div class="fact"><strong>Timeline</strong><span>Six weeks (3 design / 3 development)</span></div>
+        <div class="fact"><strong>Skills</strong><span>Client Communication<br>UX/UI Design<br>HTML/CSS/Javascript<br>End-End Project Management</span></div>
+        <div class="fact"><strong>Technology Used</strong><span>Figma<br>Bootstrap<br>Visual Studio Code<br>GitHub</span></div>
+      </div>
+    </section>
+
+    <section class="project-goals wrap" aria-labelledby="goals-title">
+      <h2 id="goals-title">Strategic Direction</h2>
+      <div class="goal-grid">
+        <article class="goal-card">
+          <span class="goal-number">01</span>
+          <h3>Establish a Digital Presence</h3>
+          <p>Give Borrey Law a clear, professional online home where prospective clients can discover the firm and its services.</p>
+        </article>
+        <article class="goal-card">
+          <span class="goal-number">02</span>
+          <h3>Build Trust at First Glance</h3>
+          <p>Create a distinctive identity and polished experience that convey the firm’s expertise while feeling welcoming and approachable.</p>
+        </article>
+        <article class="goal-card">
+          <span class="goal-number">03</span>
+          <h3>Make Every Screen Work</h3>
+          <p>Deliver a responsive, easy-to-navigate website that introduces Borrey Law clearly on desktop, tablet, and mobile.</p>
+        </article>
+      </div>
+    </section>
+
+    <aside class="quote wrap" aria-label="Client testimonial">
+      <div class="quote-mark" aria-hidden="true">“</div>
+      <blockquote>Working with Alanna at Drie Design was easy, efficient and a creative process I enjoyed every step of the way!...Best investment I have made in my business!</blockquote>
+      <a href="#client-testimonial">Read the full testimonial</a>
+    </aside>
+
+    <section class="process wrap" aria-labelledby="process-title">
+      <h2 id="process-title">The Creative Process</h2>
+      <div class="process-layout">
+        <nav class="process-nav" aria-label="Creative process steps">
+          <span class="process-indicator" aria-hidden="true"></span>
+          <a class="active" href="#collaboration" aria-current="location"><span>1</span>Client Collaboration</a>
+          <a href="#ideation"><span>2</span>The Design Foundation</a>
+          <a href="#branding"><span>3</span>How It Looks</a>
+          <a href="#development"><span>4</span>How It Works</a>
+          <a href="#launch"><span>5</span>Going Live</a>
+        </nav>
+        <div class="process-content">
+          <article class="process-step" id="collaboration">
+            <h3>Client Collaboration</h3>
+            <p>This project involved close client collaboration to develop a brand identity that reflected Borrey Law's business, values, and vision for the future. With limited existing branding to guide the process, regular client consultations were held to explore not only the firm's visual identity, but also its long-term goals, motivations, and mission.</p>
+            <p>Through these discussions, a clear creative direction began to emerge: a design that was clean and modern, yet distinctive. The objective was to communicate professionalism without creating an experience that felt sterile or unapproachable. Careful consideration was given to the visual elements of the brand, ensuring that color, typography, and other design choices worked together to express the firm's desired identity.</p>
+          </article>
+          <article class="process-step" id="ideation">
+            <h3>The Design Foundation</h3>
+            <p>Before developing the medium-fidelity designs, the website's information architecture was established through low-fidelity wireframes. These wireframes mapped the page structure, content hierarchy, and interface flows, providing a clear framework for how visitors would navigate the site and access relevant information.</p>
+            <p>Establishing this structure early allowed the layout and organization to be considered before visual details were introduced. This created a more efficient design process and provided a foundation for translating the initial concepts into medium-fidelity designs.</p>
+            <div class="ideation-gallery" aria-label="Wireframe and medium-fidelity design progression">
+              <figure class="ideation-frame">
+                <div class="wireframe-stage">
+                  <img src="assets/images/Wireframe.png" alt="Low-fidelity wireframe showing a section heading and a row of service cards">
+                  <button class="wireframe-pin pin-one" type="button" aria-label="Add an icon that corresponds to the service provided" data-comment="Add an icon that corresponds to the service provided."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v11H11l-4.5 3v-3H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>1</span></button>
+                  <button class="wireframe-pin pin-two" type="button" aria-label="Add a link that opens a pop-up so more services can be viewed" data-comment="Add link that opens a pop-up, so more services can be viewed."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v11H11l-4.5 3v-3H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>2</span></button>
+                  <button class="wireframe-pin pin-three pin-right" type="button" aria-label="Make the section title a Typed.js script that runs through different services" data-comment="Make section title a typedjs script that runs through different services."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v11H11l-4.5 3v-3H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>3</span></button>
+                </div>
+                <figcaption>Low-fidelity wireframe · Hover or focus a numbered pin to view a design note.</figcaption>
+              </figure>
+              <svg class="ideation-arrow" viewBox="0 0 52 70" aria-hidden="true">
+                <defs><linearGradient id="ideation-arrow-gradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#855de1"/><stop offset="1" stop-color="#27b5ed"/></linearGradient></defs>
+                <path d="M26 5v48m-13-13 13 13 13-13" fill="none" stroke="url(#ideation-arrow-gradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <figure class="ideation-frame">
+                <img src="assets/images/mockupideation.png" alt="Medium-fidelity services page design with a heading and service cards">
+                <figcaption>Medium-fidelity design</figcaption>
+              </figure>
+            </div>
+          </article>
+          <article class="process-step" id="branding">
+            <h3>How It Looks</h3>
+            <p>The identity paired a confident blue and purple palette with clear typography and a polished, approachable visual system. I translated that direction into page layouts and responsive website concepts in Figma.</p>
+            <div class="branding-assets" aria-label="Borrey Law brand colors">
+              <button class="brand-swatch" type="button" style="background:#855CDB" data-tip="Purple · #855CDB" aria-label="Purple, hex code #855CDB"></button>
+              <button class="brand-swatch" type="button" style="background:#4499F3" data-tip="Blue · #4499F3" aria-label="Blue, hex code #4499F3"></button>
+              <button class="brand-swatch" type="button" style="background:#22CAFF" data-tip="Cyan · #22CAFF" aria-label="Cyan, hex code #22CAFF"></button>
+              <button class="brand-swatch" type="button" style="background:linear-gradient(112deg,#855CDB 0%,#22CAFF 100%)" data-tip="Brand Gradient · #855CDB → #22CAFF" aria-label="Brand gradient, #855CDB to #22CAFF"></button>
+            </div>
+            <section class="type-system" aria-labelledby="type-system-title">
+              <h4 id="type-system-title">Typography System</h4>
+              <div class="type-spec-grid">
+                <article class="type-spec"><div class="type-spec-head"><span class="type-role">Display</span><span class="type-meta">Roboto · Semi-Bold · 60px</span></div><p class="type-preview type-display">Ag</p></article>
+                <article class="type-spec"><div class="type-spec-head"><span class="type-role">Headline</span><span class="type-meta">Roboto · Regular · 48px</span></div><p class="type-preview type-headline">Guidance</p></article>
+                <article class="type-spec"><div class="type-spec-head"><span class="type-role">Title</span><span class="type-meta">Roboto · Medium · 32px</span></div><p class="type-preview type-title">Services</p></article>
+                <article class="type-spec"><div class="type-spec-head"><span class="type-role">Small Title</span><span class="type-meta">Roboto · Medium · 24px</span></div><p class="type-preview type-small-title">Corporate</p></article>
+                <article class="type-spec"><div class="type-spec-head"><span class="type-role">Body</span><span class="type-meta">Roboto · Regular · 16px</span></div><p class="type-preview type-body">Legal guidance</p></article>
+                <article class="type-spec"><div class="type-spec-head"><span class="type-role">Button</span><span class="type-meta">Roboto · Medium · 16px</span></div><p class="type-preview type-button"><span>Learn More</span></p></article>
+              </div>
+            </section>
+          </article>
+          <article class="process-step" id="development">
+            <h3>How It Works</h3>
+            <p>The website was developed using HTML, CSS, and JavaScript, with a basic Bootstrap template serving as the foundation for a more efficient development process. The final design is fully responsive across desktop and mobile devices, with subtle layout and styling adjustments made to maintain a cohesive visual experience across screen sizes.</p>
+            <div class="dev-compare" id="dev-compare" style="--split:50%">
+              <img class="dev-finished" src="assets/images/MockupDev.png" alt="Borrey Law desktop design with a blue-purple contracts hero and three service cards">
+              <div class="dev-code" aria-hidden="true">
+                <div class="editor-top"><span class="editor-dot"></span><span class="editor-tab">index.html</span><span>styles.css</span></div>
+                <div class="code-lines"><span class="num">1</span><span class="comment">&lt;!-- Borrey Law · services --&gt;</span>
+<span class="num">2</span><span class="code-tag">&lt;main&gt;</span>
+<span class="num">3</span>  <span class="code-tag">&lt;section</span> <span class="attr">class</span>=<span class="value">"contracts-hero"</span><span class="code-tag">&gt;</span>
+<span class="num">4</span>    <span class="code-tag">&lt;h1&gt;</span>Getting what you need in your contracts is hard.<span class="code-tag">&lt;/h1&gt;</span>
+<span class="num">5</span>    <span class="code-tag">&lt;p&gt;</span>Let me do the heavy lifting.<span class="code-tag">&lt;/p&gt;</span>
+<span class="num">6</span>    <span class="code-tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#services"</span><span class="code-tag">&gt;</span>↓<span class="code-tag">&lt;/a&gt;</span>
+<span class="num">7</span>  <span class="code-tag">&lt;/section&gt;</span>
+<span class="num">8</span>  <span class="code-tag">&lt;section</span> <span class="attr">id</span>=<span class="value">"services"</span> <span class="attr">class</span>=<span class="value">"service-grid"</span><span class="code-tag">&gt;</span>
+<span class="num">9</span>    <span class="code-tag">&lt;article</span> <span class="attr">class</span>=<span class="value">"service-card"</span><span class="code-tag">&gt;</span>
+<span class="num">10</span>      <span class="code-tag">&lt;h2&gt;</span>Experience where it matters<span class="code-tag">&lt;/h2&gt;</span>
+<span class="num">11</span>      <span class="code-tag">&lt;p&gt;</span>Broad contract experience for enterprises.<span class="code-tag">&lt;/p&gt;</span>
+<span class="num">12</span>    <span class="code-tag">&lt;/article&gt;</span>
+<span class="num">13</span>    <span class="code-tag">&lt;article</span> <span class="attr">class</span>=<span class="value">"service-card"</span><span class="code-tag">&gt;</span>Collaboration focused<span class="code-tag">&lt;/article&gt;</span>
+<span class="num">14</span>    <span class="code-tag">&lt;article</span> <span class="attr">class</span>=<span class="value">"service-card"</span><span class="code-tag">&gt;</span>Sensible and Efficient<span class="code-tag">&lt;/article&gt;</span>
+<span class="num">15</span>  <span class="code-tag">&lt;/section&gt;</span>
+<span class="num">16</span><span class="code-tag">&lt;/main&gt;</span></div>
+              </div>
+              <span class="compare-label code">Code</span><span class="compare-label finished">Finished design</span>
+              <div class="compare-divider" aria-hidden="true"><span class="compare-handle">↔</span></div>
+              <input class="compare-range" type="range" min="8" max="92" value="50" aria-label="Drag to compare the code with the finished website design" aria-valuetext="Code and finished design split evenly">
+            </div>
+          </article>
+          <article class="process-step" id="launch">
+            <h3>Going Live</h3>
+            <p>The completed website gives prospective clients a clear introduction to Borrey Law and its services, supported by a cohesive brand and responsive digital experience.</p>
+            <a href="https://borreylaw.com/" target="_blank" rel="noopener noreferrer">Visit the Borrey Law website ↗</a>
+            <img src="assets/images/casestudyborreyhero.png" alt="Final Borrey Law website mockup">
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonial wrap" id="client-testimonial" aria-labelledby="testimonial-title">
+      <p class="testimonial-label">Client Testimonial</p>
+      <h2 id="testimonial-title">What The Client Had to Say</h2>
+      <div class="testimonial-row">
+        <svg class="testimonial-arrow" viewBox="0 0 220 170" role="img" aria-label="A purple looping arrow points toward the client testimonial">
+          <path d="M34 18C53 23 59 41 65 63c8 29 1 52 18 67 19 17 55 5 96-28M166 98l15 4-5 15" fill="none" stroke="#8963e9" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <blockquote>Working with Alanna at Drie Design was easy, efficient and a creative process I enjoyed every step of the way! She managed the flow of our interactions smoothly and efficiently. Alanna was so intuitive about my aesthetic that the first color palette and page designs she presented were a hit for me. She organized the content creation process and plugged it into the structure seamlessly. She added savvy touches to create a dynamic site, on which I keep getting compliments. Best investment I have made in my business!</blockquote>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap">© Drie Design · <a href="../projects.html">Explore more projects</a></footer>
+  <script>
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const revealTargets = document.querySelectorAll('.overview, .goal-card, .quote, .process > h2, .process-nav, .process-step, .testimonial, footer');
+      document.documentElement.classList.add('has-scroll-reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-revealed', entry.isIntersecting);
+        });
+      }, { threshold:0.12, rootMargin:'0px 0px -30px 0px' });
+      revealTargets.forEach((target, index) => {
+        target.classList.add('scroll-reveal');
+        target.style.setProperty('--reveal-delay', `${(index % 4) * 65}ms`);
+        revealObserver.observe(target);
+      });
+    }
+    const processSections = document.querySelectorAll('.process-step');
+    const processLinks = document.querySelectorAll('.process-nav a');
+    const processNav = document.querySelector('.process-nav');
+    const processIndicator = document.querySelector('.process-indicator');
+    const moveProcessIndicator = (link) => {
+      const navRect = processNav.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+      if (window.matchMedia('(max-width: 760px)').matches) {
+        const offset = linkRect.left - navRect.left + (linkRect.width - processIndicator.offsetWidth) / 2 - 20;
+        processNav.style.setProperty('--indicator-x', `${offset}px`);
+      } else {
+        processNav.style.setProperty('--indicator-y', `${linkRect.top - navRect.top + (linkRect.height - processIndicator.offsetHeight) / 2}px`);
+      }
+    };
+    moveProcessIndicator(processLinks[0]);
+    window.addEventListener('resize', () => {
+      const activeLink = document.querySelector('.process-nav a.active');
+      if (activeLink) moveProcessIndicator(activeLink);
+    });
+    const activeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        processLinks.forEach((link) => {
+          const active = link.hash === `#${entry.target.id}`;
+          link.classList.toggle('active', active);
+          if (active) {
+            link.setAttribute('aria-current', 'location');
+            moveProcessIndicator(link);
+          }
+          else link.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-28% 0px -58% 0px', threshold: 0 });
+    processSections.forEach((section) => activeObserver.observe(section));
+    const compare = document.querySelector('#dev-compare');
+    const compareRange = compare.querySelector('.compare-range');
+    compareRange.addEventListener('input', () => {
+      compare.style.setProperty('--split', `${compareRange.value}%`);
+      compareRange.setAttribute('aria-valuetext', `Code ${compareRange.value} percent, finished design ${100 - compareRange.value} percent`);
+    });
+    const menuButton = document.querySelector('.menu-trigger');
+    const siteMenu = document.querySelector('#site-menu');
+    menuButton.addEventListener('click', () => {
+      siteMenu.showModal();
+      menuButton.setAttribute('aria-expanded', 'true');
+    });
+    siteMenu.addEventListener('close', () => menuButton.setAttribute('aria-expanded', 'false'));
+    siteMenu.addEventListener('cancel', () => menuButton.setAttribute('aria-expanded', 'false'));
+    siteMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => siteMenu.close()));
+    const hero = document.querySelector('.hero');
+    const heroArt = document.querySelector('.hero-art');
+    if (window.matchMedia('(pointer:fine) and (prefers-reduced-motion: no-preference)').matches) {
+      hero.addEventListener('pointermove', (event) => {
+        const bounds = hero.getBoundingClientRect();
+        const x = (event.clientX - bounds.left - bounds.width / 2) / bounds.width;
+        const y = (event.clientY - bounds.top - bounds.height / 2) / bounds.height;
+        heroArt.style.transform = `translate3d(${x * 12}px, ${y * 12}px, 0)`;
+      });
+      hero.addEventListener('pointerleave', () => {
+        heroArt.style.transform = 'translate3d(0, 0, 0)';
+      });
+    }
+  </script>
+</body>
+</html>

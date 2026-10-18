@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="home-scroll-page">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,45 +10,189 @@
     <link rel="stylesheet" href="custom.css">
     <script src="custom.js" defer></script>
   </head>
-  <body>
+  <body class="home-page">
     <header class="site-header">
       <nav class="navbar" aria-label="Main navigation">
-        <a class="navbar__brand" href="index.html" aria-label="Alanna Bent home">alanna bent</a>
+        <a class="navbar__brand" href="index.html" aria-label="Alanna Bent home">
+          <span class="home-logo-wordmark">alanna bent</span>
+          <span class="home-logo-mark" aria-hidden="true">ab</span>
+        </a>
       </nav>
     </header>
-    <main class="hero">
-      <section class="intro" aria-labelledby="hero-title">
-        <p class="intro__copy">
-          Hi there 👋. I am a
-          <span class="paint-highlight">UX Designer</span>
-          that creates unique designs based on the principles of Cognitive Psychology and Human Factors.
-        </p>
-        <div class="intro__links">
-          <ul class="skills" aria-label="Skills">
-            <li><span class="skill-tag">web design</span></li>
-            <li><span class="skill-tag">web dev</span></li>
-            <li><span class="skill-tag">HTML, CSS</span></li>
-            <li><span class="skill-tag">end-to-end</span></li>
-            <li><span class="skill-tag">Figma</span></li>
-            <li>
-              <a class="resume-link" href="resume.html" aria-label="View resume">
-                <svg aria-hidden="true" viewBox="0 0 24 24">
-                  <path d="M12 5v14M5 12h14" />
+    <main>
+      <section class="project-color-reveal" aria-label="Selected projects">
+        <div class="project-color-stage">
+          <div class="project-color-intro">
+            <div class="intro">
+              <h1 class="visually-hidden" id="hero-title">Alanna Bent, UI/UX Designer and Web Developer</h1>
+              <div class="home-intro-heading">
+                <p class="intro__copy">
+                  <span class="paint-highlight">UI/UX Designer</span> / Web Developer
+                </p>
+                <p class="home-intro-subtitle">Where design meets human behavior</p>
+              </div>
+              <button class="home-scroll-cue" type="button" aria-label="Scroll for more">
+                <span>scroll for more</span>
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path d="M12 3v17m-7-7 7 7 7-7" />
                 </svg>
-              </a>
-            </li>
-          </ul>
+              </button>
+            </div>
+          </div>
+          <div class="third-section-copy">
+            <h2 class="third-section-title">Where design meets <span>human behavior</span></h2>
+            <p class="third-section-description">I bridge psychology, business strategy, and design to create purposeful digital experiences. My multidisciplinary approach connects human behavior, visual strategy, and technical execution to transform complex needs into intuitive, impactful solutions.</p>
+          </div>
+          <h2 class="writing-section-heading">My writing on design</h2>
+          <div class="project-color-panels">
+            <a class="project-color-panel project-color-panel--borrey" href="case-studies/borrey-law.html" data-project-href="case-studies/borrey-law.html" data-article-href="https://medium.com/design-bootcamp/the-worlds-favorite-color-an-in-depth-analysis-of-the-color-blue-in-ux-design-3094287c571e" aria-label="Borrey Law case study">
+              <img class="project-color-panel__image" src="case-studies/assets/images/borrey-law-device-mockup-transparent.png" alt="">
+              <span class="project-hover-info"><span class="project-hover-info__line"><strong>01</strong><span class="project-hover-info__title">Borrey Law</span></span><span class="project-hover-info__type">web design + web dev</span></span>
+              <span class="project-color-panel__label"><span>01</span><span class="project-color-panel__title">The world’s favorite color: an in-depth analysis of the color blue in UX design</span><span class="project-color-panel__meta">Alanna Bent · Bootcamp<br>Jan 25, 2022 · 5 min read</span><span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="project-color-panel project-color-panel--michiko" href="case-studies/michiko-dressage.html" data-project-href="case-studies/michiko-dressage.html" data-article-href="https://medium.com/design-bootcamp/biases-and-their-effects-in-ux-design-6eb98b02e8be" aria-label="Michiko Dressage case study">
+              <img class="project-color-panel__image" src="case-studies/assets/images/MS_Dressage_Mockup.jpg" alt="">
+              <span class="project-hover-info"><span class="project-hover-info__line"><strong>02</strong><span class="project-hover-info__title">Michiko Dressage</span></span><span class="project-hover-info__type">web design + web dev</span></span>
+              <span class="project-color-panel__label"><span>02</span><span class="project-color-panel__title">Biases and their effects in UX Design</span><span class="project-color-panel__meta">Alanna Bent · Bootcamp<br>Feb 18, 2022 · 6 min read</span><span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="project-color-panel project-color-panel--edge" href="case-studies/edge-analytics.html" data-project-href="case-studies/edge-analytics.html" data-article-href="https://medium.com/ux-magazine/the-importance-of-ia-in-ux-design-d8abd6ca2030" aria-label="Edge Analytics case study">
+              <img class="project-color-panel__image" src="case-studies/assets/images/edgeAnalyticsMockup.jpg" alt="">
+              <span class="project-hover-info"><span class="project-hover-info__line"><strong>03</strong><span class="project-hover-info__title">Edge Analytics</span></span><span class="project-hover-info__type">web design + web dev</span></span>
+              <span class="project-color-panel__label"><span>03</span><span class="project-color-panel__title">The importance of IA in UX design</span><span class="project-color-panel__meta">Alanna Bent · UX Magazine<br>May 19, 2022 · 5 min read</span><span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="project-color-panel project-color-panel--neurokami" href="https://drie.design/projects-neurokami.html" data-project-href="https://drie.design/projects-neurokami.html" data-article-href="https://medium.com/design-bootcamp/interviewing-without-bias-a-guide-to-user-interviews-in-ux-design-6d27598c5006" aria-label="Neurokami project on Drie Design">
+              <img class="project-color-panel__image" src="case-studies/assets/images/neurokamiMockup.jpg" alt="">
+              <span class="project-hover-info"><span class="project-hover-info__line"><strong>04</strong><span class="project-hover-info__title">Neurokami</span></span><span class="project-hover-info__type">app design</span></span>
+              <span class="project-color-panel__label"><span>04</span><span class="project-color-panel__title">Interviewing without bias: a guide to user interviews in UX design</span><span class="project-color-panel__meta">Alanna Bent · Bootcamp<br>Mar 9, 2023 · 7 min read</span><span aria-hidden="true">↗</span></span>
+            </a>
+            <div class="project-color-panel project-color-panel--godwoven" role="group" tabindex="0" aria-label="Godwoven Trilogy project">
+              <span class="project-hover-info"><span class="project-hover-info__line"><strong>05</strong><span class="project-hover-info__title">Godwoven Trilogy</span></span><span class="project-hover-info__type">literature</span></span>
+            </div>
+          </div>
         </div>
       </section>
     </main>
     <span class="brand-cursor" aria-hidden="true"></span>
-    <footer class="color-bar" aria-label="Page sections">
-      <span class="color-bar__segment color-bar__segment--home" aria-label="Home" data-label="Home" tabindex="0"></span>
-      <span class="color-bar__segment color-bar__segment--about" aria-label="About" data-label="About" tabindex="0"></span>
-      <span class="color-bar__segment color-bar__segment--projects" aria-label="Projects" data-label="Projects" tabindex="0"></span>
-      <span class="color-bar__segment color-bar__segment--resume" aria-label="Resume" data-label="Resume" tabindex="0"></span>
-      <span class="color-bar__segment color-bar__segment--contact" aria-label="Contact" data-label="Contact" tabindex="0"></span>
-      <span class="color-bar__cursor" aria-hidden="true"></span>
-    </footer>
+    <script>
+      (() => {
+        const reveal = document.querySelector(".project-color-reveal");
+        if (!reveal) return;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const projectPanels = [...reveal.querySelectorAll(".project-color-panel")];
+        const scrollCue = reveal.querySelector(".home-scroll-cue");
+        let pendingFrame = false;
+        const updateReveal = () => {
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+          const scrollScreens = window.scrollY / Math.max(viewportHeight, 1);
+          const phase = scrollScreens <= 1
+            ? scrollScreens
+            : scrollScreens <= 1.6
+              ? 1
+              : scrollScreens <= 2.6
+                ? 1 + (scrollScreens - 1.6)
+                : scrollScreens <= 3.1
+                  ? 2
+                  : Math.min(3, 2 + (scrollScreens - 3.1));
+          const collapse = Math.max(0, Math.min(1, phase - 1));
+          const relocate = Math.max(0, Math.min(1, phase - 2));
+          const barHeight = 48;
+          const railWidth = Math.max(28, Math.min(44, viewportWidth * 0.035));
+          const railBlockHeight = viewportHeight / projectPanels.length;
+          const railStart = 0;
+
+          projectPanels.forEach((panel, index) => {
+            const fullLeft = index * viewportWidth / projectPanels.length;
+            const fullWidth = viewportWidth / projectPanels.length;
+            const fullTop = 0;
+            const railTop = railStart + index * railBlockHeight;
+            const mix = (start, end, amount) => start + (end - start) * amount;
+            let height;
+            let left;
+            let top;
+            let width;
+            if (phase <= 1) {
+              height = barHeight + (viewportHeight - barHeight) * phase;
+              left = fullLeft;
+              top = viewportHeight - height;
+              width = fullWidth;
+            } else if (phase <= 2) {
+              height = mix(viewportHeight, railBlockHeight, collapse);
+              left = mix(fullLeft, 0, collapse);
+              top = mix(fullTop, railTop, collapse);
+              width = mix(fullWidth, railWidth, collapse);
+            } else {
+              const compactBlocks = viewportWidth <= 700;
+              const blockGap = compactBlocks ? Math.max(12, viewportWidth * 0.012) : viewportWidth * 0.043;
+              const columns = compactBlocks ? 2 : projectPanels.length;
+              const rows = Math.ceil(projectPanels.length / columns);
+              const blockWidth = compactBlocks
+                ? (viewportWidth - blockGap * 3) / columns
+                : Math.min(viewportWidth * 0.145, (viewportWidth - blockGap * 6) / projectPanels.length);
+              const blockHeight = compactBlocks
+                ? Math.min(viewportHeight * 0.19, (viewportHeight * 0.62 - blockGap * (rows - 1)) / rows)
+                : Math.min(viewportHeight * 0.44, viewportHeight - 180);
+              const blocksWidth = blockWidth * columns + blockGap * (columns - 1);
+              const blocksHeight = blockHeight * rows + blockGap * (rows - 1);
+              const blockLeft = (viewportWidth - blocksWidth) / 2 + (index % columns) * (blockWidth + blockGap);
+              const blockTop = compactBlocks
+                ? Math.max(viewportHeight * 0.25, (viewportHeight - blocksHeight) / 2 + 25) + Math.floor(index / columns) * (blockHeight + blockGap)
+                : (viewportHeight - blockHeight) / 2;
+              height = mix(railBlockHeight, blockHeight, relocate);
+              left = mix(0, blockLeft, relocate);
+              top = mix(railTop, blockTop, relocate);
+              width = mix(railWidth, blockWidth, relocate);
+            }
+
+            panel.style.setProperty("--panel-left", `${left.toFixed(1)}px`);
+            panel.style.setProperty("--panel-top", `${top.toFixed(1)}px`);
+            panel.style.setProperty("--panel-width", `${width.toFixed(1)}px`);
+            panel.style.setProperty("--panel-height", `${height.toFixed(1)}px`);
+          });
+
+          reveal.classList.toggle("is-open", phase >= 0.8 && phase < 1.1);
+          reveal.classList.toggle("is-collapsing", phase > 1);
+          reveal.classList.toggle("is-third-section", phase >= 1.95 && phase <= 2);
+          const projectInfoVisible = phase >= 1 && phase <= 1.3;
+          reveal.classList.toggle("is-projects-section", projectInfoVisible);
+          document.body.classList.toggle("projects-section-active", projectInfoVisible);
+          reveal.classList.toggle("is-writing-section", phase >= 2.8);
+          reveal.classList.toggle("is-writing-content", phase >= 2.9);
+          document.body.classList.toggle("writing-section-active", phase >= 2.8);
+          reveal.classList.toggle("is-scrolled", scrollScreens > 0.01);
+          projectPanels.forEach((panel) => {
+            const isArticleStage = phase >= 2.8;
+            const hasSectionInfo = projectInfoVisible || phase >= 2.9;
+            panel.inert = !hasSectionInfo;
+            if (panel.dataset.projectHref && panel.dataset.articleHref) {
+              panel.href = isArticleStage ? panel.dataset.articleHref : panel.dataset.projectHref;
+              if (isArticleStage) {
+                panel.target = "_blank";
+                panel.rel = "noopener noreferrer";
+              } else {
+                panel.removeAttribute("target");
+                panel.removeAttribute("rel");
+              }
+            }
+          });
+          document.body.classList.toggle("has-scrolled", phase > 1);
+          pendingFrame = false;
+        };
+        const scheduleUpdate = () => {
+          if (pendingFrame) return;
+          pendingFrame = true;
+          window.requestAnimationFrame(updateReveal);
+        };
+        window.addEventListener("scroll", scheduleUpdate, { passive: true });
+        window.addEventListener("resize", scheduleUpdate);
+        scrollCue?.addEventListener("click", () => {
+          window.scrollTo({
+            top: window.scrollY + window.innerHeight,
+            behavior: reduceMotion.matches ? "auto" : "smooth",
+          });
+        });
+        updateReveal();
+      })();
+    </script>
   </body>
 </html>

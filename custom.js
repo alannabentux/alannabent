@@ -4,6 +4,31 @@ const colorBar = document.querySelector(".color-bar");
 const colorBarCursor = document.querySelector(".color-bar__cursor");
 const brand = document.querySelector(".navbar__brand");
 const brandCursor = document.querySelector(".brand-cursor");
+const projectCursor = document.querySelector(".project-index-cursor");
+const projectCursorImage = projectCursor?.querySelector("img");
+
+if (projectCursor && projectCursorImage) {
+  const projectLinks = document.querySelectorAll(".project-index-link[data-cursor-image]");
+  const moveProjectCursor = (event) => {
+    if (event.pointerType === "touch") return;
+    projectCursor.style.left = `${event.clientX}px`;
+    projectCursor.style.top = `${event.clientY}px`;
+  };
+
+  projectLinks.forEach((link) => {
+    link.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "touch") return;
+      projectCursorImage.src = link.dataset.cursorImage;
+      moveProjectCursor(event);
+      projectCursor.classList.add("is-visible");
+    });
+
+    link.addEventListener("pointermove", moveProjectCursor);
+    link.addEventListener("pointerleave", () => {
+      projectCursor.classList.remove("is-visible");
+    });
+  });
+}
 
 if (brand && brandCursor) {
   brand.addEventListener("pointerenter", (event) => {
