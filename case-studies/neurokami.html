@@ -36,6 +36,7 @@
     .project-type { margin: 26px 0 0; font-size: clamp(16px, 1.8vw, 21px); font-weight: 500; }
     .project-summary { max-width: 420px; margin: 18px 0 0; color: var(--muted); font-size: clamp(15px, 1.4vw, 18px); line-height: 1.65; }
     .coming-soon { margin: clamp(26px, 4vw, 42px) 0 0; padding-top: 18px; border-top: 1px solid #e9e5ef; color: var(--purple); font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+    .site-footer { width:min(1240px,calc(100% - 80px)); margin:0 auto; padding:24px 0 34px; border-top:1px solid #eeeaf1; color:var(--muted); font-size:12px; text-align:center; }
     @media (max-width: 760px) {
       .page-wrap { width: min(100% - 40px, 560px); }
       .site-header { min-height: 78px; }
@@ -44,6 +45,7 @@
       .hero-copy { max-width: 560px; }
       h1 { font-size: clamp(58px, 14vw, 88px); }
       .project-type { margin-top: 20px; }
+      .site-footer { width:calc(100% - 40px); }
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
   </style>
@@ -66,5 +68,6 @@
       </div>
     </section>
   </main>
+  <footer class="site-footer">Designed and Developed by Alanna Bent · © Alanna Bent</footer>
 </body>
 </html>

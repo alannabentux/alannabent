@@ -686,6 +686,16 @@ body {
   margin-left: .45rem;
 }
 
+.home-footer {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1rem;
+  width: calc(100% - 2rem);
+  color: rgb(255 255 255 / 68%);
+  font-size: .75rem;
+  text-align: center;
+}
+
 .project-color-intro {
   position: absolute;
   z-index: 2;

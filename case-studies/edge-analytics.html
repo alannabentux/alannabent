@@ -27,24 +27,26 @@
     a { color: inherit; }
     img { display: block; max-width: 100%; }
     .wrap { width: min(1160px, calc(100% - 88px)); margin-inline: auto; }
-    .hero { position: relative; display: grid; min-height: 100svh; grid-template-columns: 1fr 1.1fr; align-items: center; gap: clamp(32px, 6vw, 82px); padding: 100px max(44px, calc((100% - 1160px) / 2)) 74px; overflow: hidden; color: #fff; background: linear-gradient(118deg, #08bfae 0%, #078abf 52%, #1760af 100%); isolation: isolate; }
-    .hero::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(145deg, transparent 0 50%, rgb(27 73 157 / 45%) 50% 100%); content: ""; }
-    .hero-copy { max-width: 530px; }
+    .hero { position: relative; display: block; min-height: 100svh; overflow: hidden; color: #fff; background: linear-gradient(135deg, #15d8b5 0%, #0799c7 52%, #075db4 100%); isolation: isolate; }
+    .hero-bubbles { position: absolute; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; }
+    .hero-dot-canvas { display: block; width: 100%; height: 100%; }
+    .hero-heading { position: absolute; z-index: 1; top: 35%; left: clamp(24px, 8vw, 160px); }
+    .hero-kicker { margin: 0 0 12px; color: rgb(255 255 255 / 85%); font-size: clamp(.8rem, 1.3vw, 1rem); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+    .hero-title { margin: 0; color: #fff; font-size: clamp(2rem, calc(5vw - .5rem), 4rem); font-weight: 500; letter-spacing: -.06em; line-height: 1; }
     .eyebrow { margin: 0 0 25px; color: rgb(255 255 255 / 82%); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
     h1 { margin: 0; font-size: clamp(52px, 7vw, 88px); font-weight: 400; letter-spacing: -.065em; line-height: .98; }
     .hero-summary { max-width: 430px; margin: 24px 0 0; color: rgb(255 255 255 / 90%); font-size: clamp(17px, 1.7vw, 21px); line-height: 1.5; }
     .hero-type { margin: 34px 0 0; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
-    .hero-art { position: relative; padding: clamp(24px, 4vw, 56px); }
-    .hero-art::before { position: absolute; inset: 0; border: 1px solid rgb(255 255 255 / 25%); background: radial-gradient(ellipse at 70% 35%, rgb(255 255 255 / 15%), transparent 55%); content: ""; }
-    .hero-art img { position: relative; width: 100%; filter: drop-shadow(0 22px 32px rgb(0 38 76 / 28%)); }
     .brand { position: absolute; z-index: 2; top: 24px; left: max(44px, calc((100% - 1160px) / 2)); color: #fff; font-size: 34px; font-weight: 500; letter-spacing: -.14em; text-decoration: none; }
     .back-link { position: absolute; z-index: 2; top: 35px; right: max(44px, calc((100% - 1160px) / 2)); display: inline-flex; align-items: center; gap: 10px; color: rgb(255 255 255 / 92%); font-size: 14px; text-decoration: none; }
     .back-link::before { content: "←"; font-size: 19px; transition: transform .2s ease; }
     .back-link:hover::before { transform: translateX(-4px); }
-    .overview { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(40px, 8vw, 110px); align-items: start; padding-block: 120px; }
+    .overview { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 96px 0 90px; }
+    .overview-image { width: 100%; border-radius: 12px; box-shadow: 0 18px 44px rgb(54 42 40 / 12%); }
+    .overview-copy h2 { margin: 0 0 16px; font-size: clamp(32px, 4vw, 46px); }
     .section-label { margin: 0 0 18px; color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
     h2 { margin: 0; font-size: clamp(34px, 4.5vw, 56px); font-weight: 400; letter-spacing: -.055em; line-height: 1.04; }
-    .overview-copy > p { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.7; }
+    .overview-copy > p:not(.section-label) { max-width: 560px; margin: 0; color: var(--muted); }
     .project-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px 35px; margin: 38px 0 0; padding-top: 26px; border-top: 1px solid var(--line); }
     .project-details div { min-width: 0; }
     .project-details dt { margin-bottom: 5px; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
@@ -59,70 +61,249 @@
     .goal-card h3 { margin: 0 0 12px; font-size: 19px; font-weight: 500; letter-spacing: -.02em; }
     .goal-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
     .goal-card:hover p { color: rgb(255 255 255 / 88%); }
-    .process { padding-block: 120px; }
-    .process-intro { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: start; margin-bottom: 54px; }
-    .process-intro > p { max-width: 620px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.7; }
-    .process-feature { display: grid; grid-template-columns: 1fr 1fr; min-height: 300px; align-items: center; gap: 60px; padding: clamp(28px, 5vw, 62px); color: #fff; background: linear-gradient(118deg, #08bfae 0%, #078abf 52%, #1760af 100%); }
-    .process-feature h3 { margin: 0 0 15px; font-size: clamp(27px, 3.2vw, 40px); font-weight: 400; letter-spacing: -.04em; }
-    .process-feature p { margin: 0; color: rgb(255 255 255 / 88%); line-height: 1.7; }
-    .process-feature img { width: 100%; box-shadow: 0 15px 32px rgb(0 33 71 / 22%); }
+    .design-system { padding: 110px 0 120px; }
+    .design-system-head { display:grid; grid-template-columns:.8fr 1.2fr; gap:60px; align-items:end; margin-bottom:38px; }
+    .design-system-head h2 { max-width:570px; }
+    .design-system-head > p { max-width:560px; margin:0 0 4px; color:var(--muted); }
+    .design-tabs { display:flex; flex-wrap:wrap; gap:9px; padding-bottom:16px; border-bottom:1px solid var(--line); }
+    .design-tab { min-height:42px; padding:9px 16px; border:1px solid #c8e4e8; border-radius:99px; color:var(--ink); background:#fff; font:500 13px/1.2 Inter, sans-serif; cursor:pointer; transition:color .22s,background .22s,border-color .22s,transform .22s; }
+    .design-tab:hover { transform:translateY(-2px); border-color:var(--accent); }
+    .design-tab[aria-selected="true"] { border-color:transparent; color:#fff; background:linear-gradient(110deg,var(--teal),var(--accent),var(--blue)); }
+    .design-tab:focus-visible,.edge-swatch:focus-visible,.edge-type-card:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+    .design-panel { padding-top:22px; }
+    .design-panel[hidden] { display:none; }
+    .design-panel:not([hidden]) { animation:edge-panel-in .28s ease both; }
+    @keyframes edge-panel-in { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+    .design-panel > p { margin:0 0 17px; color:var(--muted); font-size:13px; }
+    .edge-palette { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    .edge-swatch { overflow:hidden; padding:0; border:1px solid var(--line); border-radius:12px; color:var(--ink); background:#fff; text-align:left; cursor:pointer; }
+    .edge-swatch[aria-pressed="true"] { outline:3px solid rgb(7 138 191 / 35%); outline-offset:2px; }
+    .edge-swatch-color { display:block; height:112px; }
+    .edge-swatch-copy { display:block; padding:12px 14px; }
+    .edge-swatch-copy strong,.edge-swatch-copy small { display:block; }
+    .edge-swatch-copy strong { font-size:13px; font-weight:600; }
+    .edge-swatch-copy small { margin-top:3px; color:var(--muted); font-size:11px; }
+    .edge-color-note { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:20px; padding:20px 22px; border-left:3px solid var(--teal); background:#eef8f9; }
+    .edge-color-note strong { display:block; margin-bottom:5px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; }
+    .edge-color-note p { margin:0; color:var(--muted); font-size:14px; }
+    .edge-type-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .edge-type-card { display:flex; min-height:160px; flex-direction:column; align-items:flex-start; justify-content:space-between; padding:18px; border:1px solid var(--line); border-radius:12px; color:var(--ink); background:#fff; text-align:left; cursor:pointer; }
+    .edge-type-card[aria-pressed="true"] { border-color:var(--accent); box-shadow:0 0 0 2px rgb(7 138 191 / 18%); }
+    .edge-type-card small { color:var(--accent); font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; }
+    .edge-type-display { font-size:clamp(23px,3vw,36px); font-weight:500; letter-spacing:-.06em; line-height:1.05; }
+    .edge-type-interface { font-size:21px; font-weight:600; letter-spacing:-.04em; }
+    .edge-type-body { max-width:260px; color:var(--muted); font-size:14px; line-height:1.5; }
+    .edge-type-details { display:grid; grid-template-columns:1fr 1fr; gap:25px; margin-top:18px; padding-top:18px; border-top:1px solid var(--line); }
+    .edge-type-details strong { display:block; margin-bottom:5px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; }
+    .edge-type-details p { margin:0; color:var(--muted); font-size:14px; }
+    .edge-components { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .edge-component { min-height:145px; padding:19px; border:1px solid var(--line); border-radius:12px; background:#fff; }
+    .edge-component h3 { margin:0 0 10px; font-size:15px; font-weight:600; }
+    .edge-component p { margin:0; color:var(--muted); font-size:13px; }
+    .edge-component-chip { display:inline-flex; margin-top:18px; padding:7px 11px; border-radius:99px; color:#fff; background:linear-gradient(110deg,var(--teal),var(--accent),var(--blue)); font-size:11px; font-weight:600; }
+    .edge-ia-map { display:grid; grid-template-columns:1fr; justify-items:center; gap:22px; padding:30px; border:1px solid #dedede; border-radius:14px; background:#f5f5f5; }
+    .edge-ia-home { min-width:min(100%,260px); padding:16px 22px; border-radius:9px; color:#fff; background:#222; text-align:center; font-size:14px; font-weight:600; }
+    .edge-ia-branches { position:relative; display:grid; width:100%; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; padding-top:22px; }
+    .edge-ia-branches::before { position:absolute; top:0; left:12.5%; right:12.5%; border-top:1px solid #aaa; content:""; }
+    .edge-ia-branch { position:relative; display:flex; min-height:108px; flex-direction:column; justify-content:center; padding:15px; border:1px solid #d8d8d8; border-radius:9px; background:#fff; text-align:center; }
+    .edge-ia-branch::before { position:absolute; top:-23px; left:50%; height:22px; border-left:1px solid #aaa; content:""; }
+    .edge-ia-branch strong { font-size:14px; font-weight:600; }
+    .edge-ia-branch span { margin-top:5px; color:var(--muted); font-size:12px; }
+    .edge-wireframe { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; margin-top:30px; }
+    .edge-wireframe-item { min-width:0; margin:0; }
+    .edge-wireframe-window { aspect-ratio:16 / 10; overflow:hidden; border:1px solid #d5d5d5; border-radius:5px; background:#fff; box-shadow:0 8px 24px rgb(0 0 0 / 7%); }
+    .edge-wireframe-nav { display:flex; min-height:40px; align-items:center; justify-content:space-between; gap:8px; padding:0 10px; border-bottom:1px solid #e7e7e7; }
+    .edge-wireframe-logo { width:54px; height:7px; border-radius:3px; background:#333; }
+    .edge-wireframe-links { display:flex; gap:5px; }
+    .edge-wireframe-links span { width:15px; height:4px; border-radius:99px; background:#d8d8d8; }
+    .edge-wireframe-links span:last-child { width:24px; background:#888; }
+    .edge-wireframe-contact { padding:4px 6px; border:1px solid #aaa; border-radius:4px; color:#333; font-size:7px; font-weight:600; white-space:nowrap; }
+    .edge-wireframe-hero { display:grid; min-height:0; height:62%; grid-template-columns:1fr 1fr; align-items:center; gap:10px; padding:12px 8%; color:#fff; background:linear-gradient(118deg,#777,#111); }
+    .edge-wireframe-copy small { display:block; width:48px; height:5px; margin-bottom:10px; border-radius:99px; background:rgb(255 255 255 / 56%); }
+    .edge-wireframe-copy strong { display:block; max-width:230px; font-size:clamp(12px,1.5vw,19px); font-weight:500; letter-spacing:-.05em; line-height:1.05; }
+    .edge-wireframe-copy .edge-wireframe-tagline { max-width:240px; height:auto; margin:6px 0 0; border-radius:0; color:rgb(255 255 255 / 90%); background:none; box-shadow:none; font-size:clamp(6px,.65vw,9px); line-height:1.45; }
+    .edge-wireframe-button { display:inline-block; width:48px; height:13px; margin-top:5px; border-radius:4px; background:#fff; }
+    .edge-wireframe-visual { position:relative; height:80%; overflow:hidden; border:1px solid rgb(255 255 255 / 30%); border-radius:6px; background:rgb(255 255 255 / 10%); }
+    .edge-wireframe-visual::before { position:absolute; inset:0; background:repeating-linear-gradient(to bottom,transparent 0 15px,rgb(255 255 255 / 18%) 16px); content:""; }
+    .edge-wireframe-visual svg { position:absolute; inset:7px; width:calc(100% - 14px); height:calc(100% - 14px); }
+    .edge-wireframe-visual path { fill:none; stroke:rgb(255 255 255 / 90%); stroke-linecap:round; stroke-linejoin:round; stroke-width:2; }
+    .edge-wireframe-intro { min-height:0; padding:11px 9% 4px; }
+    .edge-wireframe-intro strong { display:block; font-size:clamp(9px,1vw,13px); font-weight:500; letter-spacing:-.03em; line-height:1.2; }
+    .edge-wireframe-intro p { margin:4px 0 0; color:var(--muted); font-size:clamp(6px,.6vw,8px); line-height:1.4; }
+    .edge-wireframe-content { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; padding:5px 9% 9px; }
+    .edge-wireframe-card { min-height:32px; padding:6px; border:1px solid #e3e3e3; border-radius:4px; }
+    .edge-wireframe-card strong { display:block; margin-bottom:5px; color:#333; font-size:clamp(5px,.6vw,7px); line-height:1.3; }
+    .edge-wireframe-card span { display:block; width:85%; height:2px; border-radius:99px; background:#e0e0e0; box-shadow:0 4px 0 #e0e0e0; }
+    .edge-stats-wireframe { display:grid; min-height:100%; grid-template-columns:.9fr 1.1fr; align-items:stretch; }
+    .edge-experience-copy { display:flex; min-width:0; flex-direction:column; justify-content:center; padding:10px 8%; }
+    .edge-experience-copy h4 { margin:0 0 8px; font-size:clamp(10px,1.35vw,17px); font-weight:500; letter-spacing:-.03em; }
+    .edge-experience-copy p { margin:0; color:#555; font-size:clamp(6px,.68vw,9px); line-height:1.5; }
+    .edge-third-placeholder { display:block; height:7px; border-radius:99px; background:#888; }
+    .edge-third-placeholder.is-heading { width:80%; height:10px; margin-bottom:10px; }
+    .edge-third-placeholder.is-copy { width:100%; height:4px; margin-bottom:5px; background:#ccc; }
+    .edge-third-placeholder.is-copy.short { width:72%; }
+    .edge-stat-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; margin-top:auto; padding-top:15px; }
+    .edge-stat-item { min-width:0; text-align:left; }
+    .edge-stat-item i { display:block; width:75%; height:9px; margin-bottom:5px; border-radius:99px; background:#777; }
+    .edge-stat-item i + span { display:block; width:90%; height:4px; border-radius:99px; background:#bbb; }
+    .edge-stat-item strong { display:block; font-size:clamp(11px,1.5vw,19px); font-weight:500; }
+    .edge-stat-item span { display:block; margin-top:3px; color:#666; font-size:clamp(5px,.58vw,8px); }
+    .edge-experience-photo { min-width:0; overflow:hidden; background:#d5d5d5; clip-path:polygon(4% 0,100% 0,100% 100%,0 100%); }
+    .edge-learning-heading { display:flex; flex-direction:column; align-items:center; gap:6px; padding:13px 8% 10px; }
+    .edge-learning-heading span:first-child { width:48%; height:9px; border-radius:99px; background:#777; }
+    .edge-learning-heading span:last-child { width:72%; height:5px; border-radius:99px; background:#d0d0d0; }
+    .edge-article-card { display:grid; height:67%; grid-template-columns:1fr 1fr; margin:0 7%; border:1px solid #e1e1e1; box-shadow:0 5px 15px rgb(0 0 0 / 6%); }
+    .edge-article-image { min-width:0; overflow:hidden; background:#d5d5d5; }
+    .edge-article-copy { display:flex; min-width:0; flex-direction:column; justify-content:center; padding:10px; }
+    .edge-article-copy { gap:7px; }
+    .edge-article-copy span { display:block; width:100%; height:5px; border-radius:99px; background:#777; }
+    .edge-article-copy span:nth-child(2) { width:84%; }
+    .edge-article-copy span:nth-child(3) { width:93%; height:3px; margin-top:4px; background:#ccc; box-shadow:0 6px 0 #ccc,0 12px 0 #ccc; }
+    .edge-article-meta { display:flex; justify-content:space-between; gap:4px; margin-top:auto; padding-top:7px; border-top:1px solid #ddd; }
+    .edge-article-meta span { width:29%; height:4px; border-radius:99px; background:#aaa; }
+    .edge-article-meta span:last-child { width:25%; }
+    .edge-article-arrow { position:absolute; top:50%; display:grid; width:22px; height:22px; place-items:center; transform:translateY(-50%); border-radius:50%; color:#fff; background:#555; font-size:12px; }
+    .edge-article-arrow.is-left { left:0; }
+    .edge-article-arrow.is-right { right:0; }
+    .edge-learning-feature { position:relative; height:calc(100% - 55px); }
+    .edge-solutions-wireframe { padding-top:15%; }
+    .edge-solutions-heading { display:flex; flex-direction:column; align-items:center; gap:7px; padding:0 8%; }
+    .edge-solutions-heading span:first-child { width:72%; height:8px; border-radius:99px; background:#555; }
+    .edge-solutions-heading span:nth-child(2) { width:45%; height:8px; border-radius:99px; background:#888; }
+    .edge-solutions-heading span:last-child { width:88%; height:4px; margin-top:6px; border-radius:99px; background:#ccc; }
+    .edge-solutions-carousel { display:flex; gap:8px; overflow:hidden; margin-top:18%; padding-left:8%; }
+    .edge-solution-card { display:flex; min-width:76%; min-height:70px; flex-direction:column; justify-content:center; gap:8px; padding:12px; border-radius:8px; background:linear-gradient(130deg,#555,#222); }
+    .edge-solution-card:nth-child(2) { background:linear-gradient(130deg,#888,#444); }
+    .edge-solution-card:nth-child(3) { background:linear-gradient(130deg,#444,#777); }
+    .edge-solution-card span:first-child { width:18px; height:18px; border:2px solid #eee; border-radius:50%; }
+    .edge-solution-card span:last-child { width:76%; height:5px; border-radius:99px; background:#eee; }
+    .edge-solutions-scrollbar { width:46%; height:5px; margin:12px 0 0 8%; border-radius:99px; background:#bbb; }
+    .edge-wireframe-caption { margin:9px 2px 0; color:#555; font-size:11px; }
+    .process { padding: 0 0 32px; }
+    .process-intro { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: start; margin-bottom: 62px; }
+    .process-intro > p { max-width: 620px; margin: 32px 0 0; color: var(--muted); font-size: 17px; line-height: 1.7; }
+    .process-timeline { overflow-x:auto; padding: 8px 0 18px; scrollbar-color: var(--accent) #e8edf0; scrollbar-width:thin; }
+    .process-stages { --progress:0%; position:relative; display:grid; min-width:850px; grid-template-columns:repeat(5,minmax(0,1fr)); gap:22px; margin:0; padding:0; list-style:none; }
+    .process-stages::before,.process-stages::after { position:absolute; top:19px; left:10%; height:2px; content:""; }
+    .process-stages::before { right:10%; background:#dfe5e9; }
+    .process-stages::after { width:var(--progress); max-width:80%; background:linear-gradient(90deg,var(--teal),var(--accent),var(--blue)); transition:width .45s ease; }
+    .process-stage { position:relative; z-index:1; padding-top:52px; }
+    .process-stage-trigger { position:relative; display:block; width:100%; padding:0; border:0; color:inherit; background:transparent; text-align:left; cursor:pointer; }
+    .process-stage-trigger::before { position:absolute; top:-45px; left:0; width:24px; height:24px; border:5px solid #fff; border-radius:50%; background:var(--stage-color); box-shadow:0 0 0 1px var(--stage-color); content:""; transition:box-shadow .25s ease,transform .25s ease; }
+    .process-stage:nth-child(3n + 1) .process-stage-trigger { --stage-color:var(--teal); }
+    .process-stage:nth-child(3n + 2) .process-stage-trigger { --stage-color:var(--accent); }
+    .process-stage:nth-child(3n) .process-stage-trigger { --stage-color:var(--blue); }
+    .process-stage-trigger:hover::before,.process-stage-trigger:focus-visible::before,.process-stage-trigger[aria-current="step"]::before { box-shadow:0 0 0 1px var(--stage-color),0 0 0 6px color-mix(in srgb,var(--stage-color) 16%,transparent); }
+    .process-stage-trigger[aria-current="step"]::before { transform:scale(1.08); }
+    .process-stage-trigger:focus-visible { outline:2px solid var(--accent); outline-offset:5px; }
+    .process-stage-number { display:block; margin-bottom:10px; color:var(--muted); font-size:12px; font-weight:600; letter-spacing:.1em; transition:color .25s ease; }
+    .process-stage-trigger[aria-current="step"] .process-stage-number { color:var(--stage-color); }
+    .process-stage h3 { margin:0 0 9px; font-size:20px; font-weight:500; letter-spacing:-.03em; }
+    .process-stage p { max-width:220px; margin:0; color:var(--muted); font-size:14px; line-height:1.6; }
+    .process-stage .site-link { margin-top:11px; color:var(--accent); font-size:12px; }
     .site-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; padding-bottom: 4px; border-bottom: 1px solid currentColor; color: #fff; font-size: 14px; text-decoration: none; }
     .site-link::after { content: "↗"; transition: transform .2s ease; }
     .site-link:hover::after { transform: translate(3px, -3px); }
-    .project-navigation { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 28px 40px; border-top: 1px solid var(--line); }
-    .project-navigation a { color: var(--muted); font-size: 14px; text-decoration: none; transition: color .2s ease; }
-    .project-navigation a:hover, .project-navigation .all-projects { color: var(--accent); }
-    footer { padding: 18px 0 42px; color: var(--muted); font-size: 13px; }
+    .live-site-section { margin-bottom:120px; padding:32px 0; background:linear-gradient(110deg,#eaf8f5,#edf4fb); }
+    .live-site-content { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .live-site-content h2 { font-size:clamp(24px,3vw,36px); }
+    .live-site-button { display:inline-flex; min-height:48px; align-items:center; justify-content:center; gap:12px; padding:0 22px; border-radius:99px; color:#fff; background:linear-gradient(110deg,var(--teal),var(--accent),var(--blue)); font-size:14px; font-weight:600; text-decoration:none; transition:transform .2s ease,box-shadow .2s ease; }
+    .live-site-button::after { content:"↗"; }
+    .live-site-button:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgb(7 138 191 / 22%); }
+    .more-projects-link { display:block; width:max-content; margin:0 auto 48px; color:var(--muted); font-size:14px; text-decoration:none; text-underline-offset:4px; transition:color .2s ease; }
+    .more-projects-link:hover { color:var(--accent); text-decoration:underline; }
+    .development-section { padding:88px 0 120px; color:var(--ink); background:transparent; }
+    .development-intro { display:block; margin-bottom:34px; text-align:center; }
+    .development-section .section-label { color:var(--accent); }
+    .development-section h2 { width:100%; max-width:none; margin:0 auto 18px; font-size:clamp(22px,4.6vw,50px); white-space:normal; }
+    .development-copy p { max-width:660px; margin:0 auto; color:var(--muted); line-height:1.75; }
+    .development-tools { display:flex; flex-wrap:wrap; justify-content:center; gap:9px; margin-top:20px; }
+    .development-tools span { padding:7px 12px; border:1px solid var(--line); border-radius:99px; color:var(--muted); font-size:12px; }
+    .edge-dev-compare { --split:50%; position:relative; width:100%; aspect-ratio:1.9; overflow:hidden; border:1px solid rgb(255 255 255 / 20%); border-radius:12px; background:#14151b; box-shadow:0 20px 48px rgb(0 0 0 / 22%); isolation:isolate; }
+    .edge-dev-finished { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .edge-dev-code { position:absolute; z-index:1; inset:0 auto 0 0; width:var(--split); overflow:hidden; padding:clamp(14px,3vw,30px); color:#d3d7e2; background:linear-gradient(135deg,#20222b,#11131a 75%); font:clamp(9px,1.1vw,13px)/1.75 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .edge-dev-editor { display:flex; align-items:center; gap:8px; height:28px; margin-bottom:14px; color:#aeb4c3; white-space:nowrap; }
+    .edge-dev-lights { width:8px; height:8px; flex:0 0 auto; margin-right:24px; border-radius:50%; background:#e97874; box-shadow:13px 0 #e3bd65,26px 0 #72bc83; }
+    .edge-dev-code pre { width:max-content; margin:0; color:#bac1d2; white-space:pre; }
+    .edge-dev-code .tag { color:#72c8dd; }
+    .edge-dev-code .attr { color:#c49be8; }
+    .edge-dev-code .value { color:#d7b274; }
+    .edge-dev-label { position:absolute; z-index:3; top:14px; padding:6px 11px; border:1px solid rgb(255 255 255 / 24%); border-radius:99px; color:#fff; background:rgb(12 13 18 / 75%); font-size:10px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; pointer-events:none; }
+    .edge-dev-label.code { left:14px; }
+    .edge-dev-label.finished { right:14px; }
+    .edge-dev-divider { position:absolute; z-index:4; top:0; bottom:0; left:var(--split); width:2px; background:#fff; transform:translateX(-1px); pointer-events:none; }
+    .edge-dev-handle { position:absolute; top:50%; left:50%; display:grid; width:38px; height:38px; place-items:center; transform:translate(-50%,-50%); border:2px solid #fff; border-radius:50%; color:#fff; background:var(--accent); font-size:18px; font-weight:700; box-shadow:0 2px 12px rgb(0 0 0 / 35%); }
+    .edge-dev-range { position:absolute; z-index:5; inset:0; width:100%; height:100%; margin:0; appearance:none; -webkit-appearance:none; background:transparent; cursor:ew-resize; }
+    .edge-dev-range::-webkit-slider-runnable-track,.edge-dev-range::-moz-range-track { height:100%; background:transparent; }
+    .edge-dev-range::-webkit-slider-thumb { width:32px; height:32px; appearance:none; -webkit-appearance:none; border:0; border-radius:50%; background:transparent; }
+    .edge-dev-range::-moz-range-thumb { width:32px; height:32px; border:0; border-radius:50%; background:transparent; }
+    .edge-dev-range:focus-visible { outline:3px solid #8ce6dd; outline-offset:-5px; border-radius:12px; }
+    footer { padding: 18px 0 42px; color: var(--muted); font-size: 13px; text-align:center; }
+    @media (max-width: 1000px) {
+      .edge-wireframe { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
     @media (max-width: 760px) {
       .wrap { width: min(100% - 40px, 580px); }
-      .hero { min-height: auto; grid-template-columns: 1fr; gap: 25px; padding: 112px 20px 54px; }
-      .hero-copy { width: min(100%, 580px); margin-inline: auto; }
-      h1 { font-size: clamp(56px, 14vw, 82px); }
-      .hero-art { width: min(100%, 580px); margin-inline: auto; padding: 20px; }
+      .hero { min-height: 100svh; }
+      .hero-heading { top: 36%; left: 24px; }
+      .hero-title { font-size: clamp(2.8rem, 12vw, 4.5rem); }
       .brand { left: 20px; top: 22px; }
       .back-link { right: 20px; top: 31px; }
-      .overview { grid-template-columns: 1fr; gap: 30px; padding-block: 78px; }
+      .overview { grid-template-columns: 1fr; gap: 30px; padding: 68px 0 72px; }
       .direction { padding-block: 70px; }
       .direction h2 { margin-bottom: 30px; }
       .goal-grid { grid-template-columns: 1fr; }
       .goal-card { min-height: 0; }
-      .process { padding-block: 80px; }
+      .design-system { padding:78px 0 80px; }
+      .design-system-head { grid-template-columns:1fr; gap:18px; margin-bottom:28px; }
+      .edge-palette { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .edge-swatch-color { height:85px; }
+      .edge-color-note,.edge-type-details { grid-template-columns:1fr; gap:15px; }
+      .edge-type-grid,.edge-components { grid-template-columns:1fr; }
+      .edge-ia-map { padding:22px 15px; }
+      .edge-ia-branches { grid-template-columns:1fr; gap:10px; padding-top:0; padding-left:18px; }
+      .edge-ia-branches::before { top:0; bottom:0; left:7px; right:auto; border-top:0; border-left:1px solid #aaa; }
+      .edge-ia-branch { min-height:70px; text-align:left; }
+      .edge-ia-branch::before { top:50%; left:-12px; width:11px; height:0; border-left:0; border-top:1px solid #aaa; }
+      .edge-wireframe { grid-template-columns:1fr; gap:18px; margin-top:22px; }
+      .edge-type-card { min-height:130px; }
+      .process { padding: 0 0 16px; }
       .process-intro { grid-template-columns: 1fr; gap: 22px; margin-bottom: 32px; }
-      .process-feature { grid-template-columns: 1fr; gap: 30px; padding: 25px; }
-      .project-navigation { gap: 12px; }
-      .project-navigation a { font-size: 12px; }
+      .process-intro > p { margin-top: 0; }
+      .process-intro { margin-bottom: 38px; }
+      .process-stages { min-width:790px; gap:16px; }
+      .live-site-content { align-items:flex-start; flex-direction:column; }
+      .live-site-section { margin-bottom:80px; padding:28px 0; }
+      .development-section { padding:64px 0 80px; }
+      .development-intro { grid-template-columns:1fr; gap:20px; }
+      .edge-dev-compare { aspect-ratio:1.25; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
   </style>
 </head>
 <body>
   <main>
-    <section class="hero" aria-labelledby="page-title">
+    <section class="hero" aria-labelledby="edge-hero-title">
       <a class="brand" href="../index.html" aria-label="Alanna Bent home">ab</a>
       <a class="back-link" href="../index.html#projects">All projects</a>
-      <div class="hero-copy">
-        <p class="eyebrow">Case study · 03</p>
-        <h1 id="page-title">Edge Analytics</h1>
-        <p class="hero-summary">Data-driven solutions for the hardest problems.</p>
-        <p class="hero-type">Website design &amp; development</p>
+      <div class="hero-bubbles" aria-hidden="true"><canvas class="hero-dot-canvas"></canvas></div>
+      <div class="hero-heading">
+        <p class="hero-kicker">A Case Study</p>
+        <h1 class="hero-title" id="edge-hero-title">Edge Analytics</h1>
       </div>
-      <figure class="hero-art">
-        <img src="assets/images/edgeAnalyticsMockup.jpg" alt="Edge Analytics website mockup on a desktop screen">
-      </figure>
     </section>
 
     <section class="overview wrap" aria-labelledby="overview-title">
-      <div>
-        <p class="section-label">The opportunity</p>
-        <h2 id="overview-title">A digital home for data science.</h2>
-      </div>
+      <img class="overview-image" src="assets/images/edgeAnalyticsMockup.jpg" alt="Edge Analytics website design shown on a desktop screen">
       <div class="overview-copy">
+        <p class="section-label">Project Overview</p>
+        <h2 id="overview-title">A digital home for data science.</h2>
         <p>Edge Analytics is a boutique data science consulting firm. I worked on the UI/UX design and development of its website, creating a clear digital presence for the firm and its work.</p>
         <dl class="project-details">
-          <div><dt>Client</dt><dd>Edge Analytics</dd></div>
-          <div><dt>Role</dt><dd>UI/UX design and development</dd></div>
-          <div><dt>Services</dt><dd>Website design and development</dd></div>
-          <div><dt>Focus</dt><dd>Responsive digital experience</dd></div>
+          <div><dt>Project Role</dt><dd>UI/UX Designer &amp; Developer</dd></div>
+          <div><dt>Technology Used</dt><dd>Figma · HTML · CSS · JavaScript</dd></div>
+          <div><dt>Skills</dt><dd>UI/UX Design · Web Design · Web Development</dd></div>
+          <div><dt>View Live Website</dt><dd><a href="https://edgeanalytics.io" target="_blank" rel="noopener noreferrer">edgeanalytics.io ↗</a></dd></div>
         </dl>
       </div>
     </section>
@@ -151,30 +332,402 @@
       </div>
     </section>
 
+    <section class="design-system wrap" aria-labelledby="edge-design-title">
+      <div class="design-system-head">
+        <div>
+          <p class="section-label">Design System</p>
+          <h2 id="edge-design-title">Clarity, built into every detail.</h2>
+        </div>
+        <p>A focused visual language pairs a bright data-inspired gradient with crisp typography, calm surfaces, and simple interface components.</p>
+      </div>
+      <div class="design-tabs" role="tablist" aria-label="Edge Analytics design system">
+        <button class="design-tab" id="edge-color-tab" type="button" role="tab" aria-selected="true" aria-controls="edge-color-panel">Color</button>
+        <button class="design-tab" id="edge-type-tab" type="button" role="tab" aria-selected="false" aria-controls="edge-type-panel" tabindex="-1">Typography</button>
+        <button class="design-tab" id="edge-ia-tab" type="button" role="tab" aria-selected="false" aria-controls="edge-ia-panel" tabindex="-1">Information Architecture</button>
+        <button class="design-tab" id="edge-components-tab" type="button" role="tab" aria-selected="false" aria-controls="edge-components-panel" tabindex="-1">Components</button>
+      </div>
+      <div class="design-panel" id="edge-color-panel" role="tabpanel" aria-labelledby="edge-color-tab" tabindex="0">
+        <p>Color palette · Select a swatch to explore its role in the interface.</p>
+        <div class="edge-palette" aria-label="Edge Analytics color palette">
+          <button class="edge-swatch" type="button" aria-pressed="true" data-name="Signal Teal" data-hex="#08BFAE" data-role="A bright signal color that brings energy to the brand and leads the gradient." data-contrast="Paired with deep blue or white for high contrast and emphasis." aria-label="Signal Teal, #08BFAE">
+            <span class="edge-swatch-color" style="background:#08bfae"></span><span class="edge-swatch-copy"><strong>Signal Teal</strong><small>#08BFAE</small></span>
+          </button>
+          <button class="edge-swatch" type="button" aria-pressed="false" data-name="Analytics Blue" data-hex="#078ABF" data-role="The central blue bridges the teal and deep blue, creating the continuous Edge gradient." data-contrast="Used in the gradient and as a clear link and action color." aria-label="Analytics Blue, #078ABF">
+            <span class="edge-swatch-color" style="background:#078abf"></span><span class="edge-swatch-copy"><strong>Analytics Blue</strong><small>#078ABF</small></span>
+          </button>
+          <button class="edge-swatch" type="button" aria-pressed="false" data-name="Deep Data Blue" data-hex="#1760AF" data-role="A grounded blue that gives the gradient depth and anchors important visual moments." data-contrast="Balances the brighter colors and supports white text in feature areas." aria-label="Deep Data Blue, #1760AF">
+            <span class="edge-swatch-color" style="background:#1760af"></span><span class="edge-swatch-copy"><strong>Deep Data Blue</strong><small>#1760AF</small></span>
+          </button>
+          <button class="edge-swatch" type="button" aria-pressed="false" data-name="Clear White" data-hex="#FFFFFF" data-role="White keeps information open and readable against the expressive brand colors." data-contrast="Used for text on gradient fields and as a clean surface for content." aria-label="Clear White, #FFFFFF">
+            <span class="edge-swatch-color" style="background:#fff"></span><span class="edge-swatch-copy"><strong>Clear White</strong><small>#FFFFFF</small></span>
+          </button>
+        </div>
+        <div class="edge-color-note" aria-live="polite">
+          <div><strong id="edge-color-name">Signal Teal · #08BFAE</strong><p id="edge-color-role">A bright signal color that brings energy to the brand and leads the gradient.</p></div>
+          <div><strong>Color in use</strong><p id="edge-color-contrast">Paired with deep blue or white for high contrast and emphasis.</p></div>
+        </div>
+      </div>
+      <div class="design-panel" id="edge-type-panel" role="tabpanel" aria-labelledby="edge-type-tab" tabindex="0" hidden>
+        <p>Typography · Inter gives headlines, labels, and supporting copy a consistent, highly readable voice.</p>
+        <div class="edge-type-grid">
+          <button class="edge-type-card" type="button" aria-pressed="true" data-font-role="Display · Inter Medium" data-font-use="Used for prominent headlines to give the content a confident, direct hierarchy."><small>Display · 500</small><span class="edge-type-display">Data, made clear.</span></button>
+          <button class="edge-type-card" type="button" aria-pressed="false" data-font-role="Interface · Inter Semi Bold" data-font-use="Used for navigation, buttons, and compact interface headings that need quick recognition."><small>Interface · 600</small><span class="edge-type-interface">Explore insights</span></button>
+          <button class="edge-type-card" type="button" aria-pressed="false" data-font-role="Body · Inter Regular" data-font-use="Used for descriptions and longer copy, with open spacing for comfortable reading."><small>Body · 400</small><span class="edge-type-body">Clear information helps teams turn complex questions into useful decisions.</span></button>
+        </div>
+        <div class="edge-type-details" aria-live="polite"><div><strong id="edge-font-role">Display · Inter Medium</strong><p id="edge-font-use">Used for prominent headlines to give the content a confident, direct hierarchy.</p></div><div><strong>Type principle</strong><p>Direct hierarchy and readable spacing make technical work easier to understand.</p></div></div>
+      </div>
+      <div class="design-panel" id="edge-ia-panel" role="tabpanel" aria-labelledby="edge-ia-tab" tabindex="0" hidden>
+        <p>Information Architecture · The live site organizes the experience around the company’s work, people, clients, and learning resources.</p>
+        <div class="edge-ia-map" role="img" aria-label="Edge Analytics site structure: Home connects to What We Do, Who We Are, Clients, and Learn">
+          <div class="edge-ia-home">Home</div>
+          <div class="edge-ia-branches">
+            <div class="edge-ia-branch"><strong>What We Do</strong><span>Projects · The Edge Process</span></div>
+            <div class="edge-ia-branch"><strong>Who We Are</strong><span>About Us · Meet the Team</span></div>
+            <div class="edge-ia-branch"><strong>Clients</strong><span>Testimonials</span></div>
+            <div class="edge-ia-branch"><strong>Learn</strong><span>Blogs &amp; Videos · Newsletter</span></div>
+          </div>
+        </div>
+        <div class="edge-wireframe" aria-label="Three low fidelity wireframes based on sections of the live Edge Analytics website">
+          <figure class="edge-wireframe-item">
+            <div class="edge-wireframe-window">
+              <div class="edge-wireframe-nav"><span class="edge-wireframe-logo" aria-hidden="true"></span><div class="edge-wireframe-links" aria-hidden="true"><span></span><span></span><span></span></div><span class="edge-wireframe-contact">Contact Us</span></div>
+              <div class="edge-wireframe-hero">
+                <div class="edge-wireframe-copy"><small aria-hidden="true"></small><strong>Edge Analytics</strong><p class="edge-wireframe-tagline">Data-driven solutions for the hardest problems.</p><span class="edge-wireframe-button" aria-hidden="true"></span></div>
+                <div class="edge-wireframe-visual" aria-hidden="true"><svg viewBox="0 0 300 140" preserveAspectRatio="none"><path d="M0 122 C35 110 43 115 70 89 S118 103 145 68 S190 78 218 45 S264 48 300 12"/></svg></div>
+              </div>
+              <div class="edge-wireframe-intro"><strong>We turn your ideas into reality.</strong><p>End-to-end support throughout a product’s lifecycle.</p></div>
+            </div>
+            <figcaption class="edge-wireframe-caption">01 · Hero + introduction</figcaption>
+          </figure>
+          <figure class="edge-wireframe-item">
+            <div class="edge-wireframe-window">
+              <div class="edge-learning-heading" aria-hidden="true"><span></span><span></span></div>
+              <div class="edge-learning-feature">
+                <span class="edge-article-arrow is-left" aria-hidden="true">←</span>
+                <article class="edge-article-card">
+                  <div class="edge-article-image" aria-label="Featured article image placeholder"></div>
+                  <div class="edge-article-copy" aria-hidden="true"><span></span><span></span><span></span><div class="edge-article-meta"><span></span><span></span></div></div>
+                </article>
+                <span class="edge-article-arrow is-right" aria-hidden="true">→</span>
+              </div>
+            </div>
+            <figcaption class="edge-wireframe-caption">02 · Learn + grow · Featured article</figcaption>
+          </figure>
+          <figure class="edge-wireframe-item">
+            <div class="edge-wireframe-window">
+              <div class="edge-stats-wireframe">
+                <div class="edge-experience-copy" aria-hidden="true">
+                  <span class="edge-third-placeholder is-heading"></span>
+                  <span class="edge-third-placeholder is-copy"></span><span class="edge-third-placeholder is-copy"></span><span class="edge-third-placeholder is-copy short"></span>
+                  <div class="edge-stat-row"><div class="edge-stat-item"><i></i><span></span></div><div class="edge-stat-item"><i></i><span></span></div><div class="edge-stat-item"><i></i><span></span></div></div>
+                </div>
+                <div class="edge-experience-photo" aria-label="Team photo placeholder"></div>
+              </div>
+            </div>
+            <figcaption class="edge-wireframe-caption">03 · Experience + team</figcaption>
+          </figure>
+          <figure class="edge-wireframe-item">
+            <div class="edge-wireframe-window">
+              <div class="edge-solutions-wireframe" aria-hidden="true">
+                <div class="edge-solutions-heading"><span></span><span></span><span></span></div>
+                <div class="edge-solutions-carousel">
+                  <div class="edge-solution-card"><span></span><span></span></div>
+                  <div class="edge-solution-card"><span></span><span></span></div>
+                  <div class="edge-solution-card"><span></span><span></span></div>
+                </div>
+                <div class="edge-solutions-scrollbar"></div>
+              </div>
+            </div>
+            <figcaption class="edge-wireframe-caption">04 · Solving problems</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="design-panel" id="edge-components-panel" role="tabpanel" aria-labelledby="edge-components-tab" tabindex="0" hidden>
+        <p>Components · Light surfaces, subtle borders, and carefully placed color keep information at the center.</p>
+        <div class="edge-components">
+          <article class="edge-component"><h3>Quiet structure</h3><p>Fine dividers and pale surfaces group content without adding visual weight.</p><span class="edge-component-chip">#DCE9EC · 1px</span></article>
+          <article class="edge-component"><h3>Soft geometry</h3><p>Rounded media and panels make the analytical interface feel approachable.</p><span class="edge-component-chip">12px radius</span></article>
+          <article class="edge-component"><h3>Clear actions</h3><p>High contrast and concise labels make links and next steps easy to spot.</p><span class="edge-component-chip">Explore insights ↗</span></article>
+        </div>
+      </div>
+    </section>
+
     <section class="process wrap" aria-labelledby="process-title">
       <div class="process-intro">
         <div>
           <p class="section-label">The process</p>
           <h2 id="process-title">From interface design to a live website.</h2>
         </div>
-        <p>I contributed across the website experience, from UI/UX design through implementation. The final direction uses a bright teal-to-blue palette and a clean interface to give the Edge Analytics brand a distinct digital presence.</p>
+        <p>The project moved from understanding the firm’s needs to shaping, designing, and building a clear digital experience for Edge Analytics.</p>
       </div>
-      <div class="process-feature">
-        <div>
-          <h3>Data-driven solutions for the hardest problems.</h3>
-          <p>The finished homepage brings the company’s message forward with a direct headline, a focused visual system, and a clear next step for visitors.</p>
-          <a class="site-link" href="https://edgeanalytics.io" target="_blank" rel="noopener noreferrer">Visit Edge Analytics</a>
-        </div>
-        <img src="assets/images/edgeAnalyticsMockup.jpg" alt="Final Edge Analytics homepage design">
+      <div class="process-timeline" role="region" aria-label="Project stages, scroll horizontally to explore" tabindex="0">
+        <ol class="process-stages">
+          <li class="process-stage">
+            <button class="process-stage-trigger" type="button" aria-current="step" aria-label="Select stage 1: Discover">
+              <span class="process-stage-number">01</span>
+              <h3>Discover</h3>
+              <p>Understand the firm, its audience, and the purpose of the website.</p>
+            </button>
+          </li>
+          <li class="process-stage">
+            <button class="process-stage-trigger" type="button" aria-label="Select stage 2: Structure">
+              <span class="process-stage-number">02</span>
+              <h3>Structure</h3>
+              <p>Organize the content into a clear information architecture.</p>
+            </button>
+          </li>
+          <li class="process-stage">
+            <button class="process-stage-trigger" type="button" aria-label="Select stage 3: Design">
+              <span class="process-stage-number">03</span>
+              <h3>Design</h3>
+              <p>Shape the visual system and user interface for the brand.</p>
+            </button>
+          </li>
+          <li class="process-stage">
+            <button class="process-stage-trigger" type="button" aria-label="Select stage 4: Develop">
+              <span class="process-stage-number">04</span>
+              <h3>Develop</h3>
+              <p>Build the approved experience with HTML, CSS, and JavaScript.</p>
+            </button>
+          </li>
+          <li class="process-stage">
+            <button class="process-stage-trigger" type="button" aria-label="Select stage 5: Launch">
+              <span class="process-stage-number">05</span>
+              <h3>Launch</h3>
+              <p>Bring the finished website online for visitors.</p>
+            </button>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <nav class="project-navigation wrap" aria-label="Case study navigation">
-      <a href="michiko-dressage.html">← Previous project</a>
-      <a class="all-projects" href="../index.html#projects">Explore more projects</a>
-      <a href="neurokami.html">Next project →</a>
-    </nav>
+    <section class="development-section" aria-labelledby="development-title">
+      <div class="wrap">
+        <div class="development-intro">
+          <div>
+          <p class="section-label">Development</p>
+          <h2 id="development-title">From designed screens to a working website.</h2>
+          </div>
+          <div class="development-copy">
+          <p>I built the Edge Analytics experience with HTML, CSS, and JavaScript, translating the visual system and information architecture into a responsive website.</p>
+          <div class="development-tools" aria-label="Development technologies">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          </div>
+        </div>
+        <div class="edge-dev-compare" id="edge-dev-compare" style="--split:50%">
+          <img class="edge-dev-finished" src="assets/images/edgeAnalyticsMockup.jpg" alt="Finished Edge Analytics website design">
+          <div class="edge-dev-code" aria-hidden="true">
+            <div class="edge-dev-editor"><span class="edge-dev-lights"></span><span>index.html</span><span>styles.css</span><span>hero.js</span></div>
+            <pre><span class="comment">&lt;!-- Edge Analytics hero --&gt;</span>
+<span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="value">"hero"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"hero-bubbles"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;canvas</span> <span class="attr">class</span>=<span class="value">"hero-dot-canvas"</span><span class="tag">&gt;&lt;/canvas&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>Edge Analytics<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Data-driven solutions for the hardest problems.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;button&gt;</span>Contact Us<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/section&gt;</span>
+
+<span class="comment">/* Full-viewport teal-to-blue hero */</span>
+<span class="attr">.hero</span> {
+  <span class="attr">min-height</span>: <span class="value">100svh</span>;
+  <span class="attr">background</span>: <span class="value">linear-gradient(135deg, #15d8b5 0%, #0799c7 52%, #075db4 100%)</span>;
+}
+
+<span class="comment">// Render the sweeping dot field</span>
+<span class="attr">dots.forEach</span>((dot) =&gt; {
+  <span class="attr">ctx.beginPath</span>();
+  <span class="attr">ctx.arc</span>(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+  <span class="attr">ctx.fillStyle</span> = <span class="value">`rgba(255, 255, 255, ${dot.alpha})`</span>;
+  <span class="attr">ctx.fill</span>();
+});</pre>
+          </div>
+          <span class="edge-dev-label code">Code</span>
+          <span class="edge-dev-label finished">Finished website</span>
+          <div class="edge-dev-divider" aria-hidden="true"><span class="edge-dev-handle">↔</span></div>
+          <input class="edge-dev-range" type="range" min="8" max="92" value="50" aria-label="Drag to compare the website code with the finished Edge Analytics website" aria-valuetext="Code and finished website split evenly">
+        </div>
+      </div>
+    </section>
+
+    <section class="live-site-section" aria-labelledby="live-site-title">
+      <div class="wrap live-site-content">
+        <h2 id="live-site-title">View the live website</h2>
+        <a class="live-site-button" href="https://edgeanalytics.io" target="_blank" rel="noopener noreferrer">Visit Edge Analytics</a>
+      </div>
+    </section>
+
+    <a class="more-projects-link" href="../index.html#projects">View more projects →</a>
+
   </main>
-  <footer class="wrap">© Alanna Bent</footer>
+  <footer class="wrap">Designed and Developed by Alanna Bent · © Alanna Bent</footer>
+  <script>
+    (() => {
+      const tabs = Array.from(document.querySelectorAll(".design-tab"));
+      tabs.forEach((tab, index) => {
+        const activate = () => {
+          tabs.forEach((item) => {
+            const selected = item === tab;
+            item.setAttribute("aria-selected", String(selected));
+            item.tabIndex = selected ? 0 : -1;
+            document.getElementById(item.getAttribute("aria-controls")).hidden = !selected;
+          });
+        };
+        tab.addEventListener("click", activate);
+        tab.addEventListener("keydown", (event) => {
+          if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+          event.preventDefault();
+          const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1 : (index + (event.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length;
+          tabs[next].focus();
+          tabs[next].click();
+        });
+      });
+
+      const swatches = Array.from(document.querySelectorAll(".edge-swatch"));
+      swatches.forEach((swatch) => {
+        swatch.addEventListener("click", () => {
+          swatches.forEach((item) => item.setAttribute("aria-pressed", String(item === swatch)));
+          document.querySelector("#edge-color-name").textContent = `${swatch.dataset.name} · ${swatch.dataset.hex}`;
+          document.querySelector("#edge-color-role").textContent = swatch.dataset.role;
+          document.querySelector("#edge-color-contrast").textContent = swatch.dataset.contrast;
+        });
+      });
+
+      const typeCards = Array.from(document.querySelectorAll(".edge-type-card"));
+      typeCards.forEach((card) => {
+        card.addEventListener("click", () => {
+          typeCards.forEach((item) => item.setAttribute("aria-pressed", String(item === card)));
+          document.querySelector("#edge-font-role").textContent = card.dataset.fontRole;
+          document.querySelector("#edge-font-use").textContent = card.dataset.fontUse;
+        });
+      });
+
+      const processStages = Array.from(document.querySelectorAll(".process-stage-trigger"));
+      const processTrack = document.querySelector(".process-stages");
+      processStages.forEach((stage, index) => {
+        stage.addEventListener("click", () => {
+          processStages.forEach((item) => item.removeAttribute("aria-current"));
+          stage.setAttribute("aria-current", "step");
+          processTrack?.style.setProperty("--progress", `${(index / (processStages.length - 1)) * 80}%`);
+        });
+      });
+
+      const devCompare = document.querySelector("#edge-dev-compare");
+      const devRange = devCompare?.querySelector(".edge-dev-range");
+      devRange?.addEventListener("input", () => {
+        devCompare.style.setProperty("--split", `${devRange.value}%`);
+        devRange.setAttribute("aria-valuetext", `Code ${devRange.value} percent, finished website ${100 - devRange.value} percent`);
+      });
+    })();
+
+    (() => {
+      const hero = document.querySelector(".hero");
+      const field = hero?.querySelector(".hero-bubbles");
+      const canvas = field?.querySelector(".hero-dot-canvas");
+      const context = canvas?.getContext("2d");
+      if (!hero || !field || !canvas || !context) return;
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const dots = [];
+      const curvePoints = [];
+      let width = 0;
+      let height = 0;
+      let pixelRatio = 1;
+      let pointer = null;
+      let frame = 0;
+      let seed = 417;
+      const random = () => {
+        seed = (seed * 16807) % 2147483647;
+        return (seed - 1) / 2147483646;
+      };
+
+      const resize = () => {
+        const bounds = field.getBoundingClientRect();
+        pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        width = bounds.width;
+        height = bounds.height;
+        canvas.width = Math.round(width * pixelRatio);
+        canvas.height = Math.round(height * pixelRatio);
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        dots.length = 0;
+        curvePoints.length = 0;
+        const gapX = width < 700 ? 13 : 18;
+        const gapY = width < 700 ? 13 : 17;
+        const columns = Math.floor(width / gapX) + 1;
+        for (let column = 0; column < columns; column += 1) {
+          const x = column * gapX;
+          const sweep = Math.min(x / Math.max(width, 1), 1);
+          const waveTop = height * (.96 * (1 - Math.pow(sweep, 2.8)));
+          curvePoints.push({ x, y: waveTop });
+          const columnRows = Math.ceil((height - waveTop) / gapY) + 1;
+          for (let row = 0; row < columnRows; row += 1) {
+            const y = waveTop + row * gapY + random() * 1.5;
+            dots.push({
+              x: x + (random() - .5) * 3,
+              y,
+              radius: .8 + random() * 1.15,
+              alpha: .55 + random() * .4,
+              offsetX: 0,
+              offsetY: 0,
+            });
+          }
+        }
+        curvePoints.push({ x: width, y: 0 });
+        draw();
+      };
+
+      const draw = () => {
+        context.clearRect(0, 0, width, height);
+        let moving = false;
+        const pointerX = pointer?.x ?? -1000;
+        const pointerY = pointer?.y ?? -1000;
+        dots.forEach((dot) => {
+          let targetX = 0;
+          let targetY = 0;
+          if (pointer && !prefersReducedMotion) {
+            const dx = dot.x - pointerX;
+            const dy = dot.y - pointerY;
+            const distance = Math.hypot(dx, dy);
+            const radius = 110;
+            if (distance < radius) {
+              const push = (1 - distance / radius) * 34;
+              targetX = (dx / Math.max(distance, 1)) * push;
+              targetY = (dy / Math.max(distance, 1)) * push;
+            }
+          }
+          dot.offsetX += (targetX - dot.offsetX) * .22;
+          dot.offsetY += (targetY - dot.offsetY) * .22;
+          if (Math.abs(targetX - dot.offsetX) + Math.abs(targetY - dot.offsetY) > .12) moving = true;
+          context.beginPath();
+          context.arc(dot.x + dot.offsetX, dot.y + dot.offsetY, dot.radius, 0, Math.PI * 2);
+          context.fillStyle = `rgba(255, 255, 255, ${dot.alpha})`;
+          context.fill();
+        });
+        context.beginPath();
+        curvePoints.forEach((point, index) => {
+          if (index === 0) context.moveTo(point.x, point.y);
+          else context.lineTo(point.x, point.y);
+        });
+        context.strokeStyle = "rgba(255, 255, 255, .48)";
+        context.lineWidth = 1;
+        context.stroke();
+        frame = moving ? window.requestAnimationFrame(draw) : 0;
+      };
+
+      hero.addEventListener("pointermove", (event) => {
+        if (event.pointerType === "touch" || prefersReducedMotion) return;
+        const bounds = field.getBoundingClientRect();
+        pointer = { x: event.clientX - bounds.left, y: event.clientY - bounds.top };
+        if (!frame) frame = window.requestAnimationFrame(draw);
+      }, { passive: true });
+      hero.addEventListener("pointerleave", () => {
+        pointer = null;
+        if (!frame) frame = window.requestAnimationFrame(draw);
+      });
+      window.addEventListener("resize", resize, { passive: true });
+      resize();
+    })();
+  </script>
 </body>
 </html>
