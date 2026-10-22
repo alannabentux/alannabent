@@ -591,6 +591,19 @@ body {
   outline-offset: 3px;
 }
 
+.home-nav-actions .home-nav-actions__resume {
+  border-color: #b6a2f4;
+  background: #b6a2f4;
+  color: #17141a;
+}
+
+.home-nav-actions .home-nav-actions__resume:hover,
+.home-nav-actions .home-nav-actions__resume:focus-visible {
+  border-color: #f5f1f4;
+  background: #f5f1f4;
+  color: #17141a;
+}
+
 .home-page.projects-section-active .navbar {
   opacity: 0;
   visibility: hidden;
