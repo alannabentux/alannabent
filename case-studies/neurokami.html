@@ -20,6 +20,9 @@
       --muted: #6e6873;
       --line: #e9e5ef;
       --soft: #f8f6fc;
+      --section-space: clamp(80px, 7vw, 88px);
+      --section-space-mobile: 66px;
+      --section-content-gap: 42px;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 32px; }
@@ -51,7 +54,7 @@
     .prototype-button:hover { background: var(--purple-dark); transform: translateY(-2px); }
     .prototype-button span { font-size: 17px; }
     .hero-note { color: #f1edf8; font-size: 13px; }
-    .overview { display: grid; grid-template-columns: 1fr; justify-items: center; gap: 36px; padding-block: 88px 96px; text-align: center; }
+    .overview { display: grid; grid-template-columns: 1fr; justify-items: center; gap: 36px; padding-block: var(--section-space); text-align: center; }
     .overview-heading h2:not(.section-label), .section-heading h2 { max-width: 580px; margin: 0; font-size: clamp(30px, 4.5vw, 48px); font-weight: 400; letter-spacing: -.06em; line-height: 1.05; }
     .overview-heading h2.section-label { margin: 0 0 16px; font-size: 12px; font-weight: 700; letter-spacing: .16em; }
     .overview-description { max-width: 760px; margin: 0 auto; color: var(--muted); font-size: 17px; line-height: 1.8; }
@@ -61,8 +64,8 @@
     .project-details dt { margin-bottom: 6px; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
     .project-details dd { margin: 0; font-size: 14px; font-weight: 500; line-height: 1.55; }
     .project-details a { color: var(--purple-dark); text-underline-offset: 3px; }
-    .focus-section { padding-block: 86px 96px; background: var(--soft); }
-    .section-heading { max-width: 680px; margin: 0 auto 42px; text-align: center; }
+    .focus-section { padding-block: var(--section-space); background: var(--soft); }
+    .section-heading { max-width: 680px; margin: 0 auto var(--section-content-gap); text-align: center; }
     .section-heading .section-label { margin-bottom: 13px; }
     .section-heading p:last-child { max-width: 610px; margin: 17px auto 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
     .focus-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
@@ -70,14 +73,14 @@
     .focus-index { display: grid; width: 38px; height: 38px; place-items: center; margin-bottom: 28px; border-radius: 50%; color: #fff; background: linear-gradient(135deg, var(--purple), var(--pink)); font-size: 12px; font-weight: 700; }
     .focus-card h3 { margin: 0 0 10px; font-size: 19px; font-weight: 500; letter-spacing: -.035em; }
     .focus-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
-    .design-story { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(36px, 8vw, 100px); padding-block: 96px; }
+    .design-story { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(36px, 8vw, 100px); padding-block: var(--section-space); }
     .design-story h2 { max-width: 480px; margin: 0; font-size: clamp(30px, 4vw, 44px); font-weight: 400; letter-spacing: -.06em; line-height: 1.06; }
     .design-story-copy p { margin: 0 0 17px; color: var(--muted); font-size: 16px; line-height: 1.8; }
     .design-story-copy p:last-child { margin-bottom: 0; }
     .design-principles { display: grid; gap: 0; margin: 26px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
     .design-principles li { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 500; }
     .design-principles li::before { content: "✳"; color: var(--pink); }
-    .screen-section { padding-block: 84px 90px; color: #fff; background: #27232e; }
+    .screen-section { padding-block: var(--section-space); color: #fff; background: #27232e; }
     .screen-section .section-label { color: #d4c6ff; }
     .screen-section .section-heading p:last-child { color: #d0cbd6; }
     .screen-showcase { display: grid; grid-template-columns: 1.05fr .95fr; gap: 34px; align-items: center; }
@@ -86,16 +89,16 @@
     .screen-caption { max-width: 390px; padding: 24px 0; }
     .screen-caption h3 { margin: 0 0 12px; font-size: 23px; font-weight: 500; letter-spacing: -.04em; }
     .screen-caption p { margin: 0; color: #d0cbd6; font-size: 15px; line-height: 1.75; }
-    .process-intro { max-width: 700px; margin: 0 auto 44px; color: var(--muted); font-size: 16px; line-height: 1.8; text-align: center; }
-    .process-section { padding-block: 88px 96px; }
+    .process-intro { max-width: 700px; margin: 0 auto var(--section-content-gap); color: var(--muted); font-size: 16px; line-height: 1.8; text-align: center; }
+    .process-section { padding-block: var(--section-space); }
     .process-section.process-alt { background: var(--soft); }
-    .process-header { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; max-width: 800px; margin-bottom: 38px; }
-    .process-header--architecture { max-width: 1000px; }
-    .ia-process-copy { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr); grid-template-areas: "label label" "title description"; align-items: center; column-gap: 36px; }
-    .ia-process-copy .section-label { grid-area: label; }
-    .process-header--architecture .ia-process-copy .section-label { margin-bottom: 0; }
-    .ia-process-copy h2 { grid-area: title; }
-    .ia-process-copy p:not(.section-label) { grid-area: description; margin: 0; }
+    .process-header { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; max-width: 800px; margin-bottom: var(--section-content-gap); }
+    .process-header--split { max-width: 1000px; }
+    .process-copy--split { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr); grid-template-areas: "label label" "title description"; align-items: center; column-gap: 36px; }
+    .process-copy--split .section-label { grid-area: label; }
+    .process-header--split .process-copy--split .section-label { margin-bottom: 0; }
+    .process-copy--split h2 { grid-area: title; }
+    .process-copy--split p:not(.section-label) { grid-area: description; margin: 0; }
     .process-header h2 { max-width: 660px; margin: 0; font-size: clamp(30px, 4vw, 44px); font-weight: 400; letter-spacing: -.06em; line-height: 1.05; }
     #visual-title { margin-inline: auto; text-align: center; }
     .process-section[aria-labelledby="visual-title"] .process-header { margin-inline: auto; }
@@ -182,9 +185,8 @@
     .type-spec-detail { min-height: 76px; margin-top: 16px; padding-top: 13px; border-top: 1px solid var(--line); }
     .type-spec-detail strong { display: block; font-size: 13px; }
     .type-spec-detail p { margin: 5px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
-    .persona-section { padding-block: 84px 92px; background: var(--soft); }
+    .persona-section { padding-block: var(--section-space); background: var(--soft); }
     .persona-section > .wrap { width: min(1320px, calc(100% - 48px)); }
-    .persona-section .section-heading { margin-bottom: 60px; }
     .persona-section .section-heading h2 { margin-inline: auto; }
     .research-layout { display: grid; grid-template-columns: minmax(145px, .55fr) minmax(320px, 1.35fr) minmax(290px, 1fr); align-items: start; gap: 22px; text-align: center; }
     .research-intro .section-label { margin-bottom: 13px; }
@@ -221,12 +223,33 @@
     .research-paper-source { color: rgb(255 255 255 / 82%); font-size: 10px; line-height: 1.4; }
     .research-paper:hover .research-paper-source { color: #645978; }
     .research-paper-action { margin-top: 2px; font-size: 10px; font-weight: 700; }
-    .design-outcome { display: grid; grid-template-columns: 1.1fr .9fr; gap: 42px; align-items: center; }
-    .design-outcome > img { display: block; width: 100%; height: auto; border-radius: 13px; }
-    .design-outcome h3 { margin: 0 0 13px; font-size: 28px; font-weight: 500; letter-spacing: -.04em; }
-    .design-outcome p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
-    .design-outcome p + p { margin-top: 14px; }
-    .prototype-cta { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-block: 86px; padding: clamp(30px, 6vw, 64px); border-radius: 20px; background: linear-gradient(115deg, #f5f0ff, #fdf0f8); }
+    .final-ui-heading { max-width: 760px; margin-inline: auto; text-align: center; }
+    .final-ui-heading h2 { margin-inline: auto; }
+    .final-ui-heading p:not(.section-label) { margin-inline: auto; }
+    .ui-gallery-track { display: flex; gap: 14px; overflow-x: auto; padding: 8px 4px 18px; overscroll-behavior-x: contain; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-color: #a999d0 #eeeaf3; scrollbar-width: thin; cursor: grab; touch-action: pan-x pan-y; }
+    .ui-gallery-track.is-dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; user-select: none; }
+    .ui-screen-card { display: grid; flex: 0 0 clamp(145px, 12vw, 185px); align-content: start; min-width: 0; margin: 0; padding: 0; border: 0; background: transparent; scroll-snap-align: start; }
+    .ui-screen-image-button { display: grid; width: 100%; place-items: center; padding: 0; border: 0; border-radius: 0; background: transparent; cursor: zoom-in; }
+    .ui-screen-image-button:focus-visible { outline: 3px solid #bd9bea; outline-offset: 3px; }
+    .ui-screen-card img { display: block; width: 100%; height: 245px; object-fit: contain; object-position: center; border-radius: 0; background: transparent; filter: url(#screen-sharpen); }
+    .ui-gallery-controls { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 12px; }
+    .ui-gallery-arrow { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid #dcd4e8; border-radius: 50%; color: var(--purple-dark); background: #fff; font-size: 22px; cursor: pointer; transition: color 180ms ease, background 180ms ease; }
+    .ui-gallery-arrow:hover { color: #fff; background: var(--purple); }
+    .ui-gallery-arrow:focus-visible { outline: 3px solid #bd9bea; outline-offset: 3px; }
+    .ui-gallery-hint { color: var(--muted); font-size: 12px; }
+    .ui-screen-lightbox { position: fixed; inset: 0; width: 70vw; max-width: 850px; max-height: 70vh; margin: auto; padding: 22px; overflow: auto; border: 1px solid #e5dfeb; border-radius: 16px; background: #fff; box-shadow: 0 24px 80px rgb(27 20 38 / 30%); }
+    .ui-screen-lightbox::backdrop { background: rgb(29 24 36 / 76%); backdrop-filter: blur(3px); }
+    .ui-screen-lightbox-close { position: sticky; z-index: 1; top: 0; display: grid; width: 40px; height: 40px; place-items: center; margin: 0 0 8px auto; border: 1px solid #ded7e8; border-radius: 50%; color: var(--purple-dark); background: #fff; font-size: 23px; cursor: pointer; }
+    .ui-screen-lightbox-close:focus-visible { outline: 3px solid #bd9bea; outline-offset: 3px; }
+    .ui-lightbox-content { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: 24px; }
+    .ui-lightbox-visual { display: grid; min-width: 0; place-items: center; }
+    .ui-screen-lightbox img { display: block; width: auto; max-width: 100%; max-height: 55vh; margin: 0 auto; object-fit: contain; filter: url(#screen-sharpen); }
+    .ui-lightbox-copy h3 { margin: 0; font-size: 18px; font-weight: 600; }
+    .ui-lightbox-copy > p { margin: 8px 0 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .ui-designer-note { margin-top: 18px; padding: 12px 14px; border-left: 3px solid var(--pink); border-radius: 0 9px 9px 0; background: var(--soft); }
+    .ui-designer-note strong { display: block; color: var(--purple-dark); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .ui-designer-note p { margin: 6px 0 0; color: var(--ink); font-size: 13px; line-height: 1.55; }
+    .prototype-cta { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-block: var(--section-space); padding: clamp(30px, 6vw, 64px); border-radius: 20px; background: linear-gradient(115deg, #f5f0ff, #fdf0f8); }
     .prototype-cta h2 { max-width: 590px; margin: 0; font-size: clamp(27px, 3.5vw, 40px); font-weight: 400; letter-spacing: -.055em; line-height: 1.08; }
     .prototype-cta p { margin: 12px 0 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
     .site-footer { width: min(1160px, calc(100% - 80px)); margin: 0 auto; padding: 24px 0 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; text-align: center; }
@@ -237,19 +260,18 @@
       .hero::before { right: -20px; left: -20px; }
       .hero-copy { padding-block: 0; }
       h1 { font-size: clamp(62px, 15vw, 88px); }
-      .overview, .design-story { grid-template-columns: 1fr; gap: 28px; padding-block: 66px; }
+      .overview, .design-story { grid-template-columns: 1fr; gap: 28px; }
+      .overview, .focus-section, .design-story, .screen-section, .process-section, .persona-section { padding-block: var(--section-space-mobile); }
       .project-details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .overview-copy > p { font-size: 16px; }
-      .focus-section, .screen-section { padding-block: 68px; }
       .focus-grid { grid-template-columns: 1fr; gap: 12px; }
       .focus-card { min-height: 0; padding: 23px; }
       .focus-index { margin-bottom: 20px; }
       .screen-showcase { grid-template-columns: 1fr; gap: 12px; }
       .screen-caption { max-width: none; padding: 14px 0 0; }
-      .process-section { padding-block: 66px; }
-      .process-header { grid-template-columns: 1fr; gap: 15px; margin-bottom: 27px; }
-      .ia-process-copy { grid-template-columns: 1fr; grid-template-areas: "label" "title" "description"; gap: 0; }
-      .ia-process-copy p:not(.section-label) { margin-top: 15px; }
+      .process-header { grid-template-columns: 1fr; gap: 15px; margin-bottom: var(--section-content-gap); }
+      .process-copy--split { grid-template-columns: 1fr; grid-template-areas: "label" "title" "description"; gap: 0; }
+      .process-copy--split p:not(.section-label) { margin-top: 15px; }
       .ia-map { padding: 20px; }
       .ia-flow-row { width: 100%; grid-template-columns: 1fr 14px 1fr 14px 1fr; }
       .ia-node { min-height: 48px; padding: 10px 7px; font-size: 12px; }
@@ -260,13 +282,18 @@
       .artifact-grid, .artifact-grid--wireframes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
       .artifact-card { padding: 9px; }
       .artifact-card img, .artifact-grid--wireframes .artifact-card img { height: 280px; }
-      .visual-system, .design-outcome { grid-template-columns: 1fr; gap: 16px; }
-      .persona-section { padding-block: 66px; }
+      .visual-system { grid-template-columns: 1fr; gap: 16px; }
+      .ui-gallery-track { gap: 10px; }
+      .ui-screen-card { flex-basis: 150px; }
+      .ui-screen-card img { height: 220px; }
+      .ui-screen-lightbox { width: 70vw; padding: 12px; }
+      .ui-lightbox-content { grid-template-columns: 1fr; gap: 14px; }
+      .ui-screen-lightbox img { max-height: 32vh; }
       .persona-section > .wrap { width: calc(100% - 32px); }
       .research-layout { grid-template-columns: 1fr; }
       .research-paper-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .calm-palette { padding: 13px; }
-      .prototype-cta { align-items: flex-start; flex-direction: column; margin-block: 58px; padding: 30px 24px; }
+      .prototype-cta { align-items: flex-start; flex-direction: column; margin-block: var(--section-space-mobile); padding: 30px 24px; }
       .site-footer { width: calc(100% - 40px); }
     }
     @media (max-width: 440px) {
@@ -279,6 +306,11 @@
   </style>
 </head>
 <body>
+  <svg aria-hidden="true" focusable="false" width="1" height="1" style="position:absolute;left:-1px;top:-1px;overflow:visible">
+    <filter id="screen-sharpen" x="-10%" y="-10%" width="120%" height="120%">
+      <feConvolveMatrix order="3" kernelMatrix="0 -0.44 0 -0.44 2.76 -0.44 0 -0.44 0" preserveAlpha="true" />
+    </filter>
+  </svg>
   <header class="site-header wrap">
     <a class="brand" href="../index.html" aria-label="Alanna Bent home">ab</a>
     <a class="back-link" href="../index.html#projects">All projects</a>
@@ -398,8 +430,8 @@
     <section class="process-section" aria-labelledby="architecture-title">
       <div class="wrap">
         <article class="process-step" aria-labelledby="architecture-title">
-          <header class="process-header process-header--architecture">
-            <div class="ia-process-copy">
+          <header class="process-header process-header--split">
+            <div class="process-copy--split">
               <p class="section-label">02 · Information Architecture</p>
               <h2 id="architecture-title">Start with the way people move through the app.</h2>
               <p>The early structure groups the experience around onboarding, a home feed, messaging, resources, and settings. This gives each major task a clear place and makes the primary destinations easy to reach.</p>
@@ -553,8 +585,8 @@
     <section class="process-section process-alt" aria-labelledby="wireframes-title">
       <div class="wrap">
         <article class="process-step">
-          <header class="process-header">
-            <div>
+          <header class="process-header process-header--split">
+            <div class="process-copy--split">
               <p class="section-label">04 · Low-Fidelity Wireframes</p>
               <h2 id="wireframes-title">Work out the hierarchy before the visual details.</h2>
               <p>Low-fidelity screens map the basic layout and navigation for sign-in, the home feed, conversations, and the resource library. Keeping these screens simple makes the content order and core actions easy to assess.</p>
@@ -577,21 +609,45 @@
     <section class="process-section process-alt" aria-labelledby="final-design-title">
       <div class="wrap">
         <article class="process-step">
-          <header class="process-header">
+          <header class="process-header final-ui-heading">
             <div>
               <p class="section-label">05 · Final UI</p>
-              <h2 id="final-design-title">Bring onboarding, connection, and resources into one app.</h2>
-              <p>The final screens carry the wireframe structure into a polished mobile interface, using repeated navigation and component styles to connect the app’s main areas.</p>
+              <h2 id="final-design-title">The finished app experience</h2>
+              <p>Move through the onboarding flow and explore the finished app screens.</p>
             </div>
           </header>
-          <div class="design-outcome">
-            <img src="assets/images/neurokamiMockup.jpg" alt="Final Neurokami app mockup showing resources, messages, friend suggestions, and a member profile">
-            <div>
-              <h3>A connected mobile experience</h3>
-              <p>The resource library, messaging, and community features sit within the same navigation system. Onboarding introduces the app and gathers preferences to personalize the experience.</p>
-              <p>Across the interface, the visual language stays consistent while settings offer Calm Mode, Night Mode, and text-size controls.</p>
-            </div>
+          <div class="ui-gallery-track" data-ui-gallery tabindex="0" role="region" aria-label="Final Neurokami app screens; drag or scroll horizontally">
+            <figure class="ui-screen-card"><button class="ui-screen-image-button" type="button" data-enlarge-screen data-title="Sign up" data-description="Create an account to begin the Neurokami experience." data-note="Keep sign-up choices clear, with standard and social options easy to distinguish." aria-label="Open Sign up screen details"><img src="assets/images/signup:login.png" alt="Neurokami sign-up form with email, password, and social sign-in options"></button></figure>
+            <figure class="ui-screen-card"><button class="ui-screen-image-button" type="button" data-enlarge-screen data-title="Personalize your experience" data-description="Choose the neurodiversities to consider during setup." data-note="A multi-select lets users represent more than one neurodiversity in their profile." aria-label="Open Personalize your experience screen details"><img src="assets/images/neurodiversities-question.png" alt="Neurokami question asking users which neurodiversities apply"></button></figure>
+            <figure class="ui-screen-card"><button class="ui-screen-image-button" type="button" data-enlarge-screen data-title="Self-assessment" data-description="Share preferences to tailor the app experience." data-note="A consistent question layout helps make each step easier to scan and answer." aria-label="Open Self-assessment screen details"><img src="assets/images/aspy-questions.png" alt="Neurokami self-assessment questionnaire screen"></button></figure>
+            <figure class="ui-screen-card"><button class="ui-screen-image-button" type="button" data-enlarge-screen data-title="Personality preferences" data-description="Optional questions help personalize a profile." data-note="Present the answer choices in a predictable pattern and let users skip what they do not want to share." aria-label="Open Personality preferences screen details"><img src="assets/images/question_meyers-brigss.png" alt="Neurokami Myers-Briggs personality question screen"></button></figure>
+            <figure class="ui-screen-card"><button class="ui-screen-image-button" type="button" data-enlarge-screen data-title="Question details" data-description="Read more context about the personality test." data-note="Keep explanations available on demand so users can understand a question without losing their place." aria-label="Open Question details screen"><img src="assets/images/meyers-briggs-popup.png" alt="Information dialog explaining the Myers-Briggs test"></button></figure>
+            <figure class="ui-screen-card"><button class="ui-screen-image-button" type="button" data-enlarge-screen data-title="Learning style" data-description="Complete onboarding with learning preferences." data-note="A clear finish action signals that onboarding is complete and users can continue into the app." aria-label="Open Learning style screen details"><img src="assets/images/learningstyle-screen.png" alt="Neurokami learning style question screen"></button></figure>
+            <figure class="ui-screen-card"><button class="ui-screen-image-button" type="button" data-enlarge-screen data-title="Friends" data-description="Browse friend requests and community connections." data-note="Separate friend requests from established connections to make relationship status easier to read." aria-label="Open Friends screen details"><img src="assets/images/messages.png" alt="Neurokami friend requests and friends screen"></button></figure>
+            <figure class="ui-screen-card"><button class="ui-screen-image-button" type="button" data-enlarge-screen data-title="Messages and group chat" data-description="Move between direct conversations and group chats." data-note="Keep direct and group conversations in one place with clear tabs for switching between them." aria-label="Open Messages and group chat screen details"><img src="assets/images/directmessage.png" alt="Neurokami direct and group messaging screen"></button></figure>
+            <figure class="ui-screen-card"><button class="ui-screen-image-button" type="button" data-enlarge-screen data-title="Accessibility settings" data-description="Open Calm Mode, Night Mode, and text size options." data-note="Place accessibility preferences together so people can quickly adapt the interface to their needs." aria-label="Open Accessibility settings screen details"><img src="assets/images/account-settings.png" alt="Neurokami accessibility and account settings screen"></button></figure>
+            <figure class="ui-screen-card"><button class="ui-screen-image-button" type="button" data-enlarge-screen data-title="Text size controls" data-description="Adjust interface text to a comfortable reading size." data-note="A direct size control makes text adjustment visible and easy to change." aria-label="Open Text size controls screen details"><img src="assets/images/account-settings-text-size.png" alt="Neurokami text size adjustment panel"></button></figure>
+            <figure class="ui-screen-card"><button class="ui-screen-image-button" type="button" data-enlarge-screen data-title="Choose a theme" data-description="Personalize the profile cover color." data-note="Show theme choices visually and make the save action easy to find." aria-label="Open Choose a theme screen details"><img src="assets/images/themeoptions.png" alt="Neurokami cover theme selection options"></button></figure>
           </div>
+          <div class="ui-gallery-controls">
+            <button class="ui-gallery-arrow" type="button" data-gallery-previous aria-label="Scroll to previous screens">‹</button>
+            <span class="ui-gallery-hint">Drag or use the arrows to browse. Select a screen to enlarge it.</span>
+            <button class="ui-gallery-arrow" type="button" data-gallery-next aria-label="Scroll to next screens">›</button>
+          </div>
+          <dialog class="ui-screen-lightbox" data-screen-lightbox aria-labelledby="lightbox-screen-title">
+            <button class="ui-screen-lightbox-close" type="button" data-close-lightbox aria-label="Close enlarged screen">×</button>
+            <div class="ui-lightbox-content">
+              <div class="ui-lightbox-visual"><img data-lightbox-image src="" alt=""></div>
+              <div class="ui-lightbox-copy">
+                <h3 id="lightbox-screen-title" data-lightbox-title></h3>
+                <p data-lightbox-description></p>
+                <aside class="ui-designer-note" aria-label="Designer note">
+                  <strong>Designer note</strong>
+                  <p data-lightbox-note></p>
+                </aside>
+              </div>
+            </div>
+          </dialog>
         </article>
       </div>
     </section>
@@ -671,6 +727,82 @@
         document.querySelector('#type-detail').textContent = sample.dataset.detail;
       });
     });
+
+    const uiGallery = document.querySelector('[data-ui-gallery]');
+    if (uiGallery) {
+      const galleryMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const scrollGallery = (direction) => uiGallery.scrollBy({ left: direction * uiGallery.clientWidth * 0.8, behavior: galleryMotion ? 'auto' : 'smooth' });
+      document.querySelector('[data-gallery-previous]').addEventListener('click', () => scrollGallery(-1));
+      document.querySelector('[data-gallery-next]').addEventListener('click', () => scrollGallery(1));
+      uiGallery.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') { event.preventDefault(); scrollGallery(1); }
+        else if (event.key === 'ArrowLeft') { event.preventDefault(); scrollGallery(-1); }
+      });
+
+      let pointerStartX = 0;
+      let pointerStartScroll = 0;
+      let pointerIsDown = false;
+      let pointerDidDrag = false;
+      let ignoreClick = false;
+      uiGallery.addEventListener('pointerdown', (event) => {
+        if (event.button !== 0) return;
+        pointerIsDown = true;
+        pointerDidDrag = false;
+        pointerStartX = event.clientX;
+        pointerStartScroll = uiGallery.scrollLeft;
+      });
+      uiGallery.addEventListener('pointermove', (event) => {
+        if (!pointerIsDown) return;
+        const dragDistance = event.clientX - pointerStartX;
+        if (Math.abs(dragDistance) > 5) {
+          if (!pointerDidDrag && event.pointerType === 'mouse') uiGallery.setPointerCapture(event.pointerId);
+          pointerDidDrag = true;
+          uiGallery.classList.add('is-dragging');
+          uiGallery.scrollLeft = pointerStartScroll - dragDistance;
+        }
+      });
+      const finishGalleryDrag = () => {
+        if (!pointerIsDown) return;
+        pointerIsDown = false;
+        uiGallery.classList.remove('is-dragging');
+        if (pointerDidDrag) {
+          ignoreClick = true;
+          window.setTimeout(() => { ignoreClick = false; }, 0);
+        }
+      };
+      uiGallery.addEventListener('pointerup', finishGalleryDrag);
+      uiGallery.addEventListener('pointercancel', finishGalleryDrag);
+      window.addEventListener('pointerup', finishGalleryDrag);
+
+      const screenLightbox = document.querySelector('[data-screen-lightbox]');
+      const lightboxImage = screenLightbox.querySelector('[data-lightbox-image]');
+      const lightboxTitle = screenLightbox.querySelector('[data-lightbox-title]');
+      const lightboxDescription = screenLightbox.querySelector('[data-lightbox-description]');
+      const lightboxNote = screenLightbox.querySelector('[data-lightbox-note]');
+      let lastOpenedScreen = null;
+      uiGallery.addEventListener('click', (event) => {
+        const screenButton = event.target.closest('[data-enlarge-screen]');
+        if (!screenButton) return;
+        if (ignoreClick) {
+          event.preventDefault();
+          event.stopPropagation();
+          return;
+        }
+        const screenImage = screenButton.querySelector('img');
+        lastOpenedScreen = screenButton;
+        lightboxImage.src = screenImage.currentSrc || screenImage.src;
+        lightboxImage.alt = screenImage.alt;
+        lightboxTitle.textContent = screenButton.dataset.title;
+        lightboxDescription.textContent = screenButton.dataset.description;
+        lightboxNote.textContent = screenButton.dataset.note;
+        screenLightbox.showModal();
+      });
+      document.querySelector('[data-close-lightbox]').addEventListener('click', () => screenLightbox.close());
+      screenLightbox.addEventListener('click', (event) => {
+        if (event.target === screenLightbox) screenLightbox.close();
+      });
+      screenLightbox.addEventListener('close', () => lastOpenedScreen?.focus());
+    }
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.querySelectorAll('.video-toggle').forEach((button) => {
