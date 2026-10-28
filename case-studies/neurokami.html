@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Neurokami app design by Alanna Bent. Case study coming soon.">
+  <meta name="description" content="Neurokami is a mobile app concept for the neurodiverse community, designed by Alanna Bent with a focus on accessible resources and connection.">
   <title>Neurokami | Alanna Bent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,64 +14,695 @@
       font-family: "Google Sans Flex", Arial, sans-serif;
       color: #231b20;
       background: #fff;
-      --purple: #765acb;
+      --purple: #5b46b8;
+      --purple-dark: #47349b;
+      --pink: #d22da5;
       --muted: #6e6873;
+      --line: #e9e5ef;
+      --soft: #f8f6fc;
     }
     *, *::before, *::after { box-sizing: border-box; }
-    body { min-width: 320px; min-height: 100vh; margin: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 32px; }
+    body { min-width: 320px; margin: 0; }
     a { color: inherit; }
-    .page-wrap { width: min(1240px, calc(100% - 80px)); margin-inline: auto; }
-    .site-header { display: flex; min-height: 96px; align-items: center; justify-content: space-between; }
+    .wrap { width: min(1160px, calc(100% - 80px)); margin-inline: auto; }
+    .site-header { position: fixed; z-index: 20; inset: 0 0 auto; display: flex; width: 100%; min-height: 88px; align-items: center; justify-content: space-between; margin: 0; padding-inline: max(40px, calc((100% - 1160px) / 2)); color: #fff; background: rgb(35 27 46 / 14%); backdrop-filter: saturate(145%) blur(12px); -webkit-backdrop-filter: saturate(145%) blur(12px); transition: color 180ms ease, background-color 180ms ease, box-shadow 180ms ease; }
+    .site-header.is-scrolled { color: var(--ink); background: rgb(255 255 255 / 94%); box-shadow: 0 6px 22px rgb(35 27 46 / 9%); }
     .brand { font-size: 34px; font-weight: 500; letter-spacing: -.14em; text-decoration: none; }
-    .back-link { display: inline-flex; align-items: center; gap: 9px; color: var(--muted); font-size: 14px; text-decoration: none; transition: color 180ms ease; }
-    .back-link::before { content: "←"; color: var(--purple); font-size: 19px; transition: transform 180ms ease; }
+    .back-link { display: inline-flex; align-items: center; gap: 9px; color: inherit; font-size: 14px; text-decoration: none; transition: color 180ms ease; }
+    .back-link::before { content: "←"; color: inherit; font-size: 19px; transition: transform 180ms ease; }
     .back-link:hover { color: var(--purple); }
+    .site-header:not(.is-scrolled) .back-link:hover { color: #fff; }
     .back-link:hover::before { transform: translateX(-4px); }
-    .hero { display: grid; min-height: min(690px, calc(100svh - 96px)); grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); align-items: center; gap: clamp(36px, 7vw, 100px); padding-block: 42px 72px; }
-    .hero-image { margin: 0; }
-    .hero-image img { display: block; width: 100%; height: auto; }
-    .hero-copy { max-width: 500px; }
-    .eyebrow { margin: 0 0 18px; color: var(--purple); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
-    h1 { margin: 0; font-size: clamp(56px, 8vw, 104px); font-weight: 400; letter-spacing: -.075em; line-height: .94; }
-    .project-type { margin: 26px 0 0; font-size: clamp(16px, 1.8vw, 21px); font-weight: 500; }
-    .project-summary { max-width: 420px; margin: 18px 0 0; color: var(--muted); font-size: clamp(15px, 1.4vw, 18px); line-height: 1.65; }
-    .prototype-button { display: inline-flex; align-items: center; justify-content: center; margin-top: 28px; padding: 13px 22px; border-radius: 999px; background: var(--purple); color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; transition: background 180ms ease, transform 180ms ease; }
-    .prototype-button:hover { background: #6246b5; transform: translateY(-2px); }
-    .prototype-button:focus-visible { outline: 3px solid #c8b9f4; outline-offset: 3px; }
-    .coming-soon { margin: clamp(26px, 4vw, 42px) 0 0; padding-top: 18px; border-top: 1px solid #e9e5ef; color: var(--purple); font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
-    .site-footer { width:min(1240px,calc(100% - 80px)); margin:0 auto; padding:24px 0 34px; border-top:1px solid #eeeaf1; color:var(--muted); font-size:12px; text-align:center; }
+    a:focus-visible { outline: 3px solid #bd9bea; outline-offset: 4px; border-radius: 3px; }
+    .hero { position: relative; isolation: isolate; display: grid; min-height: 100vh; min-height: 100svh; grid-template-columns: 1fr; align-items: center; justify-items: center; padding-block: 120px 70px; text-align: center; }
+    .hero::before { position: absolute; z-index: -1; top: 0; right: calc((1160px - 100vw) / 2); bottom: 0; left: calc((1160px - 100vw) / 2); content: ""; background: linear-gradient(130deg, #5B46B8 0%, #D22DA5 100%); }
+    .hero-copy { width: min(100%, 760px); max-width: none; margin-inline: auto; padding-block: 25px; }
+    .hero .eyebrow { color: #e9e1ff; }
+    .eyebrow, .section-label { margin: 0 0 16px; color: var(--purple); font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(64px, 8vw, 104px); font-weight: 400; letter-spacing: -.075em; line-height: .91; }
+    .hero h1, .hero-tagline { color: #fff; }
+    .hero-tagline { max-width: 600px; margin: 24px auto 0; font-size: clamp(20px, 2.2vw, 27px); font-weight: 500; letter-spacing: -.035em; line-height: 1.25; }
+    .hero-summary { max-width: 560px; margin: 17px auto 0; color: #f1edf8; font-size: 16px; line-height: 1.7; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px 22px; margin-top: 28px; }
+    .prototype-button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 10px; padding: 12px 21px; border: 0; border-radius: 999px; color: #fff; background: var(--purple); font-size: 14px; font-weight: 600; text-decoration: none; transition: background 180ms ease, transform 180ms ease; }
+    .hero .prototype-button { color: #4e3dac; background: #fff; }
+    .hero .prototype-button:hover { color: #38287f; background: #f2edff; }
+    .prototype-button:hover { background: var(--purple-dark); transform: translateY(-2px); }
+    .prototype-button span { font-size: 17px; }
+    .hero-note { color: #f1edf8; font-size: 13px; }
+    .overview { display: grid; grid-template-columns: 1fr; justify-items: center; gap: 36px; padding-block: 88px 96px; text-align: center; }
+    .overview-heading h2:not(.section-label), .section-heading h2 { max-width: 580px; margin: 0; font-size: clamp(30px, 4.5vw, 48px); font-weight: 400; letter-spacing: -.06em; line-height: 1.05; }
+    .overview-heading h2.section-label { margin: 0 0 16px; font-size: 12px; font-weight: 700; letter-spacing: .16em; }
+    .overview-description { max-width: 760px; margin: 0 auto; color: var(--muted); font-size: 17px; line-height: 1.8; }
+    .overview-copy { width: min(100%, 900px); }
+    .project-details { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px 28px; margin: 0; padding-top: 26px; border-top: 1px solid var(--line); text-align: center; }
+    .project-details div { min-width: 0; }
+    .project-details dt { margin-bottom: 6px; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+    .project-details dd { margin: 0; font-size: 14px; font-weight: 500; line-height: 1.55; }
+    .project-details a { color: var(--purple-dark); text-underline-offset: 3px; }
+    .focus-section { padding-block: 86px 96px; background: var(--soft); }
+    .section-heading { max-width: 680px; margin: 0 auto 42px; text-align: center; }
+    .section-heading .section-label { margin-bottom: 13px; }
+    .section-heading p:last-child { max-width: 610px; margin: 17px auto 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+    .focus-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .focus-card { min-height: 220px; padding: 26px; border: 1px solid #ece7f3; border-radius: 14px; background: #fff; }
+    .focus-index { display: grid; width: 38px; height: 38px; place-items: center; margin-bottom: 28px; border-radius: 50%; color: #fff; background: linear-gradient(135deg, var(--purple), var(--pink)); font-size: 12px; font-weight: 700; }
+    .focus-card h3 { margin: 0 0 10px; font-size: 19px; font-weight: 500; letter-spacing: -.035em; }
+    .focus-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .design-story { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(36px, 8vw, 100px); padding-block: 96px; }
+    .design-story h2 { max-width: 480px; margin: 0; font-size: clamp(30px, 4vw, 44px); font-weight: 400; letter-spacing: -.06em; line-height: 1.06; }
+    .design-story-copy p { margin: 0 0 17px; color: var(--muted); font-size: 16px; line-height: 1.8; }
+    .design-story-copy p:last-child { margin-bottom: 0; }
+    .design-principles { display: grid; gap: 0; margin: 26px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .design-principles li { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 500; }
+    .design-principles li::before { content: "✳"; color: var(--pink); }
+    .screen-section { padding-block: 84px 90px; color: #fff; background: #27232e; }
+    .screen-section .section-label { color: #d4c6ff; }
+    .screen-section .section-heading p:last-child { color: #d0cbd6; }
+    .screen-showcase { display: grid; grid-template-columns: 1.05fr .95fr; gap: 34px; align-items: center; }
+    .screen-showcase figure { margin: 0; }
+    .screen-showcase img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .screen-caption { max-width: 390px; padding: 24px 0; }
+    .screen-caption h3 { margin: 0 0 12px; font-size: 23px; font-weight: 500; letter-spacing: -.04em; }
+    .screen-caption p { margin: 0; color: #d0cbd6; font-size: 15px; line-height: 1.75; }
+    .process-intro { max-width: 700px; margin: 0 auto 44px; color: var(--muted); font-size: 16px; line-height: 1.8; text-align: center; }
+    .process-section { padding-block: 88px 96px; }
+    .process-section.process-alt { background: var(--soft); }
+    .process-header { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; max-width: 800px; margin-bottom: 38px; }
+    .process-header--architecture { max-width: 1000px; }
+    .ia-process-copy { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr); grid-template-areas: "label label" "title description"; align-items: center; column-gap: 36px; }
+    .ia-process-copy .section-label { grid-area: label; }
+    .process-header--architecture .ia-process-copy .section-label { margin-bottom: 0; }
+    .ia-process-copy h2 { grid-area: title; }
+    .ia-process-copy p:not(.section-label) { grid-area: description; margin: 0; }
+    .process-header h2 { max-width: 660px; margin: 0; font-size: clamp(30px, 4vw, 44px); font-weight: 400; letter-spacing: -.06em; line-height: 1.05; }
+    #visual-title { margin-inline: auto; text-align: center; }
+    .process-section[aria-labelledby="visual-title"] .process-header { margin-inline: auto; }
+    .process-section[aria-labelledby="visual-title"] .process-header > div { text-align: center; }
+    .process-section[aria-labelledby="visual-title"] .process-header p:not(.section-label) { margin-inline: auto; }
+    .process-header p:not(.section-label) { max-width: 690px; margin: 15px 0 0; color: var(--muted); font-size: 16px; line-height: 1.75; }
+    .process-header .section-label { margin-bottom: 10px; }
+    .ia-map { display: grid; justify-items: center; gap: 0; padding: clamp(22px, 4vw, 44px); border: 1px solid #e8e1f0; border-radius: 18px; background: #fff; }
+    .ia-node { display: grid; min-height: 52px; place-items: center; padding: 12px 20px; color: #fff; background: var(--purple); font-size: 15px; line-height: 1.25; text-align: center; }
+    .ia-login { min-width: 112px; }
+    .ia-flow-row { display: grid; width: min(100%, 680px); grid-template-columns: 1fr 30px 1fr 30px 1fr; align-items: center; gap: 0; margin-top: 24px; }
+    .ia-login-test { min-width: 0; }
+    .ia-line { display: block; height: 1px; background: #222; }
+    .ia-line--dotted { height: 0; border-top: 2px dotted #555; background: transparent; }
+    .ia-down-arrow { position: relative; width: 1px; height: 34px; margin: 0 auto; background: #222; }
+    .ia-down-arrow::after { position: absolute; right: -4px; bottom: -1px; width: 8px; height: 8px; border-right: 1px solid #222; border-bottom: 1px solid #222; content: ""; transform: rotate(45deg); }
+    .ia-home-feed { display: grid; width: 128px; aspect-ratio: 1; place-items: center; border: 1.5px solid #d61ab8; border-radius: 50%; color: #19151b; background: #fff; font-size: 15px; text-align: center; }
+    .ia-destinations { position: relative; display: grid; width: min(100%, 1040px); grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 0; padding-top: 32px; }
+    .ia-destinations::before { position: absolute; top: 0; right: 12.5%; left: 12.5%; height: 1px; background: #222; content: ""; }
+    .ia-destination { position: relative; display: grid; align-content: start; justify-items: center; min-width: 0; padding-inline: 8px; text-align: center; }
+    .ia-destination::before { position: absolute; top: -32px; left: 50%; width: 1px; height: 32px; background: #222; content: ""; }
+    .ia-destination-title { width: 100%; min-height: 50px; padding: 12px 10px; background: var(--purple-dark); }
+    .ia-detail-list { position: relative; display: grid; width: 100%; justify-items: center; gap: 28px; padding-top: 58px; }
+    .ia-detail-list::before { position: absolute; top: 0; left: 50%; width: 1px; height: 42px; background: #222; content: ""; }
+    .ia-detail { display: grid; width: 100%; min-height: 48px; place-items: center; padding: 10px; border: 1px solid #e7b4dc; color: #43213d; background: #f9e8f5; font-size: 14px; line-height: 1.35; text-align: center; }
+    .ia-footnote { margin: 28px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; text-align: center; }
+    .artifact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .artifact-card { min-width: 0; margin: 0; padding: 14px; border: 1px solid #e9e5ef; border-radius: 13px; background: #fff; }
+    .artifact-card img { display: block; width: 100%; height: 360px; object-fit: contain; object-position: center; border-radius: 8px; background: #f5f3f7; }
+    .artifact-card--comment .artifact-image-wrap { position: relative; width: min(100%, 190px); margin-inline: auto; }
+    .artifact-card--comment .artifact-image-wrap img { width: 100%; height: auto; max-height: 330px; border-radius: 8px; }
+    .comment-marker { position: absolute; top: 43%; right: -11px; display: grid; width: 38px; height: 38px; place-items: center; padding: 0; border: 2px solid #fff; border-radius: 50%; color: #fff; background: var(--purple); cursor: pointer; box-shadow: 0 3px 12px rgb(40 24 64 / 25%); }
+    .comment-marker svg { display: block; width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+    .comment-marker:hover { background: var(--purple-dark); }
+    .comment-marker:focus-visible { outline: 3px solid #bd9bea; outline-offset: 3px; }
+    .comment-popover { position: absolute; z-index: 5; top: calc(43% + 44px); right: -4px; width: min(235px, 82vw); padding: 13px 15px; border: 1px solid #e8e1ef; border-radius: 10px; color: #37313d; background: #fff; font-size: 12px; line-height: 1.55; text-align: left; box-shadow: 0 10px 28px rgb(34 26 48 / 20%); }
+    .artifact-card figcaption { padding: 13px 3px 2px; }
+    .artifact-card figcaption strong { display: block; margin-bottom: 4px; font-size: 14px; font-weight: 600; }
+    .artifact-card figcaption span { display: block; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .artifact-grid--wireframes { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .artifact-grid--wireframes .artifact-card img { height: 330px; }
+    .visual-system { display: grid; grid-template-columns: .8fr 1.2fr; gap: 24px; align-items: stretch; margin-top: 30px; }
+    .visual-panel { min-width: 0; padding: 22px; border: 1px solid #e9e5ef; border-radius: 14px; background: #fff; }
+    .visual-panel h3 { margin: 0 0 12px; font-size: 18px; font-weight: 600; }
+    .visual-panel p { margin: 0 0 18px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .visual-panel img { display: block; width: 100%; max-height: 340px; object-fit: contain; object-position: center; border-radius: 8px; background: #faf9fb; }
+    .accessibility-videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .accessibility-feature { position: relative; min-width: 0; margin: 0; }
+    .accessibility-feature video { display: block; width: 100%; aspect-ratio: 9 / 15; max-height: 420px; border-radius: 9px; background: #f4f1f7; object-fit: contain; }
+    .video-toggle { position: absolute; top: 10px; right: 10px; z-index: 1; display: grid; width: 40px; height: 40px; place-items: center; padding: 0; border: 1px solid rgb(255 255 255 / 70%); border-radius: 50%; color: #fff; background: rgb(35 27 46 / 88%); cursor: pointer; box-shadow: 0 3px 12px rgb(0 0 0 / 18%); }
+    .video-toggle svg { display: block; width: 16px; height: 16px; fill: currentColor; }
+    .video-toggle:hover { background: #231b2e; }
+    .video-toggle:focus-visible { outline: 3px solid #bd9bea; outline-offset: 3px; }
+    .accessibility-feature figcaption { padding-top: 13px; }
+    .accessibility-feature h4 { margin: 0 0 6px; font-size: 15px; font-weight: 600; }
+    .accessibility-feature p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .brand-palette, .calm-swatches { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .brand-swatch { min-width: 0; overflow: hidden; padding: 0; border: 1px solid #e6e1eb; border-radius: 10px; background: #fff; text-align: left; cursor: pointer; }
+    .brand-swatch[aria-pressed="true"] { outline: 3px solid #b7a7d4; outline-offset: 2px; }
+    .brand-swatch:focus-visible, .type-sample:focus-visible { outline: 3px solid #a58bce; outline-offset: 3px; }
+    .brand-swatch-color, .calm-swatch-color { display: block; height: 42px; }
+    .brand-swatch-label, .calm-swatch span:last-child { display: block; min-height: 53px; padding: 7px 6px; color: #514b56; font-size: 9px; line-height: 1.4; }
+    .brand-swatch-label strong, .brand-swatch-label small { display: block; }
+    .brand-swatch-label strong, .calm-swatch strong { display: block; font-size: 10px; font-weight: 600; }
+    .brand-swatch-label small, .calm-swatch small { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; }
+    .palette-detail { min-height: 68px; margin-top: 17px; padding-top: 15px; border-top: 1px solid var(--line); }
+    .palette-detail strong { display: block; font-size: 14px; }
+    .palette-detail p { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .calm-palette { margin-top: 18px; padding: 16px; border: 1px solid #e5dcef; border-radius: 12px; background: #faf7fc; }
+    .calm-palette h4 { margin: 0 0 6px; font-size: 14px; font-weight: 600; }
+    .calm-palette > p { margin: 0 0 13px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .calm-swatch { min-width: 0; overflow: hidden; padding: 0; border: 1px solid #e4dfe8; border-radius: 8px; color: var(--ink); background: #fff; font: inherit; text-align: left; cursor: pointer; }
+    .calm-swatch[aria-pressed="true"] { outline: 3px solid #b7a7d4; outline-offset: 2px; }
+    .calm-swatch:focus-visible { outline: 3px solid #a58bce; outline-offset: 3px; }
+    .calm-swatch:hover { transform: translateY(-2px); }
+    .type-scale { display: grid; gap: 10px; }
+    .type-sample { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px 12px; width: 100%; min-height: 68px; padding: 13px 15px; border: 1px solid #e8e3ed; border-radius: 10px; color: var(--ink); background: #fff; text-align: left; cursor: pointer; }
+    .type-sample[aria-pressed="true"] { border-color: #9e89c8; background: #faf7ff; box-shadow: inset 3px 0 var(--purple); }
+    .type-sample small { grid-column: 1 / -1; color: var(--muted); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .type-sample-text { min-width: 0; }
+    .type-display-sample { font-size: 26px; font-weight: 700; letter-spacing: -.055em; }
+    .type-interface-sample { font-size: 18px; font-weight: 600; }
+    .type-body-sample { font-size: 14px; font-weight: 400; line-height: 1.45; }
+    .type-spec-detail { min-height: 76px; margin-top: 16px; padding-top: 13px; border-top: 1px solid var(--line); }
+    .type-spec-detail strong { display: block; font-size: 13px; }
+    .type-spec-detail p { margin: 5px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .persona-section { padding-block: 84px 92px; background: #f3f8ff; }
+    .persona-section > .wrap { width: min(1320px, calc(100% - 48px)); }
+    .persona-section .section-heading { margin-bottom: 60px; }
+    .persona-section .section-heading h2 { margin-inline: auto; }
+    .research-layout { display: grid; grid-template-columns: minmax(145px, .55fr) minmax(320px, 1.35fr) minmax(290px, 1fr); align-items: start; gap: 22px; text-align: center; }
+    .research-intro .section-label { margin-bottom: 13px; }
+    .research-intro h2 { margin: 0; font-size: clamp(28px, 3vw, 36px); font-weight: 400; letter-spacing: -.055em; line-height: 1.05; }
+    .research-intro > p:last-child { margin: 15px 0 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .persona-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
+    .persona-tab { display: grid; gap: 3px; min-width: 0; padding: 10px 8px; border: 1px solid #e8e3ed; border-radius: 9px; color: #5e5667; background: #fff; text-align: center; cursor: pointer; }
+    .persona-tab:nth-child(2) { --persona-color: #66a39c; --persona-tab-text: #183a36; --persona-tab-subtext: #294f49; }
+    .persona-tab:nth-child(3) { --persona-color: #d69aae; --persona-tab-text: #4a2733; --persona-tab-subtext: #603a46; }
+    .persona-tab strong { font-size: 12px; font-weight: 600; }
+    .persona-tab span { color: var(--muted); font-size: 10px; }
+    .persona-tab[aria-selected="true"] { border-color: var(--persona-color, var(--purple)); color: var(--persona-tab-text, #fff); background: var(--persona-color, var(--purple)); box-shadow: 0 4px 12px rgb(35 27 32 / 14%); }
+    .persona-tab[aria-selected="true"] span { color: var(--persona-tab-subtext, rgb(255 255 255 / 86%)); }
+    .persona-tab:focus-visible { outline: 3px solid #bd9bea; outline-offset: 3px; }
+    .persona-panels { min-width: 0; }
+    .persona-card { min-width: 0; padding: 18px; border: 1px solid #e8e3ed; border-top: 4px solid var(--persona-color, var(--purple)); border-radius: 13px; background: #fff; }
+    .persona-card:nth-child(2) { --persona-color: #66a39c; }
+    .persona-card:nth-child(3) { --persona-color: #d69aae; }
+    .persona-kind { margin: 0 0 8px; color: var(--persona-color); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .persona-card h3 { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -.04em; }
+    .persona-meta { margin: 4px 0 10px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .persona-card h4 { margin: 11px 0 4px; font-size: 11px; font-weight: 700; }
+    .persona-card p:not(.persona-kind):not(.persona-meta) { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .persona-need { margin-top: 11px !important; padding-top: 10px; border-top: 1px solid var(--line); color: var(--ink) !important; font-weight: 500; }
+    .research-papers { padding: 23px; border-radius: 16px; color: #fff; background: linear-gradient(130deg, #5B46B8 0%, #D22DA5 100%); }
+    .research-papers .section-label { margin-bottom: 10px; color: #f5e8ff; }
+    .research-papers h3 { margin: 0; font-size: 25px; font-weight: 500; letter-spacing: -.045em; line-height: 1.1; }
+    .research-papers > p:not(.section-label) { margin: 11px 0 18px; color: rgb(255 255 255 / 88%); font-size: 12px; line-height: 1.6; }
+    .research-paper-list { display: grid; gap: 10px; }
+    .research-paper { display: grid; gap: 6px; padding: 13px; border: 1px solid rgb(255 255 255 / 38%); border-radius: 11px; color: #fff; background: rgb(255 255 255 / 12%); text-align: center; text-decoration: none; transition: background 180ms ease, color 180ms ease, transform 180ms ease; }
+    .research-paper:hover { color: #49378f; background: #fff; transform: translateY(-2px); }
+    .research-paper:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+    .research-paper-title { font-size: 12px; font-weight: 600; line-height: 1.45; }
+    .research-paper-source { color: rgb(255 255 255 / 82%); font-size: 10px; line-height: 1.4; }
+    .research-paper:hover .research-paper-source { color: #645978; }
+    .research-paper-action { margin-top: 2px; font-size: 10px; font-weight: 700; }
+    .design-outcome { display: grid; grid-template-columns: 1.1fr .9fr; gap: 42px; align-items: center; }
+    .design-outcome > img { display: block; width: 100%; height: auto; border-radius: 13px; }
+    .design-outcome h3 { margin: 0 0 13px; font-size: 28px; font-weight: 500; letter-spacing: -.04em; }
+    .design-outcome p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
+    .design-outcome p + p { margin-top: 14px; }
+    .prototype-cta { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-block: 86px; padding: clamp(30px, 6vw, 64px); border-radius: 20px; background: linear-gradient(115deg, #f5f0ff, #fdf0f8); }
+    .prototype-cta h2 { max-width: 590px; margin: 0; font-size: clamp(27px, 3.5vw, 40px); font-weight: 400; letter-spacing: -.055em; line-height: 1.08; }
+    .prototype-cta p { margin: 12px 0 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+    .site-footer { width: min(1160px, calc(100% - 80px)); margin: 0 auto; padding: 24px 0 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; text-align: center; }
     @media (max-width: 760px) {
-      .page-wrap { width: min(100% - 40px, 560px); }
-      .site-header { min-height: 78px; }
-      .hero { min-height: 0; grid-template-columns: 1fr; gap: 32px; padding-block: 28px 64px; }
-      .hero-image { width: min(100%, 540px); margin-inline: auto; }
-      .hero-copy { max-width: 560px; }
-      h1 { font-size: clamp(58px, 14vw, 88px); }
-      .project-type { margin-top: 20px; }
-      .site-footer { width:calc(100% - 40px); }
+      .wrap { width: min(100% - 40px, 560px); }
+      .site-header { width: 100%; min-height: 76px; padding-inline: 20px; }
+      .hero { min-height: 100vh; min-height: 100svh; padding-block: 100px 50px; }
+      .hero::before { right: -20px; left: -20px; }
+      .hero-copy { padding-block: 0; }
+      h1 { font-size: clamp(62px, 15vw, 88px); }
+      .overview, .design-story { grid-template-columns: 1fr; gap: 28px; padding-block: 66px; }
+      .project-details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .overview-copy > p { font-size: 16px; }
+      .focus-section, .screen-section { padding-block: 68px; }
+      .focus-grid { grid-template-columns: 1fr; gap: 12px; }
+      .focus-card { min-height: 0; padding: 23px; }
+      .focus-index { margin-bottom: 20px; }
+      .screen-showcase { grid-template-columns: 1fr; gap: 12px; }
+      .screen-caption { max-width: none; padding: 14px 0 0; }
+      .process-section { padding-block: 66px; }
+      .process-header { grid-template-columns: 1fr; gap: 15px; margin-bottom: 27px; }
+      .ia-process-copy { grid-template-columns: 1fr; grid-template-areas: "label" "title" "description"; gap: 0; }
+      .ia-process-copy p:not(.section-label) { margin-top: 15px; }
+      .ia-map { padding: 20px; }
+      .ia-flow-row { width: 100%; grid-template-columns: 1fr 14px 1fr 14px 1fr; }
+      .ia-node { min-height: 48px; padding: 10px 7px; font-size: 12px; }
+      .ia-destinations { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 0; padding-top: 0; }
+      .ia-destinations::before { display: none; }
+      .ia-destination::before { top: -24px; height: 24px; }
+      .ia-destination-title { min-height: 48px; font-size: 12px; }
+      .artifact-grid, .artifact-grid--wireframes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .artifact-card { padding: 9px; }
+      .artifact-card img, .artifact-grid--wireframes .artifact-card img { height: 280px; }
+      .visual-system, .design-outcome { grid-template-columns: 1fr; gap: 16px; }
+      .persona-section { padding-block: 66px; }
+      .persona-section > .wrap { width: calc(100% - 32px); }
+      .research-layout { grid-template-columns: 1fr; }
+      .research-paper-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .calm-palette { padding: 13px; }
+      .prototype-cta { align-items: flex-start; flex-direction: column; margin-block: 58px; padding: 30px 24px; }
+      .site-footer { width: calc(100% - 40px); }
     }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    @media (max-width: 440px) {
+      .project-details { grid-template-columns: 1fr; gap: 17px; }
+      .hero-actions { align-items: center; flex-direction: column; gap: 13px; }
+      .research-paper-list { grid-template-columns: 1fr; }
+      .ia-destinations { grid-template-columns: 1fr; gap: 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
   </style>
 </head>
 <body>
-  <header class="site-header page-wrap">
+  <header class="site-header wrap">
     <a class="brand" href="../index.html" aria-label="Alanna Bent home">ab</a>
     <a class="back-link" href="../index.html#projects">All projects</a>
   </header>
   <main>
-    <section class="hero page-wrap" aria-labelledby="page-title">
-      <figure class="hero-image">
-        <img src="assets/images/neurokamiMockup.jpg" alt="Neurokami app screens showing resources, messaging, and community profiles">
-      </figure>
+    <section class="hero wrap" aria-labelledby="page-title">
       <div class="hero-copy">
+        <p class="eyebrow">Mobile App Design · Case Study</p>
         <h1 id="page-title">Neurokami</h1>
-        <p class="project-type">App design</p>
-        <p class="project-summary">Neurokami is an app designed specifically for the neurodiverse community. I was tasked with the ui/ux design of this app. Part of the project involved the design of several accessability features for the neurodiverse user.</p>
-        <a class="prototype-button" href="https://www.figma.com/proto/qeIXoLR2iIBEraGEqzmnTs/Prototype?type=design&amp;node-id=1-265&amp;t=o5OZFPRU2tBig81t-1&amp;scaling=scale-down&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A265&amp;mode=design" target="_blank" rel="noopener noreferrer">View prototype</a>
-        <p class="coming-soon">Case study coming soon</p>
+        <p class="hero-tagline">A more welcoming space for neurodiverse minds.</p>
+      <p class="hero-summary">From information architecture and early wireframes to a polished mobile experience for resources, accessibility, and community.</p>
+        <div class="hero-actions">
+          <a class="prototype-button" href="https://www.figma.com/proto/qeIXoLR2iIBEraGEqzmnTs/Prototype?type=design&amp;node-id=1-265&amp;t=o5OZFPRU2tBig81t-1&amp;scaling=scale-down&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A265&amp;mode=design" target="_blank" rel="noopener noreferrer">View prototype <span aria-hidden="true">↗</span></a>
+          <span class="hero-note">Explore the interactive Figma prototype</span>
+        </div>
       </div>
+    </section>
+
+    <section class="overview wrap" aria-labelledby="overview-title">
+      <div class="overview-heading">
+        <h2 class="section-label" id="overview-title">Project Overview</h2>
+        <p class="overview-description">Neurokami is a mobile app concept designed for the neurodiverse community. The project focused on UI/UX design and the consideration of accessibility features, bringing a resource library together with ways to connect and build community.</p>
+      </div>
+      <div class="overview-copy">
+        <dl class="project-details">
+          <div><dt>Project Role</dt><dd>UI/UX Design</dd></div>
+          <div><dt>Platform</dt><dd>Mobile app concept</dd></div>
+          <div><dt>Design Focus</dt><dd>Accessibility · Community · Resource discovery</dd></div>
+          <div><dt>Prototype</dt><dd><a href="https://www.figma.com/proto/qeIXoLR2iIBEraGEqzmnTs/Prototype?type=design&amp;node-id=1-265&amp;t=o5OZFPRU2tBig81t-1&amp;scaling=scale-down&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A265&amp;mode=design" target="_blank" rel="noopener noreferrer">View interactive prototype ↗</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="persona-section" aria-labelledby="process-title personas-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="section-label">The Design Process</p>
+          <h2 id="process-title">From research to screen</h2>
+        </div>
+        <div class="research-layout">
+          <div class="research-intro">
+            <p class="section-label">01 · Research</p>
+            <h2 id="personas-title">User research</h2>
+            <p>The project paired user personas with peer-reviewed research on autism, ADHD, and dyslexia to guide accessibility considerations for the app.</p>
+          </div>
+          <div class="persona-explorer">
+            <div class="persona-tabs" role="tablist" aria-label="Neurokami user personas">
+              <button class="persona-tab" id="persona-marel-tab" type="button" role="tab" aria-selected="true" aria-controls="persona-marel-panel" tabindex="0" data-persona-tab>
+                <strong>Marel</strong><span>ADHD</span>
+              </button>
+              <button class="persona-tab" id="persona-anna-tab" type="button" role="tab" aria-selected="false" aria-controls="persona-anna-panel" tabindex="-1" data-persona-tab>
+                <strong>Anna</strong><span>ASD</span>
+              </button>
+              <button class="persona-tab" id="persona-jack-tab" type="button" role="tab" aria-selected="false" aria-controls="persona-jack-panel" tabindex="-1" data-persona-tab>
+                <strong>Jack</strong><span>Dyslexia</span>
+              </button>
+            </div>
+            <div class="persona-panels">
+              <article class="persona-card" id="persona-marel-panel" role="tabpanel" aria-labelledby="persona-marel-tab" tabindex="0">
+              <p class="persona-kind">ADHD · Student</p>
+              <h3>Marel Brick</h3>
+              <p class="persona-meta">22 · Student · Boston, MA</p>
+              <h4>Context</h4>
+              <p>A university student who commutes and balances classes, activities, and volunteering. Marel wants to meet people beyond a small existing friend group.</p>
+              <h4>Challenges</h4>
+              <p>Time management and visual disorganization can make it hard to stay on top of classes and assignments. Notifications and busy interfaces can pull attention away.</p>
+              <p class="persona-need">Design need: make social connection comfortable and keep key information organized and easy to return to.</p>
+            </article>
+              <article class="persona-card" id="persona-anna-panel" role="tabpanel" aria-labelledby="persona-anna-tab" tabindex="0" hidden>
+              <p class="persona-kind">ASD · Software Developer</p>
+              <h3>Anna Rose</h3>
+              <p class="persona-meta">27 · Software Developer · San Diego, CA</p>
+              <h4>Context</h4>
+              <p>A full-stack developer who enjoys gaming and feels more comfortable socializing online. Anna is interested in forming new relationships.</p>
+              <h4>Challenges</h4>
+              <p>Starting conversations can be difficult. Cluttered visuals, bright colors, sound, unexpected movement, jargon, and sarcasm can make digital interactions harder to parse.</p>
+              <p class="persona-need">Design need: offer clear, calm screens and predictable ways to discover and join conversations.</p>
+            </article>
+              <article class="persona-card" id="persona-jack-panel" role="tabpanel" aria-labelledby="persona-jack-tab" tabindex="0" hidden>
+              <p class="persona-kind">Dyslexia · Engineer</p>
+              <h3>Jack Stone</h3>
+              <p class="persona-meta">29 · Engineer · Detroit, MI</p>
+              <h4>Context</h4>
+              <p>An engineer with a busy work week who enjoys hands-on projects and is open to meeting people with similar interests.</p>
+              <h4>Challenges</h4>
+              <p>Spelling can make messaging frustrating, and long processes are difficult to stick with. Jack uses spell-check and prefers to keep several tasks moving.</p>
+              <p class="persona-need">Design need: keep interactions concise, make text comfortable to read, and reduce friction in messaging.</p>
+            </article>
+            </div>
+          </div>
+          <aside class="research-papers" aria-labelledby="research-papers-title">
+            <p class="section-label">Research references</p>
+            <h3 id="research-papers-title">Evidence to design from.</h3>
+            <p>Peer-reviewed studies related to the needs represented in the personas.</p>
+            <div class="research-paper-list">
+              <a class="research-paper" href="https://doi.org/10.1016/j.ijhcs.2020.102462" target="_blank" rel="noopener noreferrer">
+                <span class="research-paper-title">The evaluation of a mobile user interface for people on the autism spectrum: An eye movement study</span>
+                <span class="research-paper-source">Rezae et al. · International Journal of Human–Computer Studies · 2020</span>
+                <span class="research-paper-action">Read paper ↗</span>
+              </a>
+              <a class="research-paper" href="https://pubmed.ncbi.nlm.nih.gov/37695648/" target="_blank" rel="noopener noreferrer">
+                <span class="research-paper-title">Identifying the Information Needs and Format Preferences for Web-Based Content Among Adults With or Parents of Children With Attention-Deficit/Hyperactivity Disorder: Three-Stage Qualitative Analysis</span>
+                <span class="research-paper-source">Scholze et al. · JMIR Formative Research · 2023</span>
+                <span class="research-paper-action">Read paper ↗</span>
+              </a>
+              <a class="research-paper" href="https://doi.org/10.1002/dys.1646" target="_blank" rel="noopener noreferrer">
+                <span class="research-paper-title">Impact of digital text variables on legibility for persons with dyslexia</span>
+                <span class="research-paper-source">Krivec et al. · Dyslexia · 2020</span>
+                <span class="research-paper-action">Read paper ↗</span>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="process-section" aria-labelledby="architecture-title">
+      <div class="wrap">
+        <article class="process-step" aria-labelledby="architecture-title">
+          <header class="process-header process-header--architecture">
+            <div class="ia-process-copy">
+              <p class="section-label">02 · Information Architecture</p>
+              <h2 id="architecture-title">Start with the way people move through the app.</h2>
+              <p>The early structure groups the experience around onboarding, a home feed, messaging, resources, and settings. This gives each major task a clear place and makes the primary destinations easy to reach.</p>
+            </div>
+          </header>
+          <div class="ia-map" aria-label="Neurokami information architecture overview">
+            <div class="ia-node ia-login">Login</div>
+            <div class="ia-down-arrow" aria-hidden="true"></div>
+            <div class="ia-flow-row" aria-label="Login options">
+              <div class="ia-node">Test questions</div>
+              <span class="ia-line" aria-hidden="true"></span>
+              <div class="ia-node ia-login-test">Login testing</div>
+              <span class="ia-line ia-line--dotted" aria-hidden="true"></span>
+              <div class="ia-node">Skip Testing</div>
+            </div>
+            <div class="ia-down-arrow" aria-hidden="true"></div>
+            <div class="ia-home-feed">Home Feed</div>
+            <div class="ia-down-arrow" aria-hidden="true"></div>
+            <div class="ia-destinations">
+              <div class="ia-destination">
+                <div class="ia-node ia-destination-title">Settings</div>
+                <div class="ia-detail-list">
+                  <div class="ia-detail">Font style/size</div>
+                  <div class="ia-detail">Vivid/Calm Color</div>
+                </div>
+              </div>
+              <div class="ia-destination">
+                <div class="ia-node ia-destination-title">Messenger</div>
+                <div class="ia-detail-list"><div class="ia-detail">Group chat</div></div>
+              </div>
+              <div class="ia-destination">
+                <div class="ia-node ia-destination-title">Resources/Research</div>
+                <div class="ia-detail-list"><div class="ia-detail">Articles/Tests/etc.</div></div>
+              </div>
+              <div class="ia-destination">
+                <div class="ia-node ia-destination-title">Home Resource Feed</div>
+                <div class="ia-detail-list"><div class="ia-detail">Add post</div></div>
+              </div>
+            </div>
+            <p class="ia-footnote">The map follows the path from login and onboarding into the app’s main destinations.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="process-section" aria-labelledby="visual-title">
+      <div class="wrap">
+        <article class="process-step">
+          <header class="process-header">
+            <div>
+              <p class="section-label">03 · Visual Design &amp; Accessibility</p>
+              <h2 id="visual-title">A clear, accessible interface</h2>
+              <p>A soft purple palette, clear typography, rounded controls, and persistent navigation shape the interface, with accessibility options built into settings.</p>
+            </div>
+          </header>
+          <div class="visual-system">
+            <div class="visual-panel">
+              <h3>Color palette</h3>
+              <p>The standard interface uses saturated purple and magenta with teal and light neutral tones. Calm Mode has a separate, softer palette.</p>
+              <div class="brand-palette" role="group" aria-label="Neurokami color palette">
+                <button class="brand-swatch" type="button" aria-pressed="true" aria-label="Primary Purple, #5B46B8" data-name="Primary Purple" data-hex="#5B46B8" data-role="The main action color, used for buttons and prominent interface controls.">
+                  <span class="brand-swatch-color" style="background:#5B46B8"></span><span class="brand-swatch-label"><strong>Primary Purple</strong><small>#5B46B8</small></span>
+                </button>
+                <button class="brand-swatch" type="button" aria-pressed="false" aria-label="Magenta, #D22DA5" data-name="Magenta" data-hex="#D22DA5" data-role="A vivid secondary accent used for the Neurokami wordmark, selected states, and emphasis.">
+                  <span class="brand-swatch-color" style="background:#D22DA5"></span><span class="brand-swatch-label"><strong>Magenta</strong><small>#D22DA5</small></span>
+                </button>
+                <button class="brand-swatch" type="button" aria-pressed="false" aria-label="Teal, #66A39C" data-name="Teal" data-hex="#66A39C" data-role="A supporting accent used for selected interface details and icons.">
+                  <span class="brand-swatch-color" style="background:#66A39C"></span><span class="brand-swatch-label"><strong>Teal</strong><small>#66A39C</small></span>
+                </button>
+                <button class="brand-swatch" type="button" aria-pressed="false" aria-label="Soft White, #FAFAFA" data-name="Soft White" data-hex="#FAFAFA" data-role="The main screen surface keeps content open and creates contrast with the accent colors.">
+                  <span class="brand-swatch-color" style="background:#FAFAFA"></span><span class="brand-swatch-label"><strong>Soft White</strong><small>#FAFAFA</small></span>
+                </button>
+              </div>
+              <div class="palette-detail" aria-live="polite">
+                <strong id="palette-name">Primary Purple · #5B46B8</strong>
+                <p id="palette-role">The main action color, used for buttons and prominent interface controls.</p>
+              </div>
+              <div class="calm-palette" aria-labelledby="calm-palette-title">
+                <h4 id="calm-palette-title">Calm Mode palette</h4>
+                <p>An optional softer palette for neurodivergent users who prefer a quieter visual experience.</p>
+                <div class="calm-swatches" role="group" aria-label="Calm Mode colors">
+                  <button class="calm-swatch" type="button" aria-pressed="true" aria-label="Muted Purple, #72668A" data-name="Muted Purple" data-hex="#72668A" data-role="A softened purple that keeps the brand color present with a gentler feel.">
+                    <span class="calm-swatch-color" style="background:#72668A"></span><span><strong>Muted Purple</strong><small>#72668A</small></span>
+                  </button>
+                  <button class="calm-swatch" type="button" aria-pressed="false" aria-label="Soft Teal, #66A39C" data-name="Soft Teal" data-hex="#66A39C" data-role="A low-saturation teal that adds a calm supporting accent.">
+                    <span class="calm-swatch-color" style="background:#66A39C"></span><span><strong>Soft Teal</strong><small>#66A39C</small></span>
+                  </button>
+                  <button class="calm-swatch" type="button" aria-pressed="false" aria-label="Dusty Rose, #CCB0BE" data-name="Dusty Rose" data-hex="#CCB0BE" data-role="A muted rose that adds warmth without the intensity of the standard magenta accent.">
+                    <span class="calm-swatch-color" style="background:#CCB0BE"></span><span><strong>Dusty Rose</strong><small>#CCB0BE</small></span>
+                  </button>
+                  <button class="calm-swatch" type="button" aria-pressed="false" aria-label="Light Gray, #EBEBEB" data-name="Light Gray" data-hex="#EBEBEB" data-role="A light neutral surface that keeps the Calm Mode palette soft and restrained.">
+                    <span class="calm-swatch-color" style="background:#EBEBEB"></span><span><strong>Light Gray</strong><small>#EBEBEB</small></span>
+                  </button>
+                </div>
+                <div class="palette-detail" aria-live="polite">
+                  <strong id="calm-palette-name">Muted Purple · #72668A</strong>
+                  <p id="calm-palette-role">A softened purple that keeps the brand color present with a gentler feel.</p>
+                </div>
+              </div>
+            </div>
+            <div class="visual-panel">
+              <h3>Accessibility options</h3>
+              <p>Neurokami includes settings that let people adjust the interface to suit their preferences.</p>
+              <div class="accessibility-videos">
+                <figure class="accessibility-feature">
+                  <video id="text-size-video" autoplay muted playsinline preload="auto" aria-label="Video demonstration of the Neurokami text size setting">
+                    <source src="assets/images/textsize.mp4" type="video/mp4">
+                  </video>
+                  <button class="video-toggle" type="button" aria-controls="text-size-video" aria-label="Play text size video"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5v11l9-5.5z"/></svg></button>
+                  <figcaption>
+                    <h4>Text size</h4>
+                    <p>Adjust text size with an on-screen control, making interface copy easier to read at a comfortable scale.</p>
+                  </figcaption>
+                </figure>
+                <figure class="accessibility-feature">
+                  <video id="calm-mode-video" muted playsinline preload="metadata" aria-label="Video demonstration of Neurokami Calm Mode">
+                    <source src="assets/images/calm.mp4" type="video/mp4">
+                  </video>
+                  <button class="video-toggle" type="button" aria-controls="calm-mode-video" aria-label="Play Calm Mode video"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5v11l9-5.5z"/></svg></button>
+                  <figcaption>
+                    <h4>Calm Mode</h4>
+                    <p>Switch to a softer color palette designed for neurodivergent users who prefer a quieter visual experience.</p>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="visual-panel" style="margin-top:18px">
+            <h3>Typography hierarchy</h3>
+            <p>The exported screens don’t specify a font family, so these specimens describe the visible type roles and hierarchy without guessing the font name.</p>
+            <div class="type-scale" role="group" aria-label="Neurokami typography specimens">
+              <button class="type-sample" type="button" aria-pressed="true" data-role="Display" data-detail="Large, bold type gives welcome and screen titles a clear first read." data-spec="Large · Bold">
+                <small>Display · Large / Bold</small><span class="type-sample-text type-display-sample">Welcome!</span>
+              </button>
+              <button class="type-sample" type="button" aria-pressed="false" data-role="Interface" data-detail="A strong medium-sized style helps section labels, navigation, and actions stand out from supporting copy." data-spec="Medium · Semibold">
+                <small>Interface · Medium / Semibold</small><span class="type-sample-text type-interface-sample">Resources · Messages</span>
+              </button>
+              <button class="type-sample" type="button" aria-pressed="false" data-role="Body" data-detail="Regular, sentence-case text carries resource descriptions and supporting information." data-spec="Reading size · Regular">
+                <small>Body · Reading size / Regular</small><span class="type-sample-text type-body-sample">Browse resources and connect with the community.</span>
+              </button>
+            </div>
+            <div class="type-spec-detail" aria-live="polite">
+              <strong id="type-role">Display · Large / Bold</strong>
+              <p id="type-detail">Large, bold type gives welcome and screen titles a clear first read.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="process-section process-alt" aria-labelledby="wireframes-title">
+      <div class="wrap">
+        <article class="process-step">
+          <header class="process-header">
+            <div>
+              <p class="section-label">04 · Low-Fidelity Wireframes</p>
+              <h2 id="wireframes-title">Work out the hierarchy before the visual details.</h2>
+              <p>Low-fidelity screens map the basic layout and navigation for sign-in, the home feed, conversations, and the resource library. Keeping these screens simple makes the content order and core actions easy to assess.</p>
+            </div>
+          </header>
+          <div class="artifact-grid artifact-grid--wireframes">
+            <figure class="artifact-card"><img src="assets/images/loginwireframe.png" alt="Low-fidelity Neurokami sign-up and login wireframe"><figcaption><strong>Getting started</strong><span>Sign-up and login entry points</span></figcaption></figure>
+            <figure class="artifact-card"><img src="assets/images/homefeedwireframe.png" alt="Low-fidelity Neurokami home feed wireframe with friends, posts, and bottom navigation"><figcaption><strong>Home feed</strong><span>Friends, posts, and primary navigation</span></figcaption></figure>
+            <figure class="artifact-card"><img src="assets/images/messageswireframe.png" alt="Low-fidelity Neurokami messages wireframe organizing group messages and friends"><figcaption><strong>Messages</strong><span>Separate group, close friend, and other friend lists</span></figcaption></figure>
+            <figure class="artifact-card"><img src="assets/images/resourceswireframe.png" alt="Low-fidelity Neurokami resources wireframe showing topic sections and an information popup"><figcaption><strong>Resources</strong><span>Topic browsing and resource detail states</span></figcaption></figure>
+            <figure class="artifact-card artifact-card--comment"><div class="artifact-image-wrap"><img src="assets/images/settingswireframe.png" alt="Low-fidelity Neurokami settings wireframe with preference controls"><button class="comment-marker" type="button" aria-label="Show accessibility settings note" aria-expanded="false" aria-controls="settings-accessibility-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><div class="comment-popover" id="settings-accessibility-note" hidden>Toggle for neurodivergent users: Text size increase, color being calm rather than vivid, spell check, etc.</div></div><figcaption><strong>Settings</strong><span>Preference controls and account options</span></figcaption></figure>
+            <figure class="artifact-card"><img src="assets/images/securityquestionwireframe.png" alt="Low-fidelity explanatory dialog wireframe for Neurokami personalization questions"><figcaption><strong>Explain the questions</strong><span>Clarify why personalizing questions are asked</span></figcaption></figure>
+            <figure class="artifact-card"><img src="assets/images/resourcestestpopupwireframe.png" alt="Low-fidelity resource disclaimer popup wireframe"><figcaption><strong>Resource context</strong><span>Place a disclaimer alongside resource content</span></figcaption></figure>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="process-section process-alt" aria-labelledby="final-design-title">
+      <div class="wrap">
+        <article class="process-step">
+          <header class="process-header">
+            <div>
+              <p class="section-label">05 · Final UI</p>
+              <h2 id="final-design-title">Bring onboarding, connection, and resources into one app.</h2>
+              <p>The final screens carry the wireframe structure into a polished mobile interface, using repeated navigation and component styles to connect the app’s main areas.</p>
+            </div>
+          </header>
+          <div class="design-outcome">
+            <img src="assets/images/neurokamiMockup.jpg" alt="Final Neurokami app mockup showing resources, messages, friend suggestions, and a member profile">
+            <div>
+              <h3>A connected mobile experience</h3>
+              <p>The resource library, messaging, and community features sit within the same navigation system. Onboarding introduces the app and gathers preferences to personalize the experience.</p>
+              <p>Across the interface, the visual language stays consistent while settings offer Calm Mode, Night Mode, and text-size controls.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="prototype-cta wrap" aria-labelledby="prototype-title">
+      <div>
+        <p class="section-label">Try the Prototype</p>
+        <h2 id="prototype-title">Explore the Neurokami app flow.</h2>
+        <p>Open the interactive Figma prototype to move through the designed experience.</p>
+      </div>
+      <a class="prototype-button" href="https://www.figma.com/proto/qeIXoLR2iIBEraGEqzmnTs/Prototype?type=design&amp;node-id=1-265&amp;t=o5OZFPRU2tBig81t-1&amp;scaling=scale-down&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A265&amp;mode=design" target="_blank" rel="noopener noreferrer">View prototype <span aria-hidden="true">↗</span></a>
     </section>
   </main>
   <footer class="site-footer">Designed and Developed by Alanna Bent · © Alanna Bent</footer>
+  <script>
+    const siteHeader = document.querySelector('.site-header');
+    const updateHeaderOnScroll = () => siteHeader.classList.toggle('is-scrolled', window.scrollY > 8);
+    window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+    updateHeaderOnScroll();
+
+    document.querySelectorAll('.comment-marker').forEach((marker) => {
+      const note = document.getElementById(marker.getAttribute('aria-controls'));
+      marker.addEventListener('click', () => {
+        const isOpen = marker.getAttribute('aria-expanded') === 'true';
+        marker.setAttribute('aria-expanded', String(!isOpen));
+        note.hidden = isOpen;
+      });
+    });
+
+    const personaTabs = Array.from(document.querySelectorAll('[data-persona-tab]'));
+    const activatePersona = (activeTab, moveFocus = false) => {
+      personaTabs.forEach((tab) => {
+        const selected = tab === activeTab;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        document.getElementById(tab.getAttribute('aria-controls')).hidden = !selected;
+      });
+      if (moveFocus) activeTab.focus();
+    };
+    personaTabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activatePersona(tab));
+      tab.addEventListener('keydown', (event) => {
+        let nextIndex = index;
+        if (event.key === 'ArrowRight') nextIndex = (index + 1) % personaTabs.length;
+        else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + personaTabs.length) % personaTabs.length;
+        else if (event.key === 'Home') nextIndex = 0;
+        else if (event.key === 'End') nextIndex = personaTabs.length - 1;
+        else return;
+        event.preventDefault();
+        activatePersona(personaTabs[nextIndex], true);
+      });
+    });
+
+    const neurokamiSwatches = Array.from(document.querySelectorAll('.brand-swatch'));
+    neurokamiSwatches.forEach((swatch) => {
+      swatch.addEventListener('click', () => {
+        neurokamiSwatches.forEach((item) => item.setAttribute('aria-pressed', String(item === swatch)));
+        document.querySelector('#palette-name').textContent = `${swatch.dataset.name} · ${swatch.dataset.hex}`;
+        document.querySelector('#palette-role').textContent = swatch.dataset.role;
+      });
+    });
+
+    const calmSwatches = Array.from(document.querySelectorAll('.calm-swatch'));
+    calmSwatches.forEach((swatch) => {
+      swatch.addEventListener('click', () => {
+        calmSwatches.forEach((item) => item.setAttribute('aria-pressed', String(item === swatch)));
+        document.querySelector('#calm-palette-name').textContent = `${swatch.dataset.name} · ${swatch.dataset.hex}`;
+        document.querySelector('#calm-palette-role').textContent = swatch.dataset.role;
+      });
+    });
+
+    const neurokamiTypeSamples = Array.from(document.querySelectorAll('.type-sample'));
+    neurokamiTypeSamples.forEach((sample) => {
+      sample.addEventListener('click', () => {
+        neurokamiTypeSamples.forEach((item) => item.setAttribute('aria-pressed', String(item === sample)));
+        document.querySelector('#type-role').textContent = `${sample.dataset.role} · ${sample.dataset.spec}`;
+        document.querySelector('#type-detail').textContent = sample.dataset.detail;
+      });
+    });
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('.video-toggle').forEach((button) => {
+      const video = document.getElementById(button.getAttribute('aria-controls'));
+      const syncButton = () => {
+        const action = video.paused ? 'Play' : 'Pause';
+        button.innerHTML = action === 'Play'
+          ? '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5v11l9-5.5z"/></svg>'
+          : '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 2h3v12H3zM10 2h3v12h-3z"/></svg>';
+        button.setAttribute('aria-label', `${action} ${video.id === 'text-size-video' ? 'text size' : 'Calm Mode'} video`);
+      };
+      button.addEventListener('click', () => {
+        if (video.paused) video.play().catch(syncButton);
+        else video.pause();
+      });
+      video.addEventListener('play', syncButton);
+      video.addEventListener('pause', syncButton);
+      video.addEventListener('ended', () => {
+        video.pause();
+        syncButton();
+      });
+      if (reduceMotion) video.pause();
+      syncButton();
+    });
+
+    const textSizeVideo = document.querySelector('#text-size-video');
+    const calmModeVideo = document.querySelector('#calm-mode-video');
+    textSizeVideo.addEventListener('ended', () => {
+      if (calmModeVideo.paused) {
+        calmModeVideo.currentTime = 0;
+        calmModeVideo.play().catch(() => calmModeVideo.pause());
+      }
+    });
+  </script>
 </body>
 </html>
