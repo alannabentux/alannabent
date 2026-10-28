@@ -253,6 +253,11 @@
     .prototype-cta h2 { max-width: 590px; margin: 0; font-size: clamp(27px, 3.5vw, 40px); font-weight: 400; letter-spacing: -.055em; line-height: 1.08; }
     .prototype-cta p { margin: 12px 0 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
     .site-footer { width: min(1160px, calc(100% - 80px)); margin: 0 auto; padding: 24px 0 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; text-align: center; }
+    .reveal-on-scroll { opacity: 0; transform: translateY(24px); transition: opacity .68s ease, transform .68s cubic-bezier(.2,.7,.25,1); transition-delay: var(--reveal-delay, 0ms); }
+    .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal-on-scroll.from-above { transform: translateY(-24px); }
+    .reveal-on-scroll.leaving-up { transform: translateY(24px); }
+    .reveal-on-scroll.leaving-down { transform: translateY(-24px); }
     @media (max-width: 760px) {
       .wrap { width: min(100% - 40px, 560px); }
       .site-header { width: 100%; min-height: 76px; padding-inline: 20px; }
@@ -667,6 +672,49 @@
     const updateHeaderOnScroll = () => siteHeader.classList.toggle('is-scrolled', window.scrollY > 8);
     window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
     updateHeaderOnScroll();
+
+    const revealTargets = [];
+    document.querySelectorAll('main > section:not(.hero)').forEach((section) => {
+      const contentBlocks = Array.from(section.children).flatMap((child) =>
+        child.classList.contains('wrap') ? Array.from(child.children) : [child]
+      );
+      contentBlocks.forEach((block) => revealTargets.push(block));
+    });
+
+    const revealMotionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (revealMotionReduced || !('IntersectionObserver' in window)) {
+      revealTargets.forEach((target) => target.classList.add('is-visible'));
+    } else if (revealTargets.length) {
+      let previousScrollY = window.scrollY;
+      let scrollDirection = 'down';
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        if (Math.abs(currentScrollY - previousScrollY) > 2) {
+          scrollDirection = currentScrollY < previousScrollY ? 'up' : 'down';
+          previousScrollY = currentScrollY;
+        }
+      }, { passive: true });
+
+      revealTargets.forEach((target, index) => {
+        target.classList.add('reveal-on-scroll');
+        target.style.setProperty('--reveal-delay', `${(index % 4) * 90}ms`);
+      });
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const target = entry.target;
+          if (entry.isIntersecting) {
+            target.classList.remove('leaving-up', 'leaving-down', 'from-above');
+            if (scrollDirection === 'up') target.classList.add('from-above');
+            window.requestAnimationFrame(() => target.classList.add('is-visible'));
+          } else {
+            target.classList.remove('is-visible', 'from-above', 'leaving-up', 'leaving-down');
+            target.classList.add(scrollDirection === 'up' ? 'leaving-up' : 'leaving-down');
+          }
+        });
+      }, { threshold: 0.06, rootMargin: '0px 0px -8% 0px' });
+      revealTargets.forEach((target) => revealObserver.observe(target));
+    }
 
     document.querySelectorAll('.comment-marker').forEach((marker) => {
       const note = document.getElementById(marker.getAttribute('aria-controls'));
