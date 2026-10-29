@@ -18,6 +18,10 @@
     a { color:inherit; }
     .wrap { width:min(1160px, calc(100% - 88px)); margin-inline:auto; }
     .hero { position:relative; width:100%; min-height:100vh; display:grid; grid-template-columns: 7fr 5fr; align-items:center; gap:22px; padding:72px max(44px, calc((100% - 1160px) / 2)) 34px; color:#fff; background:linear-gradient(112deg,#855de1 0%,#27b5ed 100%); }
+    .all-projects-link { position:absolute; z-index:2; top:35px; right:max(44px,calc((100% - 1160px)/2)); display:inline-flex; align-items:center; gap:10px; color:rgba(255,255,255,.94); font-size:14px; text-decoration:none; }
+    .all-projects-link::before { content:"←"; font-size:19px; transition:transform .2s; }
+    .all-projects-link:hover::before { transform:translateX(-4px); }
+    .all-projects-link:focus-visible { outline:2px solid #fff; outline-offset:4px; }
     .eyebrow { font-weight:400; font-size:14px; margin:0 0 58px; }
     h1 { font-size:48px; line-height:1.2; letter-spacing:-.045em; margin:16px 0 38px; max-width:680px; }
     .hero p { font-size:18px; max-width:470px; margin:0; }
@@ -140,6 +144,7 @@
     @media (max-width:760px) {
       .wrap { width:min(100% - 40px, 600px); }
       .hero { min-height:100vh; grid-template-columns:1fr; text-align:left; gap:15px; padding:70px 20px 44px; }
+      .all-projects-link { top:22px; right:20px; }
       .eyebrow { margin-bottom:42px; }
       h1 { margin-bottom:30px; }
       .hero p { font-size:16px; }
@@ -177,6 +182,7 @@
 <body>
   <main>
     <header class="hero">
+      <a class="all-projects-link" href="../index.html#projects">All projects</a>
       <div>
         <p class="eyebrow">Case Study | Borrey Law</p>
         <h1>Bringing an established<br>practice into the digital space.</h1>

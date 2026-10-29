@@ -7,7 +7,7 @@
   <title>Neurokami | Alanna Bent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,400..700&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       color-scheme: light;
@@ -91,6 +91,7 @@
     .screen-caption p { margin: 0; color: #d0cbd6; font-size: 15px; line-height: 1.75; }
     .process-intro { max-width: 700px; margin: 0 auto var(--section-content-gap); color: var(--muted); font-size: 16px; line-height: 1.8; text-align: center; }
     .process-section { padding-block: var(--section-space); }
+    .process-section:not(.process-alt) + .process-section:not(.process-alt), .process-section.process-alt + .process-section.process-alt { padding-top: 0; }
     .process-section.process-alt { background: var(--soft); }
     .process-header { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: start; max-width: 800px; margin-bottom: var(--section-content-gap); }
     .process-header--split { max-width: 1000px; }
@@ -185,7 +186,7 @@
     .calm-swatch:focus-visible { outline: 3px solid #a58bce; outline-offset: 3px; }
     .calm-swatch:hover { transform: translateY(-2px); }
     .type-scale { display: grid; gap: 10px; }
-    .type-sample { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px 12px; width: 100%; min-height: 68px; padding: 13px 15px; border: 1px solid #e8e3ed; border-radius: 10px; color: var(--ink); background: #fff; text-align: left; cursor: pointer; }
+    .type-sample { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px 12px; width: 100%; min-height: 68px; padding: 13px 15px; border: 1px solid #e8e3ed; border-radius: 10px; color: var(--ink); background: #fff; font-family: "Roboto", Arial, sans-serif; text-align: left; cursor: pointer; }
     .type-sample[aria-pressed="true"] { border-color: #9e89c8; background: #faf7ff; box-shadow: inset 3px 0 var(--purple); }
     .type-sample small { grid-column: 1 / -1; color: var(--muted); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
     .type-sample-text { min-width: 0; }
@@ -204,17 +205,17 @@
     .research-intro > p:last-child { margin: 15px 0 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
     .persona-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
     .persona-tab { display: grid; gap: 3px; min-width: 0; padding: 10px 8px; border: 1px solid #e8e3ed; border-radius: 9px; color: #5e5667; background: #fff; text-align: center; cursor: pointer; }
-    .persona-tab:nth-child(2) { --persona-color: #66a39c; --persona-tab-text: #183a36; --persona-tab-subtext: #294f49; }
-    .persona-tab:nth-child(3) { --persona-color: #d69aae; --persona-tab-text: #4a2733; --persona-tab-subtext: #603a46; }
+    .persona-tab:nth-child(2) { --persona-color: #66a39c; --persona-active-color: #00857d; }
+    .persona-tab:nth-child(3) { --persona-color: #d69aae; --persona-active-color: #d22da5; }
     .persona-tab strong { font-size: 12px; font-weight: 600; }
     .persona-tab span { color: var(--muted); font-size: 10px; }
-    .persona-tab[aria-selected="true"] { border-color: var(--persona-color, var(--purple)); color: var(--persona-tab-text, #fff); background: var(--persona-color, var(--purple)); box-shadow: 0 4px 12px rgb(35 27 32 / 14%); }
-    .persona-tab[aria-selected="true"] span { color: var(--persona-tab-subtext, rgb(255 255 255 / 86%)); }
+    .persona-tab[aria-selected="true"] { border-color: var(--persona-active-color, var(--persona-color, var(--purple))); color: #fff; background: var(--persona-active-color, var(--persona-color, var(--purple))); box-shadow: 0 4px 12px rgb(35 27 32 / 14%); }
+    .persona-tab[aria-selected="true"] span { color: rgb(255 255 255 / 90%); }
     .persona-tab:focus-visible { outline: 3px solid #bd9bea; outline-offset: 3px; }
     .persona-panels { min-width: 0; }
     .persona-card { min-width: 0; padding: 18px; border: 1px solid #e8e3ed; border-top: 4px solid var(--persona-color, var(--purple)); border-radius: 13px; background: #fff; }
-    .persona-card:nth-child(2) { --persona-color: #66a39c; }
-    .persona-card:nth-child(3) { --persona-color: #d69aae; }
+    .persona-card:nth-child(2) { --persona-color: #00857d; }
+    .persona-card:nth-child(3) { --persona-color: #d22da5; }
     .persona-kind { margin: 0 0 8px; color: var(--persona-color); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
     .persona-card h3 { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -.04em; }
     .persona-meta { margin: 4px 0 10px; color: var(--muted); font-size: 11px; line-height: 1.5; }
@@ -249,19 +250,23 @@
     .ui-gallery-hint { color: var(--muted); font-size: 12px; }
     .ui-screen-lightbox { position: fixed; inset: 0; width: 70vw; max-width: 850px; max-height: 70vh; margin: auto; padding: 22px; overflow: auto; border: 1px solid #e5dfeb; border-radius: 16px; background: #fff; box-shadow: 0 24px 80px rgb(27 20 38 / 30%); }
     .ui-screen-lightbox::backdrop { background: rgb(29 24 36 / 76%); backdrop-filter: blur(3px); }
-    .ui-screen-lightbox-close { position: sticky; z-index: 1; top: 0; display: grid; width: 40px; height: 40px; place-items: center; margin: 0 0 8px auto; border: 1px solid #ded7e8; border-radius: 50%; color: var(--purple-dark); background: #fff; font-size: 23px; cursor: pointer; }
+    .ui-screen-lightbox-close { position: absolute; z-index: 1; top: 22px; right: 22px; display: grid; width: 40px; height: 40px; place-items: center; margin: 0; border: 1px solid #ded7e8; border-radius: 50%; color: var(--purple-dark); background: #fff; font-size: 23px; cursor: pointer; }
     .ui-screen-lightbox-close:focus-visible { outline: 3px solid #bd9bea; outline-offset: 3px; }
     .ui-lightbox-content { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: 24px; }
     .ui-lightbox-visual { display: grid; min-width: 0; place-items: center; }
+    .ui-lightbox-copy { align-self: center; }
     .ui-screen-lightbox img { display: block; width: auto; max-width: 100%; max-height: 55vh; margin: 0 auto; object-fit: contain; filter: url(#screen-sharpen); }
     .ui-lightbox-copy h3 { margin: 0; font-size: 18px; font-weight: 600; }
     .ui-lightbox-copy > p { margin: 8px 0 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
     .ui-designer-note { margin-top: 18px; padding: 12px 14px; border-left: 3px solid var(--pink); border-radius: 0 9px 9px 0; background: var(--soft); }
     .ui-designer-note strong { display: block; color: var(--purple-dark); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
     .ui-designer-note p { margin: 6px 0 0; color: var(--ink); font-size: 13px; line-height: 1.55; }
-    .prototype-cta { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-block: var(--section-space); padding: clamp(30px, 6vw, 64px); border-radius: 20px; background: linear-gradient(115deg, #f5f0ff, #fdf0f8); }
+    .prototype-cta { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-block: clamp(32px, 4vw, 48px) var(--section-space); padding: clamp(30px, 6vw, 64px); border-radius: 20px; color: #fff; background: linear-gradient(130deg, #5B46B8 0%, #D22DA5 100%); }
+    .prototype-cta .section-label { color: #f1eaff; }
     .prototype-cta h2 { max-width: 590px; margin: 0; font-size: clamp(27px, 3.5vw, 40px); font-weight: 400; letter-spacing: -.055em; line-height: 1.08; }
-    .prototype-cta p { margin: 12px 0 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+    .prototype-cta p { margin: 12px 0 0; color: rgb(255 255 255 / 90%); font-size: 15px; line-height: 1.65; }
+    .prototype-cta .prototype-button { color: #4e3dac; background: #fff; }
+    .prototype-cta .prototype-button:hover { color: #38287f; background: #f2edff; }
     .site-footer { width: min(1160px, calc(100% - 80px)); margin: 0 auto; padding: 24px 0 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; text-align: center; }
     .reveal-on-scroll { opacity: 0; transform: translateY(24px); transition: opacity .68s ease, transform .68s cubic-bezier(.2,.7,.25,1); transition-delay: var(--reveal-delay, 0ms); }
     .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
@@ -307,7 +312,7 @@
       .research-layout { grid-template-columns: 1fr; }
       .research-paper-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .calm-palette { padding: 13px; }
-      .prototype-cta { align-items: flex-start; flex-direction: column; margin-block: var(--section-space-mobile); padding: 30px 24px; }
+      .prototype-cta { align-items: flex-start; flex-direction: column; margin-block: 28px var(--section-space-mobile); padding: 30px 24px; }
       .site-footer { width: calc(100% - 40px); }
     }
     @media (max-width: 440px) {
@@ -575,7 +580,7 @@
           </div>
           <div class="visual-panel" style="margin-top:18px">
             <h3>Typography hierarchy</h3>
-            <p>The exported screens don’t specify a font family, so these specimens describe the visible type roles and hierarchy without guessing the font name.</p>
+            <p>Roboto is used throughout the app. Differences in size and weight create a clear hierarchy for titles, interface labels, and body copy.</p>
             <div class="type-scale" role="group" aria-label="Neurokami typography specimens">
               <button class="type-sample" type="button" aria-pressed="true" data-role="Display" data-detail="Large, bold type gives welcome and screen titles a clear first read." data-spec="Large · Bold">
                 <small>Display · Large / Bold</small><span class="type-sample-text type-display-sample">Welcome!</span>
@@ -654,7 +659,7 @@
           </div>
           <div class="ui-gallery-controls">
             <button class="ui-gallery-arrow" type="button" data-gallery-previous aria-label="Scroll to previous screens">‹</button>
-            <span class="ui-gallery-hint">Drag or use the arrows to browse. Select a screen to enlarge it.</span>
+            <span class="ui-gallery-hint">Scroll or use the arrows to browse. Select a screen to enlarge it.</span>
             <button class="ui-gallery-arrow" type="button" data-gallery-next aria-label="Scroll to next screens">›</button>
           </div>
           <dialog class="ui-screen-lightbox" data-screen-lightbox aria-labelledby="lightbox-screen-title">
