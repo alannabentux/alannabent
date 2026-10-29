@@ -1,5 +1,32 @@
 "use strict";
 
+const clearUrlFragment = () => {
+  if (window.location.hash) {
+    window.history.replaceState(window.history.state, "", `${window.location.pathname}${window.location.search}`);
+  }
+};
+
+if (document.readyState === "complete") {
+  clearUrlFragment();
+} else {
+  window.addEventListener("load", clearUrlFragment, { once: true });
+}
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a[href*='#']");
+  if (!link) return;
+
+  const destination = new URL(link.href, window.location.href);
+  if (destination.origin !== window.location.origin || destination.pathname !== window.location.pathname || destination.search !== window.location.search || !destination.hash) return;
+
+  const target = document.getElementById(decodeURIComponent(destination.hash.slice(1)));
+  if (!target) return;
+
+  event.preventDefault();
+  window.history.replaceState(window.history.state, "", `${window.location.pathname}${window.location.search}`);
+  target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+});
+
 const colorBar = document.querySelector(".color-bar");
 const colorBarCursor = document.querySelector(".color-bar__cursor");
 const brand = document.querySelector(".navbar__brand");
