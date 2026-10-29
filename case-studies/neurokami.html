@@ -130,11 +130,21 @@
     .artifact-card img { display: block; width: 100%; height: 360px; object-fit: contain; object-position: center; border-radius: 8px; background: #f5f3f7; }
     .artifact-card--comment .artifact-image-wrap { position: relative; width: min(100%, 190px); margin-inline: auto; }
     .artifact-card--comment .artifact-image-wrap img { width: 100%; height: auto; max-height: 330px; border-radius: 8px; }
-    .comment-marker { position: absolute; top: 43%; right: -11px; display: grid; width: 38px; height: 38px; place-items: center; padding: 0; border: 2px solid #fff; border-radius: 50%; color: #fff; background: var(--purple); cursor: pointer; box-shadow: 0 3px 12px rgb(40 24 64 / 25%); }
+    .artifact-grid--wireframes .artifact-card--comment .artifact-image-wrap { width: 100%; }
+    .artifact-grid--wireframes .artifact-card--comment .artifact-image-wrap img { height: 330px; max-height: none; object-fit: contain; }
+    .comment-marker { position: absolute; top: var(--marker-top, 43%); right: var(--marker-right, -11px); left: var(--marker-left, auto); display: grid; width: 38px; height: 38px; place-items: center; padding: 0; border: 2px solid #fff; border-radius: 50%; color: #fff; background: var(--purple); cursor: pointer; opacity: 1; visibility: visible; box-shadow: 0 3px 12px rgb(40 24 64 / 25%); transition: background-color 160ms ease; }
+    .artifact-grid--wireframes .artifact-card:nth-child(1) { --marker-top: 12%; --marker-left: 12%; --marker-right: auto; }
+    .artifact-grid--wireframes .artifact-card:nth-child(2) { --marker-top: 39%; --marker-left: auto; --marker-right: 12%; }
+    .artifact-grid--wireframes .artifact-card:nth-child(3) { --marker-top: 22%; --marker-left: 16%; --marker-right: auto; }
+    .artifact-grid--wireframes .artifact-card:nth-child(4) { --marker-top: 62%; --marker-left: auto; --marker-right: 16%; }
+    .artifact-grid--wireframes .artifact-card:nth-child(5) { --marker-top: 31%; --marker-left: 11%; --marker-right: auto; }
+    .artifact-grid--wireframes .artifact-card:nth-child(6) { --marker-top: 15%; --marker-left: auto; --marker-right: 13%; }
+    .artifact-grid--wireframes .artifact-card:nth-child(7) { --marker-top: 57%; --marker-left: 15%; --marker-right: auto; }
+    .artifact-grid--wireframes .artifact-card:nth-child(8) { --marker-top: 45%; --marker-left: auto; --marker-right: 12%; }
     .comment-marker svg { display: block; width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
     .comment-marker:hover { background: var(--purple-dark); }
     .comment-marker:focus-visible { outline: 3px solid #bd9bea; outline-offset: 3px; }
-    .comment-popover { position: absolute; z-index: 5; top: calc(43% + 44px); right: -4px; width: min(235px, 82vw); padding: 13px 15px; border: 1px solid #e8e1ef; border-radius: 10px; color: #37313d; background: #fff; font-size: 12px; line-height: 1.55; text-align: left; box-shadow: 0 10px 28px rgb(34 26 48 / 20%); }
+    .comment-popover { position: absolute; z-index: 5; top: calc(var(--marker-top, 43%) + 44px); right: -4px; width: min(235px, 82vw); padding: 13px 15px; border: 1px solid #e8e1ef; border-radius: 10px; color: #37313d; background: #fff; font-size: 12px; line-height: 1.55; text-align: left; box-shadow: 0 10px 28px rgb(34 26 48 / 20%); }
     .artifact-card figcaption { padding: 13px 3px 2px; }
     .artifact-card figcaption strong { display: block; margin-bottom: 4px; font-size: 14px; font-weight: 600; }
     .artifact-card figcaption span { display: block; color: var(--muted); font-size: 12px; line-height: 1.5; }
@@ -597,13 +607,13 @@
             </div>
           </header>
           <div class="artifact-grid artifact-grid--wireframes">
-            <figure class="artifact-card"><img src="assets/images/Signup%20Page.png" alt="Low-fidelity Neurokami sign-up page with social sign-in options"><figcaption><strong>Sign up</strong><span>Create an account or choose a social sign-in option</span></figcaption></figure>
-            <figure class="artifact-card"><img src="assets/images/Account%20Questions.png" alt="Low-fidelity Neurokami account personalization question screen"><figcaption><strong>Account questions</strong><span>Personalize the experience during onboarding</span></figcaption></figure>
-            <figure class="artifact-card"><img src="assets/images/securityquestionwireframe.png" alt="Low-fidelity explanatory dialog wireframe for Neurokami personalization questions"><figcaption><strong>Explain the questions</strong><span>Clarify why personalizing questions are asked</span></figcaption></figure>
-            <figure class="artifact-card"><img src="assets/images/homefeedwireframe.png" alt="Low-fidelity Neurokami home feed wireframe with friends, posts, and bottom navigation"><figcaption><strong>Home feed</strong><span>Friends, posts, and primary navigation</span></figcaption></figure>
-            <figure class="artifact-card"><img src="assets/images/messageswireframe.png" alt="Low-fidelity Neurokami messages wireframe organizing group messages and friends"><figcaption><strong>Messages</strong><span>Separate group, close friend, and other friend lists</span></figcaption></figure>
-            <figure class="artifact-card"><img src="assets/images/Resources.png" alt="Low-fidelity Neurokami resources screen with topic categories"><figcaption><strong>Resources</strong><span>Browse literature and resources by topic</span></figcaption></figure>
-            <figure class="artifact-card"><img src="assets/images/resourcestestpopupwireframe.png" alt="Low-fidelity resource disclaimer popup wireframe"><figcaption><strong>Resource context</strong><span>Place a disclaimer alongside resource content</span></figcaption></figure>
+            <figure class="artifact-card artifact-card--comment"><div class="artifact-image-wrap"><img src="assets/images/Signup%20Page.png" alt="Low-fidelity Neurokami sign-up page with social sign-in options"><button class="comment-marker" type="button" aria-label="Show sign-up wireframe note" aria-expanded="false" aria-controls="wireframe-signup-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><div class="comment-popover" id="wireframe-signup-note" hidden>Keep account creation focused, with the essential fields first and familiar social sign-in options easy to find.</div></div><figcaption><strong>Sign up</strong><span>Create an account or choose a social sign-in option</span></figcaption></figure>
+            <figure class="artifact-card artifact-card--comment"><div class="artifact-image-wrap"><img src="assets/images/Account%20Questions.png" alt="Low-fidelity Neurokami account personalization question screen"><button class="comment-marker" type="button" aria-label="Show account questions wireframe note" aria-expanded="false" aria-controls="wireframe-account-questions-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><div class="comment-popover" id="wireframe-account-questions-note" hidden>Use one clear question at a time and let people choose the options that best describe their needs.</div></div><figcaption><strong>Account questions</strong><span>Personalize the experience during onboarding</span></figcaption></figure>
+            <figure class="artifact-card artifact-card--comment"><div class="artifact-image-wrap"><img src="assets/images/securityquestionwireframe.png" alt="Low-fidelity explanatory dialog wireframe for Neurokami personalization questions"><button class="comment-marker" type="button" aria-label="Show question explanation wireframe note" aria-expanded="false" aria-controls="wireframe-explainer-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><div class="comment-popover" id="wireframe-explainer-note" hidden>Explain why the app asks personal questions and reassure people that their answers are private.</div></div><figcaption><strong>Explain the questions</strong><span>Clarify why personalizing questions are asked</span></figcaption></figure>
+            <figure class="artifact-card artifact-card--comment"><div class="artifact-image-wrap"><img src="assets/images/homefeedwireframe.png" alt="Low-fidelity Neurokami home feed wireframe with friends, posts, and bottom navigation"><button class="comment-marker" type="button" aria-label="Show home feed wireframe note" aria-expanded="false" aria-controls="wireframe-home-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><div class="comment-popover" id="wireframe-home-note" hidden>Prioritize a scannable feed and persistent navigation, with the create-post action easy to reach.</div></div><figcaption><strong>Home feed</strong><span>Friends, posts, and primary navigation</span></figcaption></figure>
+            <figure class="artifact-card artifact-card--comment"><div class="artifact-image-wrap"><img src="assets/images/messageswireframe.png" alt="Low-fidelity Neurokami messages wireframe organizing group messages and friends"><button class="comment-marker" type="button" aria-label="Show messages wireframe note" aria-expanded="false" aria-controls="wireframe-messages-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><div class="comment-popover" id="wireframe-messages-note" hidden>Separate groups, close friends, and other connections so people can quickly find the right conversation.</div></div><figcaption><strong>Messages</strong><span>Separate group, close friend, and other friend lists</span></figcaption></figure>
+            <figure class="artifact-card artifact-card--comment"><div class="artifact-image-wrap"><img src="assets/images/Resources.png" alt="Low-fidelity Neurokami resources screen with topic categories"><button class="comment-marker" type="button" aria-label="Show resources wireframe note" aria-expanded="false" aria-controls="wireframe-resources-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><div class="comment-popover" id="wireframe-resources-note" hidden>Group resources by topic to help people browse relevant information without needing to know exactly what to search for.</div></div><figcaption><strong>Resources</strong><span>Browse literature and resources by topic</span></figcaption></figure>
+            <figure class="artifact-card artifact-card--comment"><div class="artifact-image-wrap"><img src="assets/images/resourcestestpopupwireframe.png" alt="Low-fidelity resource disclaimer popup wireframe"><button class="comment-marker" type="button" aria-label="Show resource context wireframe note" aria-expanded="false" aria-controls="wireframe-context-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><div class="comment-popover" id="wireframe-context-note" hidden>Provide context and a clear disclaimer before users open third-party tests or other external resources.</div></div><figcaption><strong>Resource context</strong><span>Place a disclaimer alongside resource content</span></figcaption></figure>
             <figure class="artifact-card artifact-card--comment"><div class="artifact-image-wrap"><img src="assets/images/settingswireframe.png" alt="Low-fidelity Neurokami settings wireframe with preference controls"><button class="comment-marker" type="button" aria-label="Show accessibility settings note" aria-expanded="false" aria-controls="settings-accessibility-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><div class="comment-popover" id="settings-accessibility-note" hidden>Toggle for neurodivergent users: Text size increase, color being calm rather than vivid, spell check, etc.</div></div><figcaption><strong>Settings</strong><span>Preference controls and account options</span></figcaption></figure>
           </div>
         </article>
@@ -726,10 +736,28 @@
 
     document.querySelectorAll('.comment-marker').forEach((marker) => {
       const note = document.getElementById(marker.getAttribute('aria-controls'));
-      marker.addEventListener('click', () => {
-        const isOpen = marker.getAttribute('aria-expanded') === 'true';
-        marker.setAttribute('aria-expanded', String(!isOpen));
-        note.hidden = isOpen;
+      marker.addEventListener('pointerenter', (event) => {
+        if (event.pointerType === 'mouse' || event.pointerType === 'pen') {
+          note.hidden = false;
+          marker.setAttribute('aria-expanded', 'true');
+        }
+      });
+      marker.addEventListener('pointerleave', (event) => {
+        if (event.pointerType === 'mouse' || event.pointerType === 'pen') {
+          note.hidden = true;
+          marker.setAttribute('aria-expanded', 'false');
+        }
+      });
+      marker.addEventListener('focus', () => { note.hidden = false; });
+      marker.addEventListener('blur', () => {
+        note.hidden = true;
+        marker.setAttribute('aria-expanded', 'false');
+      });
+      marker.addEventListener('click', (event) => {
+        if (!window.matchMedia('(pointer: coarse)').matches) return;
+        const shouldOpen = note.hidden;
+        marker.setAttribute('aria-expanded', String(shouldOpen));
+        note.hidden = !shouldOpen;
       });
     });
 
