@@ -719,6 +719,39 @@ body {
   padding: 0 clamp(2rem, 8vw, 8rem);
 }
 
+.home-portrait {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  right: clamp(2rem, 28vw, 24rem);
+  width: clamp(8rem, 13vw, 11rem);
+  aspect-ratio: 1;
+  padding: 0.4rem;
+  border-radius: 50%;
+  background: conic-gradient(
+    #855de1 0deg 60deg,
+    #27b5ed 60deg 120deg,
+    #08bfae 120deg 180deg,
+    #1760af 180deg 240deg,
+    #49349f 240deg 300deg,
+    #e1ad9d 300deg 360deg
+  );
+  object-fit: cover;
+  object-position: center 36%;
+  transform: translateY(-50%);
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 22%);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 300ms cubic-bezier(.2, .8, .2, 1), box-shadow 300ms ease;
+}
+
+.home-portrait:hover,
+.home-portrait:focus-visible {
+  transform: translateY(-50%) scale(1.3);
+  box-shadow: 0 1.75rem 4.5rem rgb(0 0 0 / 35%);
+  outline: none;
+}
+
 .project-color-intro .intro {
   width: min(100%, 74rem);
   margin: 0;
@@ -727,9 +760,14 @@ body {
 .project-color-intro .intro__copy {
   max-width: none;
   width: 100%;
+  color: #fff;
   font-size: clamp(2.8rem, 4.6vw, 5.2rem);
   line-height: 1.08;
   text-align: left;
+}
+
+.project-color-intro .home-intro-line {
+  display: block;
 }
 
 .project-color-intro .paint-highlight {
@@ -1190,6 +1228,18 @@ body {
   }
   .project-color-intro {
     padding: 0 1.5rem;
+  }
+  .home-portrait {
+    top: auto;
+    right: 1.5rem;
+    bottom: 5.5rem;
+    width: clamp(5.5rem, 22vw, 7rem);
+    padding: 0.25rem;
+    transform: none;
+  }
+  .home-portrait:hover,
+  .home-portrait:focus-visible {
+    transform: scale(1.2);
   }
   .project-color-intro .intro {
     width: 100%;
