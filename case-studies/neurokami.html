@@ -336,6 +336,7 @@
     .prototype-cta .prototype-button { color: #4e3dac; background: #fff; }
     .prototype-cta .prototype-button:hover { color: #38287f; background: #f2edff; }
     .site-footer { width: min(1160px, calc(100% - 80px)); margin: 0 auto; padding: 24px 0 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; text-align: center; }
+    .next-project-footer { display:flex; align-items:center; justify-content:flex-end; width:min(860px, calc(100vw - 48px)); margin:48px auto 32px; padding:24px 0 0; }
     /* Reference-inspired case-study composition overrides */
     .hero { min-height:0; align-items:start; justify-items:stretch; padding-block:104px 20px; text-align:left; }
     .hero::before { display:none; }
@@ -771,12 +772,14 @@
       <div>
         <p class="section-label">Explore Neurokami</p>
         <h2 id="prototype-cta-title">See the app experience for yourself</h2>
-        <p>Open the interactive Figma prototype to explore the Neurokami app flow.</p>
       </div>
       <a class="prototype-button" href="https://www.figma.com/proto/qeIXoLR2iIBEraGEqzmnTs/Prototype?type=design&amp;node-id=1-265&amp;t=o5OZFPRU2tBig81t-1&amp;scaling=scale-down&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A265" target="_blank" rel="noopener noreferrer">Prototype <span aria-hidden="true">↗</span></a>
     </section>
 
   </main>
+  <footer class="site-footer next-project-footer" aria-label="Next project">
+    <a class="prototype-button" href="godwoven">Next project</a>
+  </footer>
   <script>
     const siteHeader = document.querySelector('.site-header');
     if (siteHeader) {

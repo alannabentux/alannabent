@@ -52,25 +52,34 @@ permalink: /case-studies/godwoven
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
   </style>
+  <link rel="stylesheet" href="case-study-shared.css">
 </head>
-<body>
+<body class="godwoven-case">
   <header class="site-header page-wrap">
     <a class="brand" href="/" aria-label="Alanna Bent home">ab</a>
-    <a class="back-link" href="/#projects">All projects</a>
+    <span class="case-project-status">In progress</span>
+    <a class="back-link" href="/#projects">Back to projects</a>
   </header>
   <main>
-    <section class="hero page-wrap" aria-labelledby="page-title">
-      <figure class="hero-image">
-        <img src="assets/images/godwovencomingsoon.png" alt="Godwoven Trilogy responsive website mockups">
-      </figure>
-      <div class="hero-copy">
+    <section class="hero page-wrap case-hero" aria-labelledby="page-title">
+      <div class="case-hero-copy">
         <h1 id="page-title">Godwoven Trilogy</h1>
-        <p class="project-type">Web design + web dev</p>
-        <p class="project-summary">A responsive website designed for the Godwoven Trilogy.</p>
-        <p class="coming-soon">Development in progress</p>
+        <p class="case-hero-tagline">Web design + web development</p>
       </div>
+      <img class="case-hero-image" src="assets/images/godwovencomingsoon.png" alt="Godwoven Trilogy responsive website mockups">
+      <p class="case-hero-summary">A responsive website designed for the Godwoven Trilogy.</p>
+    </section>
+    <section class="overview page-wrap" aria-label="Project details">
+      <dl class="project-details">
+        <div><dt>Project</dt><dd>Godwoven Trilogy</dd></div>
+        <div><dt>Scope</dt><dd>Web design + web development</dd></div>
+        <div><dt>Deliverable</dt><dd>Responsive website</dd></div>
+        <div><dt>Status</dt><dd>Development in progress</dd></div>
+      </dl>
     </section>
   </main>
-  <footer class="site-footer">Designed and Developed by Alanna Bent · © Alanna Bent</footer>
+  <footer class="site-footer next-project-footer" aria-label="Next project">
+    <a class="next-project-button" href="borrey-law">Next project</a>
+  </footer>
 </body>
 </html>

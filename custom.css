@@ -1024,6 +1024,10 @@ body {
   transition: opacity 300ms ease;
 }
 
+.project-color-panel--godwoven .project-color-panel__image {
+  object-position: center top;
+}
+
 .project-color-reveal.is-projects-section .project-color-panel:hover .project-color-panel__image,
 .project-color-reveal.is-projects-section .project-color-panel:focus-visible .project-color-panel__image {
   opacity: 1;

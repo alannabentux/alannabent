@@ -289,32 +289,29 @@ permalink: /case-studies/edge-analytics
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } .reveal-on-scroll { opacity:1; transform:none; } }
   </style>
+  <link rel="stylesheet" href="case-study-shared.css">
 </head>
 <body>
   <main>
-    <section class="hero" aria-labelledby="edge-hero-title">
+    <section class="hero case-hero" aria-labelledby="edge-hero-title">
       <a class="brand" href="/" aria-label="Alanna Bent home">ab</a>
-      <a class="back-link" href="/#projects">All projects</a>
-      <div class="hero-bubbles" aria-hidden="true"><canvas class="hero-dot-canvas"></canvas></div>
-      <div class="hero-heading">
-        <p class="hero-kicker">A Case Study</p>
-        <h1 class="hero-title" id="edge-hero-title">Edge Analytics</h1>
+      <a class="back-link" href="/#projects">Back to projects</a>
+      <a class="case-project-action" href="https://edgeanalytics.io" target="_blank" rel="noopener noreferrer">Visit website</a>
+      <div class="case-hero-copy">
+        <h1 id="edge-hero-title">Edge Analytics</h1>
+        <p class="case-hero-tagline">A digital home for data science.</p>
       </div>
+      <img class="case-hero-image" src="assets/images/edgeAnalyticsMockup.jpg" alt="Edge Analytics website design shown on a desktop screen">
+      <p class="case-hero-summary">Edge Analytics is a boutique data science consulting firm. I worked on the UI/UX design and development of its website, creating a clear digital presence for the firm and its work.</p>
     </section>
 
-    <section class="overview wrap" aria-labelledby="overview-title">
-      <img class="overview-image" src="assets/images/edgeAnalyticsMockup.jpg" alt="Edge Analytics website design shown on a desktop screen">
-      <div class="overview-copy">
-        <p class="section-label">Project Overview</p>
-        <h2 id="overview-title">A digital home for data science.</h2>
-        <p>Edge Analytics is a boutique data science consulting firm. I worked on the UI/UX design and development of its website, creating a clear digital presence for the firm and its work.</p>
-        <dl class="project-details">
-          <div><dt>Project Role</dt><dd>UI/UX Designer &amp; Developer</dd></div>
-          <div><dt>Technology Used</dt><dd>Figma · HTML · CSS · JavaScript</dd></div>
-          <div><dt>Skills</dt><dd>UI/UX Design · Web Design · Web Development</dd></div>
-          <div><dt>View Live Website</dt><dd><a href="https://edgeanalytics.io" target="_blank" rel="noopener noreferrer">edgeanalytics.io ↗</a></dd></div>
-        </dl>
-      </div>
+    <section class="overview wrap" aria-label="Project details">
+      <dl class="project-details">
+        <div><dt>Project Role</dt><dd>UI/UX Designer &amp; Developer</dd></div>
+        <div><dt>Technology Used</dt><dd>Figma · HTML · CSS · JavaScript</dd></div>
+        <div><dt>Skills</dt><dd>UI/UX Design · Web Design · Web Development</dd></div>
+        <div><dt>View Live Website</dt><dd><a href="https://edgeanalytics.io" target="_blank" rel="noopener noreferrer">edgeanalytics.io ↗</a></dd></div>
+      </dl>
     </section>
 
     <section class="direction" aria-labelledby="direction-title">
@@ -336,6 +333,11 @@ permalink: /case-studies/edge-analytics
             <span class="goal-number">03</span>
             <h3>Bring it to life</h3>
             <p>Develop the designed experience into a working website.</p>
+          </article>
+          <article class="goal-card">
+            <span class="goal-number">04</span>
+            <h3>Make the work easy to explore</h3>
+            <p>Organize the firm’s work, team, clients, and learning resources into clear paths.</p>
           </article>
         </div>
       </div>
@@ -567,10 +569,10 @@ permalink: /case-studies/edge-analytics
       </div>
     </section>
 
-    <a class="more-projects-link" href="/#projects">View more projects →</a>
-
   </main>
-  <footer class="wrap">Designed and Developed by Alanna Bent · © Alanna Bent</footer>
+  <footer class="site-footer next-project-footer" aria-label="Next project">
+    <a class="next-project-button" href="neurokami">Next project</a>
+  </footer>
   <script>
     (() => {
       const tabs = Array.from(document.querySelectorAll(".design-tab"));
